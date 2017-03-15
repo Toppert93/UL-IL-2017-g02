@@ -135,6 +135,21 @@ import icrash.environment
       ieMessage(AMessage) returned to actCoordinator
     }
   }
+//----------------------------------------------------
+  use case system subfunction oeResetPassword(AdtMail:dtMail) {
+    actor actAuthenticated[primary,active]
+    actor actAdministrator[secondary,passive]
+    returned messages {
+      ieMessage(AMessage) returned to actAuthenticated
+     //  ieMessage(BMessage) returned to actAdministrator
+    }
+  }  
+  use case system subfunction oeFillCaptcha(AdtString:ptString) {
+    actor actAuthenticated[primary,active]
+    returned messages {
+      ieMessage(AMessage) returned to actAuthenticated
+    }
+  }  
   }
 
 }
