@@ -85,17 +85,20 @@ import lu.uni.lassy.messir.libraries.calendar
 
 				attribute login:dtLogin
 				attribute pwd: dtPassword
+				attribute mail: dtMail
+				attribute nbrfails: dtInteger
 				attribute vpIsLogged:ptBoolean
 				
 				operation init(
 										Alogin:dtLogin ,
-										Apwd:dtPassword ):ptBoolean
+										Apwd:dtPassword, 
+										Amail:dtMail	):ptBoolean
 			}
 			
 			class ctCoordinator 
 					role rnctCoordinator
 					cardinality [0..*]
-					extends ctAuthenticated{
+					{
 			
 				attribute id:dtCoordinatorID
 				
@@ -108,7 +111,7 @@ import lu.uni.lassy.messir.libraries.calendar
 			class ctAdministrator 
 					role rnctAdministrator
 					cardinality [1..1]
-					extends ctAuthenticated{
+					{
 
 				operation init(
 										Alogin:dtLogin ,

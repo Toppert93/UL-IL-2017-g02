@@ -10,16 +10,20 @@ use case system usergoal
 	
 	actor actAuthenticated[primary,active]
 
-	reuse oeLogin[1..1]
+	reuse oeLogin[1..*]
+	reuse oeFillCaptcha[0..*]
 	reuse oeLogout[1..1]
 
 	step a: actAuthenticated 
 	     executes oeLogin
 	step b: actAuthenticated 
+	     executes oeFillCaptcha     
+	step c: actAuthenticated 
 	     executes oeLogout
 	
 	ordering constraint 
-	 "step (a) must always precede step (b)."
+	 "step (a) and (b) must always precede step (c).
+	  step (b) is only needed when step (a) fails 3 times in a row."
 		}
 	}
 }

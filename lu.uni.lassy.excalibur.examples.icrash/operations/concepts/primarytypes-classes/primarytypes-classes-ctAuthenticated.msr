@@ -6,7 +6,7 @@ import icrash.concepts.primarytypes.classes
 
 Operation Model {
 
-operation: icrash.concepts.primarytypes.classes.ctAuthenticated.init(Alogin:dtLogin, Apwd:dtPassword):ptBoolean{
+operation: icrash.concepts.primarytypes.classes.ctAuthenticated.init(Alogin:dtLogin, Apwd:dtPassword, Amail:dtMail):ptBoolean{
 prolog{"src/Operations/Concepts/PrimaryTypesClasses/PrimaryTypesClasses-ctAuthenticated-init.pl"}
 }
 }

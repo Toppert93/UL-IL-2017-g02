@@ -1,0 +1,12 @@
+/*
+@author Steve
+@date Tue Mar 14 23:03:42 CET 2017
+*/
+
+
+@@Primary Type Datatype icrash.concepts.primarytypes.datatypes.dtMail
+@description "a mail adrress used to reset the password of an \msricrash user"
+@operation
+icrash.concepts.primarytypes.datatypes.dtMail.is
+"used to determine which strings are considered as valid dtMail."
+@endOperations
