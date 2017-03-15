@@ -899,6 +899,18 @@
     <semanticResources>usecases/OLD-documentation/UseCaseInstance-uciSimpleAndCompletePart02.msrd</semanticResources>
     <semanticResources>documentation/View-cm-view6.msrd</semanticResources>
     <semanticResources>documentation/View-em-gv-02.msrd</semanticResources>
+    <semanticResources>concepts/documentation/PrimaryType-Datatype-dtMail.msrd</semanticResources>
+    <semanticResources>usecases/usecase-ugResetPassword.msr</semanticResources>
+    <semanticResources>%20ugResetPassword.msr</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-ugResetPassword.msrd</semanticResources>
+    <semanticResources>documentation/UseCaseInstance-uciugResetPasswordFailLogin.msrd</semanticResources>
+    <semanticResources>documentation/UseCaseInstance-uciugResetPasswordWithoutLogin.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-oeResetPassword.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-oeFillCaptcha.msrd</semanticResources>
+    <semanticResources>documentation/View-cm-view8.msrd</semanticResources>
+    <semanticResources>documentation/View-uci-uciugResetPasswordWithoutLogin.msrd</semanticResources>
+    <semanticResources>documentation/View-uci-uciugResetPasswordFailLogin.msrd</semanticResources>
+    <semanticResources>documentation/View-uc-ugResetPassword.msrd</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Aguk8EY3EeOwoLagakxXNQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_8IZyuNKSEeadaP6YRq5p0w" name="cm-pt-ct-gv-01" representation="_frDQIFBBEeOoKst3jxjvgA">
@@ -19689,7 +19701,7 @@
             <styles xmi:type="notation:FilteringStyle" xmi:id="_LWYpKVFqEeOyAb9vFKebug"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_LWYpKlFqEeOyAb9vFKebug" fontName="Lucida Sans" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LWYpK1FqEeOyAb9vFKebug" x="28" y="111" width="168" height="60"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LWYpK1FqEeOyAb9vFKebug" x="12" y="120" width="207" height="99"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_LWYpLFFqEeOyAb9vFKebug" type="2003" element="_LWYpZFFqEeOyAb9vFKebug">
           <children xmi:type="notation:Node" xmi:id="_LWYpLVFqEeOyAb9vFKebug" type="5007"/>
@@ -19702,7 +19714,7 @@
             <styles xmi:type="notation:FilteringStyle" xmi:id="_LWYpMlFqEeOyAb9vFKebug"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_LWYpM1FqEeOyAb9vFKebug" fontName="Lucida Sans" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LWYpNFFqEeOyAb9vFKebug" x="253" y="168"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LWYpNFFqEeOyAb9vFKebug" x="264" y="240"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_LWYpNVFqEeOyAb9vFKebug" type="2003" element="_LWYpdlFqEeOyAb9vFKebug">
           <children xmi:type="notation:Node" xmi:id="_LWYpNlFqEeOyAb9vFKebug" type="5007"/>
@@ -19715,27 +19727,35 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_F0MC_2LdEeWzjIFzrt3jhA"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_LWYpO1FqEeOyAb9vFKebug"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_zGdUIAkQEee4DqVxPt9Fsw" type="3010" element="_zDk_QAkQEee4DqVxPt9Fsw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_zGdUIQkQEee4DqVxPt9Fsw" fontName="Segoe UI" fontHeight="14"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_zGdUIgkQEee4DqVxPt9Fsw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_zGeiQAkQEee4DqVxPt9Fsw" type="3010" element="_zDmNYAkQEee4DqVxPt9Fsw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_zGeiQQkQEee4DqVxPt9Fsw" fontName="Segoe UI" fontHeight="14"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_zGeiQgkQEee4DqVxPt9Fsw"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_LWYpPFFqEeOyAb9vFKebug"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_LWYpPVFqEeOyAb9vFKebug"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_LWYpPlFqEeOyAb9vFKebug" fontName="Lucida Sans" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LWYpP1FqEeOyAb9vFKebug" x="253" y="51" width="378" height="89"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LWYpP1FqEeOyAb9vFKebug" x="282" y="48" width="453" height="171"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_LWYpQFFqEeOyAb9vFKebug"/>
         <edges xmi:type="notation:Edge" xmi:id="_3KGs7oLIEeOE7uSgbeaHIA" type="4001" element="_3I-EfoLIEeOE7uSgbeaHIA" source="_LWYpI1FqEeOyAb9vFKebug" target="_LWYpLFFqEeOyAb9vFKebug">
           <children xmi:type="notation:Node" xmi:id="_3KGs8oLIEeOE7uSgbeaHIA" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KGs84LIEeOE7uSgbeaHIA" y="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KGs84LIEeOE7uSgbeaHIA" x="34" y="-10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_3KHT8ILIEeOE7uSgbeaHIA" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KHT8YLIEeOE7uSgbeaHIA" x="-7" y="42"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KHT8YLIEeOE7uSgbeaHIA" x="-7" y="54"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_3KHT8oLIEeOE7uSgbeaHIA" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KHT84LIEeOE7uSgbeaHIA" x="-42" y="15" width="143" height="31"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KHT84LIEeOE7uSgbeaHIA" x="-40" y="15" width="143" height="31"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_3KGs74LIEeOE7uSgbeaHIA" routing="Rectilinear" jumpLinkStatus="Above"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_3KGs8ILIEeOE7uSgbeaHIA" fontName="Lucida Sans" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3KGs8YLIEeOE7uSgbeaHIA" points="[-3, 29, -278, -22]$[-3, 56, -278, 5]$[119, 56, -156, 5]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KHT9ILIEeOE7uSgbeaHIA" id="(0.5,0.5)"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3KGs8YLIEeOE7uSgbeaHIA" points="[33, 29, -342, -91]$[33, 122, -342, 2]$[169, 122, -206, 2]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KHT9ILIEeOE7uSgbeaHIA" id="(0.40487804878048783,0.29896907216494845)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KHT9YLIEeOE7uSgbeaHIA" id="(0.5,0.5)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_3KJJJoLIEeOE7uSgbeaHIA" type="4001" element="_3I_5oILIEeOE7uSgbeaHIA" source="_LWYpI1FqEeOyAb9vFKebug" target="_LWYpNVFqEeOyAb9vFKebug">
@@ -19746,13 +19766,13 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KJJLYLIEeOE7uSgbeaHIA" x="-8" y="-51"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_3KJJLoLIEeOE7uSgbeaHIA" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KJJL4LIEeOE7uSgbeaHIA" x="-44" y="-19"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3KJJL4LIEeOE7uSgbeaHIA" x="-64" y="-19"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_3KJJJ4LIEeOE7uSgbeaHIA" routing="Rectilinear" jumpLinkStatus="Above"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_3KJJKILIEeOE7uSgbeaHIA" fontName="Lucida Sans" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3KJJKYLIEeOE7uSgbeaHIA" points="[10, -29, -298, 21]$[10, -59, -298, -9]$[142, -59, -166, -9]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KJJMILIEeOE7uSgbeaHIA" id="(0.5,0.5)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KJJMYLIEeOE7uSgbeaHIA" id="(0.5,0.5)"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3KJJKYLIEeOE7uSgbeaHIA" points="[21, -29, -354, 29]$[21, -69, -354, -11]$[187, -69, -188, -11]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KJJMILIEeOE7uSgbeaHIA" id="(0.40487804878048783,0.29896907216494845)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3KJJMYLIEeOE7uSgbeaHIA" id="(0.41685144124168516,0.257396449704142)"/>
         </edges>
       </data>
     </ownedAnnotationEntries>
@@ -19825,6 +19845,22 @@
         <target xmi:type="messir:OperationDeclaration" href="environment/environment.msr#icrash.environment.actAuthenticated.outactAuthenticated.oeLogout"/>
         <semanticElements xmi:type="messir:OperationDeclaration" href="environment/environment.msr#icrash.environment.actAuthenticated.outactAuthenticated.oeLogout"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_LWYpglFqEeOyAb9vFKebug" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/operation.png" labelAlignment="LEFT">
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='Output_Interface']/@subNodeMappings[name='Output_Interface_Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='Output_Interface']/@subNodeMappings[name='Output_Interface_Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zDk_QAkQEee4DqVxPt9Fsw" name="oeResetPassword(AdtMail: dtMail): ptBoolean    ">
+        <target xmi:type="messir:OperationDeclaration" href="environment/environment.msr#icrash.environment.actAuthenticated.outactAuthenticated.oeResetPassword"/>
+        <semanticElements xmi:type="messir:OperationDeclaration" href="environment/environment.msr#icrash.environment.actAuthenticated.outactAuthenticated.oeResetPassword"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_zDlmUAkQEee4DqVxPt9Fsw" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/operation.png" labelAlignment="LEFT">
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='Output_Interface']/@subNodeMappings[name='Output_Interface_Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='Output_Interface']/@subNodeMappings[name='Output_Interface_Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zDmNYAkQEee4DqVxPt9Fsw" name="oeFillCaptcha(AdtString: ptString): ptBoolean    ">
+        <target xmi:type="messir:OperationDeclaration" href="environment/environment.msr#icrash.environment.actAuthenticated.outactAuthenticated.oeFillCaptcha"/>
+        <semanticElements xmi:type="messir:OperationDeclaration" href="environment/environment.msr#icrash.environment.actAuthenticated.outactAuthenticated.oeFillCaptcha"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_zDmNYQkQEee4DqVxPt9Fsw" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/operation.png" labelAlignment="LEFT">
           <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='Output_Interface']/@subNodeMappings[name='Output_Interface_Operation']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='Output_Interface']/@subNodeMappings[name='Output_Interface_Operation']"/>

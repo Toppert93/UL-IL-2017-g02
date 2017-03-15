@@ -459,6 +459,18 @@
   <semanticResources>platform:/resource/lu.uni.lassy.excalibur.standard.specification.libraries/library/documentation/PrimaryType-Primitive-ptReal.msrd</semanticResources>
   <semanticResources>platform:/resource/lu.uni.lassy.excalibur.standard.specification.libraries/library/documentation/PrimaryType-Primitive-ptString.msrd</semanticResources>
   <semanticResources>documentation/View-em-gv-02.msrd</semanticResources>
+  <semanticResources>concepts/documentation/PrimaryType-Datatype-dtMail.msrd</semanticResources>
+  <semanticResources>usecases/usecase-ugResetPassword.msr</semanticResources>
+  <semanticResources>%20ugResetPassword.msr</semanticResources>
+  <semanticResources>usecases/documentation/UseCase-ugResetPassword.msrd</semanticResources>
+  <semanticResources>documentation/UseCaseInstance-uciugResetPasswordFailLogin.msrd</semanticResources>
+  <semanticResources>documentation/UseCaseInstance-uciugResetPasswordWithoutLogin.msrd</semanticResources>
+  <semanticResources>usecases/documentation/UseCase-oeResetPassword.msrd</semanticResources>
+  <semanticResources>usecases/documentation/UseCase-oeFillCaptcha.msrd</semanticResources>
+  <semanticResources>documentation/View-cm-view8.msrd</semanticResources>
+  <semanticResources>documentation/View-uci-uciugResetPasswordWithoutLogin.msrd</semanticResources>
+  <semanticResources>documentation/View-uci-uciugResetPasswordFailLogin.msrd</semanticResources>
+  <semanticResources>documentation/View-uc-ugResetPassword.msrd</semanticResources>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="_VxVZ4PWqEeSOM9Kfym77Zg">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
   </ownedViews>
