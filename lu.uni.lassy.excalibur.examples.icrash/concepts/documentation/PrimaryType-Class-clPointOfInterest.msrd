@@ -1,0 +1,25 @@
+/*
+@author jorge
+@date Wed Mar 15 20:38:38 CET 2017
+*/
+
+
+@@Primary Type Class icrash.concepts.primarytypes.classes.ctPointOfInterest
+@description "Used to model Points of interest added by the administrator into the sytem."
+@attribute
+icrash.concepts.primarytypes.classes.ctPointOfInterest.id
+"the Point of interest unique identification information."
+@attribute
+icrash.concepts.primarytypes.classes.ctPointOfInterest.type
+"the category type."
+@attribute
+icrash.concepts.primarytypes.classes.ctPointOfInterest.location
+"the position of the Points of interest provided by the space-based satellite navigation system used by the administrator."
+@attribute
+icrash.concepts.primarytypes.classes.ctPointOfInterest.description
+"a textual description providing unstructured information on the Points of interest."
+@endAttributes
+@operation
+icrash.concepts.primarytypes.classes.ctPointOfInterest.init
+"used to initialize the current object as a new instance of the ctPointOfInterest type."
+@endOperations

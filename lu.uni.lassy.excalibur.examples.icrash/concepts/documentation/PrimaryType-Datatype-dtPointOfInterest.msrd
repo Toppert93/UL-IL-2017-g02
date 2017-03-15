@@ -1,0 +1,12 @@
+/*
+@author jorge
+@date Wed Mar 15 19:35:19 CET 2017
+*/
+
+
+@@Primary Type Datatype icrash.concepts.primarytypes.datatypes.dtPointOfInterestID
+@description "A string used to identify Points of interest."
+@operation
+icrash.concepts.primarytypes.datatypes.dtPointOfInterestID.is
+"used to determine which strings are considered as valid Points of interest identifiers."
+@endOperations

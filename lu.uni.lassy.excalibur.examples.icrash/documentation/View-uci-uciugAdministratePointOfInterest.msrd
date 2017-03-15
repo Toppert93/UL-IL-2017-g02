@@ -1,0 +1,10 @@
+/*
+@author jorge
+@date Wed Mar 15 23:28:44 CET 2017
+*/
+
+
+@@view uci-uciugAdministratePointOfInterest
+@instance Use-Case usecases.uci.uciugAdministratePointOfInterest 
+@description ""
+@caption ""

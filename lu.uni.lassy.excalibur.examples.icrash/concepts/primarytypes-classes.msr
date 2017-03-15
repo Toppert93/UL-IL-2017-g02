@@ -77,6 +77,19 @@ import lu.uni.lassy.messir.libraries.calendar
 										Akind:etHumanKind ):ptBoolean
         operation isAcknowledged():ptBoolean
 			}
+			 
+			 class ctPointOfInterest role rnctPointOfInterest cardinality [0..*] {
+			 	attribute id:dtPointOfInterestID
+			 	attribute type:etCategory
+			 	attribute location:dtGPSLocation
+			 	attribute description:dtDescription
+			 	
+			 	operation init(			
+			 							Aid:dtPointOfInterestID,
+			 							Atype:etCategory,
+			 							Alocation:dtGPSLocation,
+			 							Adescription:dtDescription) : ptBoolean
+			 }
 
 
 			class ctAuthenticated 

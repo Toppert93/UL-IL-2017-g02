@@ -8,7 +8,7 @@ import lu.uni.lassy.messir.libraries.calendar
 	Concept Model {
 		
 		Primary Types {
-   			datatype dtPointOfInterest extends dtString {
+   			datatype dtPointOfInterestID extends dtString {
    				operation is():ptBoolean
    			}
 			 datatype dtAlertID extends dtString {
@@ -35,6 +35,9 @@ import lu.uni.lassy.messir.libraries.calendar
 			datatype dtComment extends dtString {
 				operation is():ptBoolean			
 			}
+			datatype dtDescription extends dtString {
+				operation is():ptBoolean
+			}
 			datatype dtLatitude extends dtReal {
 				operation is():ptBoolean			
 			}
@@ -46,6 +49,7 @@ import lu.uni.lassy.messir.libraries.calendar
 				attribute longitude: dtLongitude
 				operation is():ptBoolean			
 				operation isNearTo(AGPSLocation:dtGPSLocation ):ptBoolean
+				operation isCloseTo() : ptInteger
 			}
 			
 			enum etCrisisStatus {
@@ -63,6 +67,11 @@ import lu.uni.lassy.messir.libraries.calendar
 			enum etHumanKind {
 				constants["witness", "victim", "anonymous"]
 				operation is():ptBoolean
+			}
+			enum etCategory {
+				constants["Hospital","Police station","Garage","Parking","Insurance Office","Fire station" ]
+				operation is():ptBoolean
+				operation compare():ptBoolean
 			}
 		}
 	}

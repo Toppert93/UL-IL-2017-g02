@@ -36,7 +36,10 @@ association assctCrisisctCoordinator
  		association assctAuthenticatedactAuthenticated 
  					ctAuthenticated(rnctAuthenticated)[1..1]
  					actAuthenticated(rnactAuthenticated)[1..1]
-			
-		}
+ 		
+ 		association assctPointOfInterestactAdministrator
+ 					actAdministrator(rnactAdministrator)[1..1]
+ 					ctPointOfInterest(rnctPointOfInterest)[0..*]
+ 								}
 	}
 }
