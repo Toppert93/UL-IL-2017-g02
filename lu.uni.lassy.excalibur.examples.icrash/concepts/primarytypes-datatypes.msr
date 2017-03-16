@@ -62,6 +62,9 @@ import lu.uni.lassy.messir.libraries.calendar
 				constants["witness", "victim", "anonymous"]
 				operation is():ptBoolean
 			}
+			enum etExperienceRank {
+				constants["novice", "intermediate", "expert"]
+			}
 		}
 	}
 }
