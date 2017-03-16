@@ -150,6 +150,38 @@ import icrash.environment
       ieMessage(AMessage) returned to actAuthenticated
     }
   }  
-  }
+  //----------------------------------------------------
+  use case system subfunction oeAddPointOfInterest(AdtPointOfInterestID:dtPointOfInterestID,
+  												   AdtCategory:etCategory,
+  												   AdtGPSLocation:dtGPSLocation,
+  												   AdtDescription:dtDescription) 
+  												   {
+			actor actAdministrator[primary, active]
+			returned messages {
+				iePointOfInterestAdded() returned to actAdministrator 
+				
+			}
+			
+		}
+//----------------------------------------------------
+	use case system subfunction oeDeletePointOfInterest(AdtPointOfInterestID:dtPointOfInterestID)
+	 {
+			actor actAdministrator[primary, active]
+			returned messages {
+				iePointOfInterestDeleted() returned to actAdministrator
+			}
+		}
+//----------------------------------------------------
+	use case system subfunction oeEditPointOfInterest(AdtPointOfInterestID:dtPointOfInterestID,
+  												      AdtCategory:etCategory,
+  												      AdtGPSLocation:dtGPSLocation,
+  												      AdtDescription:dtDescription)  {
+			actor actAdministrator[primary, active]
+			returned messages {
+				iePointOfInterestEdited() returned to actAdministrator 
+			}
+	}
+
+}
 
 }

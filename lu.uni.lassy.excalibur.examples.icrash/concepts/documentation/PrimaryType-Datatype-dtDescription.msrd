@@ -1,0 +1,12 @@
+/*
+@author jorge
+@date Wed Mar 15 19:39:18 CET 2017
+*/
+
+
+@@Primary Type Datatype icrash.concepts.primarytypes.datatypes.dtDescription
+@description "a datatype made of a string value used to store information about Points of interest."
+@operation
+icrash.concepts.primarytypes.datatypes.dtDescription.is
+"used to determine which strings are considered as valid descriptions."
+@endOperations

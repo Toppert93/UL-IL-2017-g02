@@ -1,0 +1,8 @@
+/*
+@author jorge
+@date Wed Mar 15 22:17:49 CET 2017
+*/
+
+
+@@Primary Type Association icrash.concepts.primarytypes.associations.assctPointOfInterestactAdministrator
+@description "The administrator is the only one who can handle Points of interest and there is only one administrator."
