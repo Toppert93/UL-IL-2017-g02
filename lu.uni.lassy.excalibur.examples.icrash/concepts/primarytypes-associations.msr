@@ -42,4 +42,5 @@ association assctCrisisctCoordinator
  					ctPointOfInterest(rnctPointOfInterest)[0..*]
  								}
 	}
-}
+
+	}
