@@ -471,6 +471,15 @@
   <semanticResources>documentation/View-uci-uciugResetPasswordWithoutLogin.msrd</semanticResources>
   <semanticResources>documentation/View-uci-uciugResetPasswordFailLogin.msrd</semanticResources>
   <semanticResources>documentation/View-uc-ugResetPassword.msrd</semanticResources>
+  <semanticResources>concepts/documentation/PrimaryType-Association-assctPointOfInterestactAdministrator.msrd</semanticResources>
+  <semanticResources>concepts/documentation/PrimaryType-Class-clPointOfInterest.msrd</semanticResources>
+  <semanticResources>concepts/documentation/PrimaryType-Datatype-dtDescription.msrd</semanticResources>
+  <semanticResources>concepts/documentation/PrimaryType-Datatype-dtPointOfInterest.msrd</semanticResources>
+  <semanticResources>concepts/documentation/PrimaryType-Enumeration-etCategory.msrd</semanticResources>
+  <semanticResources>documentation/View-uc-ugAdministratePointOfInterest.msrd</semanticResources>
+  <semanticResources>documentation/View-uci-uciugAdministratePointOfInterest.msrd</semanticResources>
+  <semanticResources>usecases/documentation/UseCase-ugAdministratePointOfInterest.msrd</semanticResources>
+  <semanticResources>usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr</semanticResources>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="_VxVZ4PWqEeSOM9Kfym77Zg">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
   </ownedViews>
