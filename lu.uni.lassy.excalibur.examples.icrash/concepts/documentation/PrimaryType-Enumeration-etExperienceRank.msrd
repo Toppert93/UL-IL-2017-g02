@@ -1,0 +1,8 @@
+/*
+@author Jorge Cruz
+@date Fri Mar 17 14:47:09 CET 2017
+*/
+
+
+@@Primary Type Enumeration icrash.concepts.primarytypes.datatypes.etExperienceRank
+@description "the experience rank indicates the crisis level the coordinator is allowed to handle"

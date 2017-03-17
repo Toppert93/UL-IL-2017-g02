@@ -114,6 +114,8 @@ import lu.uni.lassy.messir.libraries.calendar
 					{
 			
 				attribute id:dtCoordinatorID
+				attribute expRank:etExperienceRank
+				attribute expPoints:dtInteger
 				
 				operation init(
 										Aid:dtCoordinatorID ,
