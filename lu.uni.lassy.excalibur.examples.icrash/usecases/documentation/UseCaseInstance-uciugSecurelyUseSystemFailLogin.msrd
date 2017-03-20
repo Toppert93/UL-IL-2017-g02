@@ -1,7 +1,12 @@
+/*
+@author Steve
+@date Mon Mar 20 21:16:33 CET 2017
+*/
 
-@@Instance Use Case usecases.uciugSecurelyUseSystem.uciugSecurelyUseSystem
+
+@@Instance Use Case usecases.uciugSecurelyUseSystemFailLogin.uciugSecurelyUseSystemFailLogin
 @description "use case instance for the user goal use case \msrcode{ugSecurelyUseSystem} illustrating a simple interaction scenario primarily handled by an administrator in a concrete situation.
-In this instance there is no password reset asked, neither a captcha test asked.
+In this instance a captcha test is asked after 3 failed attempts of login. Once the \msrcode{actAuthenticated} successfully entered the right captcha, he's able to connect. 
 "
 @remark
 "A captcha test is asked after three failed attempts of login."

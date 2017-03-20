@@ -9,21 +9,28 @@ use case system usergoal
   ugSecurelyUseSystem() {
 	
 	actor actAuthenticated[primary,active]
+	actor actAdministrator[secondary]
 
 	reuse oeLogin[1..*]
 	reuse oeFillCaptcha[0..*]
+	reuse oeResetPassword[0..1]
 	reuse oeLogout[1..1]
 
 	step a: actAuthenticated 
 	     executes oeLogin
 	step b: actAuthenticated 
-	     executes oeFillCaptcha     
-	step c: actAuthenticated 
+	     executes oeFillCaptcha
+	step c: actAuthenticated
+		executes oeResetPassword          
+	step d: actAuthenticated 
 	     executes oeLogout
 	
 	ordering constraint 
-	 "step (a) and (b) must always precede step (c).
-	  step (b) is only needed when step (a) fails 3 times in a row."
+	 "step (a) or step (c) is always the first one.
+	  step (a) must always precede step (d).
+	  step (b) is only needed when step (a) fails 3 times in a row.
+	  step (d) is always the last step"
+	  
 		}
 	}
 }
