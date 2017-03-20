@@ -1,0 +1,15 @@
+/*
+@author jorge
+@date Mon Mar 20 13:37:38 CET 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.etCategory.is
+@description "used to determine which litteral belongs to the enumeration. 
+ "
+//postFunctional descriptions
+@postF 
+" true iff the value is equal to one of the following values: 
+\msrcode{Hospital,Police station,Garage,Parking,Insurance Office,Fire station} "
+@endPostF

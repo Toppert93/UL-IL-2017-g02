@@ -1,0 +1,16 @@
+/*
+@author jorge
+@date Mon Mar 20 13:21:02 CET 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.dtPointOfInterestID.is
+@description "used to determine which strings are considered as valid alert identifiers.
+ "
+//postFunctional descriptions
+@postF 
+" if the length of the value attribute of a dtAlertID is a ptInteger greater than zero 
+then the operation returns the ptBoolean true, else the ptBoolean false. "
+@endPostF
+

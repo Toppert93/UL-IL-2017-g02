@@ -1,0 +1,38 @@
+/*
+@author jorge
+@date Mon Mar 20 14:11:52 CET 2017
+*/
+
+
+@@Operation
+icrash.environment.actAdministrator.outactAdministrator.oeDeletePointOfInterest
+//parameters
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeDeletePointOfInterest.AdtPointOfInterestID
+"used for ctPointOfInterest instance retrieval"
+@endParameters
+
+@description "sent to delete an existing Point of interest in the system's post state.
+ "
+//preProtocol descriptions
+@preP
+"the system is started"
+@preP
+"the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged)"
+@endPreP
+//preFunctional descriptions
+@preF
+"it is supposed that there exist one ctCoordinator instance with the same 
+\msrcode{id} attribute than the one the administrator wants to delete."
+@endPreF
+//postFunctional descriptions
+@postF 
+"the ctPointOfInterest class instance having the required id does not belong anymore to the post state."
+@postF
+"the administrator actor is informed about the satisfaction of its request."
+@endPostF
+//postProtocol descriptions
+@postP 
+" none "
+@endPostP
+

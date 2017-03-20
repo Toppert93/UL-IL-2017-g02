@@ -1,0 +1,26 @@
+/*
+@author jorge
+@date Mon Mar 20 15:08:25 CET 2017
+*/
+
+
+@@Use Case Subfunction icrash.usecases.subfunctions.oeDeletePointOfInterest hidden
+@description "goal is to delete an existing Point of interest in the system's post state."
+@parameter icrash.usecases.subfunctions.oeDeletePointOfInterest.AdtPointOfInterestID ""
+@endParameters
+@protocolCondition
+"
+"
+@endProtocolConditions
+@preCondition
+"
+"
+@endPreConditions
+@postCondition
+"
+"
+@endPostConditions
+@additionalInformation
+"
+none
+"

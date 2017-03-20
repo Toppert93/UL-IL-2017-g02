@@ -1,0 +1,47 @@
+/*
+@author jorge
+@date Mon Mar 20 14:31:54 CET 2017
+*/
+
+
+@@Operation
+icrash.environment.actAdministrator.outactAdministrator.oeEditPointOfInterest
+//parameters
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtPointsOfInterestID
+"used to initialize the id field"
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AetCategory
+"used to initialize the category field"
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtGPSLocation
+"used to initialize the location field"
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtDescription
+"used to initialize the description field"
+@endParameters
+
+@description "sent to modify an existing Point of interest in the system's post state .
+ "
+//preProtocol descriptions
+@preP
+"the system is started "
+@preP
+"the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged) "
+@endPreP
+//preFunctional descriptions
+@preF
+"it is supposed that there exists a ctPointOfInterest instance with the same \msrcode{id} attribute. "
+@endPreF
+//postFunctional descriptions
+@postF 
+"The values for the attributes selected by the system's actor actAdministrator are modified to the ones the administrator's given values. "
+@postF
+"the administrator actor is informed about the satisfaction of its request."
+@endPostF
+//postProtocol descriptions
+@postP 
+" none "
+@endPostP
+//example
+@example" "

@@ -1,0 +1,14 @@
+/*
+@author jorge
+@date Mon Mar 20 13:28:08 CET 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.dtDescription.is
+@description "used to determine which strings are considered as valid description.
+ "
+//postFunctional descriptions
+@postF 
+"true iff the length of the string value is not more than 280 characters."
+@endPostF

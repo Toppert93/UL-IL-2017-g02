@@ -5,7 +5,7 @@
 
 
 @@Primary Type Class icrash.concepts.primarytypes.classes.ctPointOfInterest
-@description "Used to model Points of interest added by the administrator into the sytem."
+@description "Used to model Points of interest added by the administrator into the system."
 @attribute
 icrash.concepts.primarytypes.classes.ctPointOfInterest.id
 "the Point of interest unique identification information."

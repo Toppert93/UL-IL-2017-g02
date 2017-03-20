@@ -1,0 +1,31 @@
+/*
+@author jorge
+@date Mon Mar 20 13:17:27 CET 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.classes.ctPointOfInterest.init
+//parameters
+@parameter
+icrash.concepts.primarytypes.classes.ctPointOfInterest.init.Aid
+"used to initialize the id field"
+@parameter
+icrash.concepts.primarytypes.classes.ctPointOfInterest.init.Atype
+"used to initialize the type field"
+@parameter
+icrash.concepts.primarytypes.classes.ctPointOfInterest.init.Alocation
+"used to initialize the location field"
+@parameter
+icrash.concepts.primarytypes.classes.ctPointOfInterest.init.Adescription
+"used to initialize the description field"
+@endParameters
+
+@description "
+used to initialize the current object as a new instance of the ctPointOfInterest type. "
+//postFunctional descriptions
+@postF 
+"true iff the system poststate includes the current object as a new ctPointOfInterest instance having its attributes equal to the ones provided as parameters. "
+@endPostF
+//example
+@example" "

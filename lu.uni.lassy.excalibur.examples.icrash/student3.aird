@@ -479,10 +479,27 @@
     <semanticResources>concepts/documentation/PrimaryType-Association-assctPointOfInterestactAdministrator.msrd</semanticResources>
     <semanticResources>usecases/documentation/UseCase-ugAdministratePointOfInterest.msrd</semanticResources>
     <semanticResources>documentation/View-uc-ugAdministratePointOfInterest.msrd</semanticResources>
-    <semanticResources>usecases/uciAdministratePointOfInterest.msr</semanticResources>
     <semanticResources>usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr</semanticResources>
     <semanticResources>documentation/View-uci-uciugAdministratePointOfInterst.msrd</semanticResources>
     <semanticResources>documentation/View-uci-uciugAdministratePointOfInterest.msrd</semanticResources>
+    <semanticResources>concepts/documentation/PrimaryType-Enumeration-etExperienceRank.msrd</semanticResources>
+    <semanticResources>environment/documentation/Operation-actAdministrator-outactAdministrator-oeRankDownCoordinator.msrd</semanticResources>
+    <semanticResources>usecases/usecaseinstance-ugAdministrateTheSystem-uciugAdministrateTheSystem.msr</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-oeRankDownCoordinator.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCaseInstance-uciugAdministrateTheSystem.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-etCategory-compare.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-ctPointOfInterest-init.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-dtPointOfInterestID-is.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-dtDescription-is.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-etCategory-is.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-dtGPSLocation-isCloseTo.msrd</semanticResources>
+    <semanticResources>environment/documentation/Operation-actAdministrator-outactAdministrator-oeAddPointOfInterest.msrd</semanticResources>
+    <semanticResources>environment/documentation/Operation-actAdministrator-outactAdministrator-oeDeletePointOfInterest.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-oeEditPointOfInterest.msrd</semanticResources>
+    <semanticResources>environment/documentation/Operation-actAdministrator-outactAdministrator-oeEditPointOfInterest.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCaseInstance-uciugAdministratePointOfInterest.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-oeAddPointOfInterest.msrd</semanticResources>
+    <semanticResources>usecases/documentation/UseCase-oeDeletePointOfInterest.msrd</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_WzMfgPWqEeSOM9Kfym77Zg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_0awOgAnJEeeHfqL9QRe_eQ" name="uc-ugAdministratePointOfInterest" representation="_0axcoAnJEeeHfqL9QRe_eQ">

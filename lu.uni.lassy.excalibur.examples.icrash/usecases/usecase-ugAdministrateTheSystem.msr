@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package icrash.usecases.ugAdministrateTheSystem {
 
 	import icrash.environment
@@ -33,40 +32,4 @@ package icrash.usecases.ugAdministrateTheSystem {
           "steps (a) (b) (c) (d) can be executed multiple times."
 		}
 	}
-=======
-package icrash.usecases.ugAdministrateTheSystem {
-
-	import icrash.environment
-	import icrash.usecases.ugSecurelyUseSystem
-	import icrash.usecases.subfunctions
-
-	Use Case Model {
-		
-		use case system usergoal 
-		  ugAdministrateTheSystem() {
-			actor actAdministrator[primary,active]
-
-			reuse ugSecurelyUseSystem[1..*]
-			reuse oeAddCoordinator[1..*]
-			reuse oeDeleteCoordinator[0..*]
-			reuse oeRankDownCoordinator[0..*]
-			
-			step a: actAdministrator 
-			     executes ugSecurelyUseSystem
-			step b: actAdministrator 
-			     executes oeAddCoordinator
-			step c: actAdministrator
-			     executes oeDeleteCoordinator
-			step d: actAdministrator
-				 executes oeRankDownCoordinator
-			
-			ordering constraint 
-			   "steps (a) (b) (c) and (d) executions are interleaved 
-          (steps (b) (c) and (d) have their protocol constrained 
-           by steps of (a))."
-      ordering constraint 
-          "steps (a) (b) (c) (d) can be executed multiple times."
-		}
-	}
->>>>>>> branch 'master' of https://github.com/Toppert93/UL-IL-2017-g02.git
 }

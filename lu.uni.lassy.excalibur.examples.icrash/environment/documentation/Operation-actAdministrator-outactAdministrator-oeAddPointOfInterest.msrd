@@ -1,0 +1,46 @@
+/*
+@author jorge
+@date Mon Mar 20 14:00:03 CET 2017
+*/
+
+
+@@Operation
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest
+//parameters
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtPointsOfInterestID
+"used to initialize the id field"
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AetCategory
+"used to initialize the category field"
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtGPSLocation
+"used to initialize the location field"
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtDescription
+"used to initialize the description field"
+@endParameters
+
+@description "sent to add a new Point of interest in the system's post state .
+ "
+//preProtocol descriptions
+@preP
+"the system is started "
+@preP
+"the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged) "
+@endPreP
+//preFunctional descriptions
+@preF
+"it is supposed that there cannot exist a ctPointOfInterest instance with the same \msrcode{id} attribute. "
+@endPreF
+//postFunctional descriptions
+@postF 
+"the system's state has a new instance of ctPointOfInterest initialized with the given values."
+@postF
+"the administrator actor is informed about the satisfaction of its request."
+@endPostF
+//postProtocol descriptions
+@postP 
+" "
+@endPostP
+

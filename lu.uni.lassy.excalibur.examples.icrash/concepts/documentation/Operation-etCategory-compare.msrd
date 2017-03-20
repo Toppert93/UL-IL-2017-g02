@@ -1,0 +1,14 @@
+/*
+@author jorge
+@date Mon Mar 20 13:06:46 CET 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.etCategory.compare
+@description "Used to verify if two values of the etCategory are equal.
+ "
+//postFunctional descriptions
+@postF 
+"If the second value is equal to the first value then the operation returns the ptBoolean true else it returns the ptBoolean false."
+@endPostF
