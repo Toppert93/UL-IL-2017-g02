@@ -1,0 +1,8 @@
+/*
+@author Jorge Cruz
+@date Fri Mar 17 14:49:20 CET 2017
+*/
+
+
+@@Instance Use Case usecases.uciugAdministrateTheSystem.uciugAdministrateTheSystem
+@description "use case instance for the use case \msrcode{ugAdministrateTheSystem} showing the addition of a coordinator and his demotion in rank by the administrator"

@@ -181,6 +181,14 @@ import icrash.environment
 				iePointOfInterestEdited() returned to actAdministrator 
 			}
 	}
+//-----------------------------------------------------
+	use case system subfunction oeRankDownCoordinator(AdtCoordinatorID:dtCoordinatorID) {
+			
+			actor actAdministrator[primary,active]
+			returned messages {
+				ieRankEdited() returned to actAdministrator
+			}
+	}
 
 }
 

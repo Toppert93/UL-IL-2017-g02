@@ -1,0 +1,31 @@
+package usecases.uciugAdministrateTheSystem {
+	import icrash.usecases.ugAdministrateTheSystem
+	import icrash.usecases.ugSecurelyUseSystem
+    import icrash.concepts.primarytypes.datatypes
+    import icrash.environment
+    import icrash.usecases.ugAdministrateTheSystem
+    import icrash.usecases.subfunctions
+
+	Use Case Model {
+
+		use case instance uciugAdministrateTheSystem : ugAdministrateTheSystem{
+			actors {
+				
+				jorge:actAdministrator
+				
+			}
+			use case steps {
+					jorge executed  usecases.uciugSecurelyUseSystem.uciugSecurelyUseSystem()
+					jorge executed instanceof subfunction oeAddCoordinator("coordID1", "steve", "abcdefg"){
+						ieCoordinatorAdded() returned to jorge
+					}
+					jorge executed instanceof subfunction oeRankDownCoordinator("coordID1"){
+						ieRankEdited() returned to jorge
+					}
+						
+						}
+
+              }
+				
+		}
+}
