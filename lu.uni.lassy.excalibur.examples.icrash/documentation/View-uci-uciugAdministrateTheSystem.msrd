@@ -1,0 +1,10 @@
+/*
+@author Jorge Cruz
+@date Mon Mar 20 21:31:49 CET 2017
+*/
+
+
+@@view uci-uciugAdministrateTheSystem
+@instance Use-Case usecases.uciugAdministrateTheSystem.uciugAdministrateTheSystem 
+@description "shows the sequence diagram representing a use case instance for the user goal use case \msrcode{ugAdministrateTheSystem}."
+@caption "uci-ugAdministrateTheSystem"
