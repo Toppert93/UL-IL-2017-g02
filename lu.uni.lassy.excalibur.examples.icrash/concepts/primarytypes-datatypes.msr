@@ -49,7 +49,7 @@ import lu.uni.lassy.messir.libraries.calendar
 				attribute longitude: dtLongitude
 				operation is():ptBoolean			
 				operation isNearTo(AGPSLocation:dtGPSLocation ):ptBoolean
-				operation isCloseTo() : ptInteger
+				operation isCloseTo(AGPSLocation:dtGPSLocation) : ptInteger
 			}
 			
 			enum etCrisisStatus {

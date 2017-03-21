@@ -5,7 +5,7 @@
 
 
 @@Use Case Subfunction icrash.usecases.subfunctions.oeEditPointOfInterest hidden
-@description "goal is to modify an existing Point of interest in the system's post statee."
+@description "goal is to modify an existing Point of interest in the system's post state."
 @parameter icrash.usecases.subfunctions.oeEditPointOfInterest.AdtPointOfInterestID ""
 @parameter icrash.usecases.subfunctions.oeEditPointOfInterest.AdtCategory ""
 @parameter icrash.usecases.subfunctions.oeEditPointOfInterest.AdtGPSLocation ""
