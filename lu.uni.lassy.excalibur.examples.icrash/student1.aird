@@ -445,7 +445,6 @@
     <semanticResources>platform:/resource/lu.uni.lassy.excalibur.standard.specification.libraries/library/documentation/PrimaryType-Primitive-ptString.msrd</semanticResources>
     <semanticResources>documentation/View-em-gv-02.msrd</semanticResources>
     <semanticResources>concepts/documentation/PrimaryType-Datatype-dtMail.msrd</semanticResources>
-    <semanticResources>usecases/usecase-ugResetPassword.msr</semanticResources>
     <semanticResources>%20ugResetPassword.msr</semanticResources>
     <semanticResources>usecases/documentation/UseCase-ugResetPassword.msrd</semanticResources>
     <semanticResources>documentation/UseCaseInstance-uciugResetPasswordFailLogin.msrd</semanticResources>
@@ -455,7 +454,6 @@
     <semanticResources>documentation/View-cm-view8.msrd</semanticResources>
     <semanticResources>documentation/View-uci-uciugResetPasswordWithoutLogin.msrd</semanticResources>
     <semanticResources>documentation/View-uci-uciugResetPasswordFailLogin.msrd</semanticResources>
-    <semanticResources>documentation/View-uc-ugResetPassword.msrd</semanticResources>
     <semanticResources>usecases/documentation/UseCaseInstance-uciugSecurelyUseSystemFailLogin.msrd</semanticResources>
     <semanticResources>usecases/usecaseinstance-ugSecurelyUseSystem-uciugSecurelyUseSystemFailLogin.msr</semanticResources>
     <semanticResources>usecases/documentation/UseCaseInstance-uciugSecurelyUseSystemFailLoginResetPassword.msrd</semanticResources>
@@ -1817,8 +1815,8 @@
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use_Case_Diagram']/@defaultLayer/@edgeMappings[name='UC_Relation_UseCase_Actor']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_iDsoIwljEeej6_ufEL4crw" name="&lt;&lt;secondary>>&#xA;" sourceNode="_iDsoCQljEeej6_ufEL4crw" targetNode="_iDsoBQljEeej6_ufEL4crw">
-      <target xmi:type="messir:PrimaryUseCaseActor" href="usecases/usecase-ugResetPassword.msr#//@usecaseM/@useCases.0/@useCaseActors.1"/>
-      <semanticElements xmi:type="messir:PrimaryUseCaseActor" href="usecases/usecase-ugResetPassword.msr#//@usecaseM/@useCases.0/@useCaseActors.1"/>
+      <target xmi:type="messir:SecondaryUseCaseActor" href="usecases/usecase-ugResetPassword.msr#//@usecaseM/@useCases.0/@useCaseActors.1"/>
+      <semanticElements xmi:type="messir:SecondaryUseCaseActor" href="usecases/usecase-ugResetPassword.msr#//@usecaseM/@useCases.0/@useCaseActors.1"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_iDsoJAljEeej6_ufEL4crw" targetArrow="NoDecoration" size="2" strokeColor="209,209,209">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use_Case_Diagram']/@defaultLayer/@edgeMappings[name='UC_Relation_UseCase_Actor']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_iDsoJQljEeej6_ufEL4crw" labelSize="14" showIcon="false"/>
