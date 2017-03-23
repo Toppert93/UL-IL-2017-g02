@@ -1,10 +1,10 @@
 package usecases.uci {
-	import icrash.usecases.usecase
+	import icrash.usecases.ugAdministrateTheSystem
 	import icrash.usecases.subfunctions
 
 	Use Case Model {
 
-		use case instance uciugAdministratePointOfInterest : ugAdministratePointOfInterest{
+		use case instance uciugAdministratePointOfInterest : ugAdministrateTheSystem{
 			actors {
 				bill:icrash.environment.actAdministrator
 			}
