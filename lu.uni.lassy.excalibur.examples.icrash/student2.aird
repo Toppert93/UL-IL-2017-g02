@@ -471,6 +471,10 @@
   <semanticResources>documentation/View-uci-uciugResetPasswordWithoutLogin.msrd</semanticResources>
   <semanticResources>documentation/View-uci-uciugResetPasswordFailLogin.msrd</semanticResources>
   <semanticResources>documentation/View-uc-ugResetPassword.msrd</semanticResources>
+  <semanticResources>documentation/View-cm-view9.msrd</semanticResources>
+  <semanticResources>documentation/View-uc-oeRankDownCoordinator.msrd</semanticResources>
+  <semanticResources>documentation/View-uci-uciugAdministrateTheSystem.msrd</semanticResources>
+  <semanticResources>usecases/usecaseinstance-ugAdministrateTheSystem-uciugAdministrateTheSystem.msr</semanticResources>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="_VxVZ4PWqEeSOM9Kfym77Zg">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
   </ownedViews>
