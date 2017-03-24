@@ -141,7 +141,7 @@ import icrash.environment
     actor actAdministrator[secondary,passive]
     returned messages {
       ieMessage(AMessage) returned to actAuthenticated
-     //  ieMessage(BMessage) returned to actAdministrator
+       ieMessage2(BMessage) returned to actAdministrator
     }
   }  
   use case system subfunction oeFillCaptcha(AdtString:ptString) {
