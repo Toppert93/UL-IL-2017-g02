@@ -20,9 +20,7 @@ import lu.uni.lassy.messir.libraries.calendar
 			}
 		}
 
-		actor actAdministrator 
-						role rnactAdministrator 
-						cardinality [1..1] 
+		actor actAdministrator role rnactAdministrator cardinality [1..1] 
 						extends actAuthenticated {
 
 			operation init():ptBoolean
@@ -36,7 +34,6 @@ import lu.uni.lassy.messir.libraries.calendar
 											
 				operation oeDeleteCoordinator(
 											AdtCoordinatorID:dtCoordinatorID ):ptBoolean
-			
 			
 			
 		     	operation oeAddPointOfInterest(
@@ -152,6 +149,4 @@ import lu.uni.lassy.messir.libraries.calendar
 			input interface inactActivator{
 	 		}
 		}
-	}
-
-}
+	}}
