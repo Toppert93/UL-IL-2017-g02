@@ -36,12 +36,34 @@ import lu.uni.lassy.messir.libraries.calendar
 											
 				operation oeDeleteCoordinator(
 											AdtCoordinatorID:dtCoordinatorID ):ptBoolean
+			
+			
+			
+		     	operation oeAddPointOfInterest(
+	 					 AdtPointsOfInterestID:dtPointOfInterestID,
+	 					 AetCategory:etCategory,
+	 					 AdtGPSLocation:dtGPSLocation,
+	 				     AdtDescription:dtDescription) :ptBoolean
+	 			
+	 			operation oeDeletePointOfInterest(
+	 						  AdtPointOfInterestID:dtPointOfInterestID) : ptBoolean
+	 			
+	 			operation oeEditPointOfInterest(
+	 										   AdtPointsOfInterestID:dtPointOfInterestID,
+	 										   AetCategory:etCategory,
+	 										   AdtGPSLocation:dtGPSLocation,
+	 										   AdtDescription:dtDescription) :ptBoolean
+	 			operation oeRankDownCoordinator(AdtCoordinatorID:dtCoordinatorID):ptBoolean
 			}
 			
 			input interface inactAdministrator{
 				
 				operation ieCoordinatorAdded():ptBoolean
 				operation ieCoordinatorDeleted():ptBoolean
+				operation iePointOfInterestAdded():ptBoolean
+				operation iePointOfInterestDeleted():ptBoolean
+				operation iePointOfInterestEdited():ptBoolean
+				operation ieRankEdited():ptBoolean
 				operation ieMessage2(AMessage:ptString):ptBoolean
 	 		}
 		}
