@@ -6,8 +6,7 @@
 
 @@Operation
 icrash.concepts.primarytypes.datatypes.dtGPSLocation.isCloseTo
-@description "used to determine how close two locations are. In the context of the iCrash system,
- we compute the distance between two GPS locations using the following Haversine formula.
+@description "used to determine how close two locations are. In the context of the iCrash system, we compute the distance between two GPS locations using the following Haversine formula.
 (more details can be found at: 
   http://www.movable-type.co.uk/scripts/latlong.html
   and http://www.gpsvisualizer.com/calculators\#distance

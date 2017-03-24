@@ -1104,7 +1104,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v97EmgnOEeeHfqL9QRe_eQ"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_v95PYwnOEeeHfqL9QRe_eQ" fontName="Segoe UI" fontHeight="14"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v95PZAnOEeeHfqL9QRe_eQ" x="936" y="50" width="150" height="50"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v95PZAnOEeeHfqL9QRe_eQ" x="678" y="50" width="150" height="50"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_v94oUgnOEeeHfqL9QRe_eQ"/>
         <edges xmi:type="notation:Edge" xmi:id="_v-EOhgnOEeeHfqL9QRe_eQ" type="4001" element="_v94BYgnOEeeHfqL9QRe_eQ" source="_v97rownOEeeHfqL9QRe_eQ" target="_v952cAnOEeeHfqL9QRe_eQ">
@@ -1290,7 +1290,7 @@
     <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_v94BSQnOEeeHfqL9QRe_eQ" name="bill&#xA;: actAdministrator" width="15" height="5" resizeKind="NSEW">
       <target xmi:type="messir:UseCaseInstanceActor" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#usecases.uci.uciugAdministratePointOfInterest.bill"/>
       <semanticElements xmi:type="messir:UseCaseInstanceActor" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#usecases.uci.uciugAdministratePointOfInterest.bill"/>
-      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN7PdAnOEeeHfqL9QRe_eQ" x="936" y="50" height="50" width="150"/>
+      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN7PdAnOEeeHfqL9QRe_eQ" x="678" y="50" height="50" width="150"/>
       <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BSgnOEeeHfqL9QRe_eQ" name="uciugAdministratePointOfInterest" width="1" height="18" resizeKind="NSEW">
         <target xmi:type="messir:UseCaseInstance" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#usecases.uci.uciugAdministratePointOfInterest"/>
         <semanticElements xmi:type="messir:UseCaseInstance" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#usecases.uci.uciugAdministratePointOfInterest"/>
@@ -1298,7 +1298,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BTAnOEeeHfqL9QRe_eQ" name="out01" outgoingEdges="_v94BYgnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.0"/>
           <semanticElements xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUAnOEeeHfqL9QRe_eQ" x="1001" y="130" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUAnOEeeHfqL9QRe_eQ" x="743" y="130" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BTQnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="39,76,114" width="2" height="4" color="39,76,114">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Step%20Execution']/@style"/>
           </ownedStyle>
@@ -1307,7 +1307,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BTgnOEeeHfqL9QRe_eQ" name="out02" outgoingEdges="_v94BZQnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.1"/>
           <semanticElements xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.1"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUQnOEeeHfqL9QRe_eQ" x="1001" y="250" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUQnOEeeHfqL9QRe_eQ" x="743" y="250" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BTwnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="39,76,114" width="2" height="4" color="39,76,114">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Step%20Execution']/@style"/>
           </ownedStyle>
@@ -1316,7 +1316,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BUAnOEeeHfqL9QRe_eQ" name="out03" outgoingEdges="_v94BaAnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.2"/>
           <semanticElements xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.2"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUgnOEeeHfqL9QRe_eQ" x="1001" y="370" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUgnOEeeHfqL9QRe_eQ" x="743" y="370" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BUQnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="39,76,114" width="2" height="4" color="39,76,114">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Step%20Execution']/@style"/>
           </ownedStyle>
@@ -1325,7 +1325,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BUgnOEeeHfqL9QRe_eQ" name="out04" outgoingEdges="_v94BawnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.3"/>
           <semanticElements xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.3"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUwnOEeeHfqL9QRe_eQ" x="1001" y="490" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BUwnOEeeHfqL9QRe_eQ" x="743" y="490" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BUwnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="39,76,114" width="2" height="4" color="39,76,114">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Step%20Execution']/@style"/>
           </ownedStyle>
@@ -1334,7 +1334,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BVAnOEeeHfqL9QRe_eQ" name="out05" outgoingEdges="_v94BbgnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.4"/>
           <semanticElements xmi:type="messir:UseCaseInstanceStep" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.4"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BVAnOEeeHfqL9QRe_eQ" x="1001" y="610" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BVAnOEeeHfqL9QRe_eQ" x="743" y="610" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BVQnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="39,76,114" width="2" height="4" color="39,76,114">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Step%20Execution']/@style"/>
           </ownedStyle>
@@ -1343,7 +1343,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BVgnOEeeHfqL9QRe_eQ" name="in01" outgoingEdges="_v94BcQnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.0/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
           <semanticElements xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.0/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BVQnOEeeHfqL9QRe_eQ" x="1001" y="190" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BVQnOEeeHfqL9QRe_eQ" x="743" y="190" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BVwnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="194,239,255" width="2" height="4" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Subfunction_Returned_Message_Execution']/@style"/>
           </ownedStyle>
@@ -1352,7 +1352,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BWAnOEeeHfqL9QRe_eQ" name="in02" outgoingEdges="_v94BdAnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.1/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
           <semanticElements xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.1/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BVgnOEeeHfqL9QRe_eQ" x="1001" y="310" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6BVgnOEeeHfqL9QRe_eQ" x="743" y="310" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BWQnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="194,239,255" width="2" height="4" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Subfunction_Returned_Message_Execution']/@style"/>
           </ownedStyle>
@@ -1361,7 +1361,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BWgnOEeeHfqL9QRe_eQ" name="in03" outgoingEdges="_v94BdwnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.2/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
           <semanticElements xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.2/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6oYAnOEeeHfqL9QRe_eQ" x="1001" y="430" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6oYAnOEeeHfqL9QRe_eQ" x="743" y="430" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BWwnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="194,239,255" width="2" height="4" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Subfunction_Returned_Message_Execution']/@style"/>
           </ownedStyle>
@@ -1370,7 +1370,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BXAnOEeeHfqL9QRe_eQ" name="in04" outgoingEdges="_v94BegnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.3/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
           <semanticElements xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.3/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6oYQnOEeeHfqL9QRe_eQ" x="1001" y="550" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6oYQnOEeeHfqL9QRe_eQ" x="743" y="550" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BXQnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="194,239,255" width="2" height="4" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Subfunction_Returned_Message_Execution']/@style"/>
           </ownedStyle>
@@ -1379,7 +1379,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_v94BXgnOEeeHfqL9QRe_eQ" name="in05" outgoingEdges="_v94BfQnOEeeHfqL9QRe_eQ" width="2" height="4" resizeKind="NSEW">
           <target xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.4/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
           <semanticElements xmi:type="messir:UseCaseInstanceReturnedMessage" href="usecases/usecaseinstance-ugAdministratePointOfInterest-uci.msr#//@usecaseM/@useCaseInstances.0/@useCaseInstanceDefinition/@useCaseInstanceStepsBlock/@useCaseInstanceSteps.4/@execution/@useCaseInstanceDefinition/@useCaseInstanceReturnedMessages.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6oYgnOEeeHfqL9QRe_eQ" x="1001" y="670" height="40" width="20"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" xmi:id="_wN6oYgnOEeeHfqL9QRe_eQ" x="743" y="670" height="40" width="20"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_v94BXwnOEeeHfqL9QRe_eQ" labelSize="14" showIcon="false" labelAlignment="RIGHT" borderColor="194,239,255" width="2" height="4" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Use%20Case%20Instance%20Sequence%20Diagram']/@defaultLayer/@nodeMappings[name='UCI_SD_UseCaseActor%20Instance%20Role']/@borderedNodeMappings[name='UCI_SD_UseCase%20Execution']/@borderedNodeMappings[name='UCI_SD_Subfunction_Returned_Message_Execution']/@style"/>
           </ownedStyle>
