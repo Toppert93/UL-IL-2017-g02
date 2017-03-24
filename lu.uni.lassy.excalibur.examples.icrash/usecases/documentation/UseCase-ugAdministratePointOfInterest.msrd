@@ -4,7 +4,7 @@
 */
 
 
-@@Use Case icrash.usecases.usecase.ugAdministratePointOfInterest
+@@Use Case icrash.usecases.ugAdministrateTheSystem.ugAdministrateTheSystem
 @description "the actAdministrator's goal is to follow an identification procedure
 to be allowed to add/edit or delete the necessary Point of interest."
 @protocolCondition
