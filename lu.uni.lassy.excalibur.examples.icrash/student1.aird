@@ -463,6 +463,11 @@
     <semanticResources>documentation/View-uci-uciugSecurelyUseSystemFailLogin.msrd</semanticResources>
     <semanticResources>documentation/View-uci-uciugSecurelyUseSystemFailLoginResetPassword.msrd</semanticResources>
     <semanticResources>documentation/View-uci-uciugSecurelyUseSystemWithDirectResetPassword.msrd</semanticResources>
+    <semanticResources>environment/documentation/Operation-actAuthenticated-outactAuthenticated-oeFillCaptcha.msrd</semanticResources>
+    <semanticResources>documentation/View-cm-view9.msrd</semanticResources>
+    <semanticResources>documentation/View-uc-oeRankDownCoordinator.msrd</semanticResources>
+    <semanticResources>documentation/View-uci-uciugAdministrateTheSystem.msrd</semanticResources>
+    <semanticResources>usecases/usecaseinstance-ugAdministrateTheSystem-uciugAdministrateTheSystem.msr</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_UmILAPWqEeSOM9Kfym77Zg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_6bCxgAkPEee4DqVxPt9Fsw" name="cm-view8" representation="_6bFNwAkPEee4DqVxPt9Fsw">
