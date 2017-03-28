@@ -151,7 +151,7 @@ import icrash.environment
     }
   }  
   //----------------------------------------------------
-  use case system subfunction oeAddPointOfInterest(AdtPointOfInterestID:dtPointOfInterestID,
+  use case system subfunction oeAddPointOfInterest(
   												   AdtCategory:etCategory,
   												   AdtGPSLocation:dtGPSLocation,
   												   AdtDescription:dtDescription) 
@@ -190,6 +190,12 @@ import icrash.environment
 			}
 	}
 
-}
+use case system subfunction oeSelectCategories(AdtCategory:etCategory) {
+			actor actAdministrator[primary, active]
+			returned messages{
+				ieCategorySelected(AdtCategory) returned to actAdministrator
+			}
+		}
+	}
 
 }

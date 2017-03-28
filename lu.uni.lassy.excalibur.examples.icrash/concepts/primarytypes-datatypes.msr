@@ -74,7 +74,6 @@ import lu.uni.lassy.messir.libraries.calendar
 			enum etCategory {
 				constants["Hospital","Police station","Garage","Parking","Insurance Office","Fire station" ]
 				operation is():ptBoolean
-				operation compare():ptBoolean
 			}
 			enum etExperienceRank {
 				constants["novice", "intermediate", "expert"]

@@ -6,7 +6,6 @@
 
 @@Use Case Subfunction icrash.usecases.subfunctions.oeAddPointOfInterest hidden
 @description "goal is to add a new Point of interest in the system's post state."
-@parameter icrash.usecases.subfunctions.oeAddPointOfInterest.AdtPointOfInterestID ""
 @parameter icrash.usecases.subfunctions.oeAddPointOfInterest.AdtCategory ""
 @parameter icrash.usecases.subfunctions.oeAddPointOfInterest.AdtGPSLocation ""
 @parameter icrash.usecases.subfunctions.oeAddPointOfInterest.AdtDescription ""

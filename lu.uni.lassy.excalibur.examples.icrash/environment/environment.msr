@@ -37,7 +37,6 @@ import lu.uni.lassy.messir.libraries.calendar
 			
 			
 		     	operation oeAddPointOfInterest(
-	 					 AdtPointsOfInterestID:dtPointOfInterestID,
 	 					 AetCategory:etCategory,
 	 					 AdtGPSLocation:dtGPSLocation,
 	 				     AdtDescription:dtDescription) :ptBoolean
@@ -51,7 +50,10 @@ import lu.uni.lassy.messir.libraries.calendar
 	 										   AdtGPSLocation:dtGPSLocation,
 	 										   AdtDescription:dtDescription) :ptBoolean
 	 			operation oeRankDownCoordinator(AdtCoordinatorID:dtCoordinatorID):ptBoolean
+	 			
+	 			operation oeSelectCategories(AdtCategory:etCategory): ptBoolean
 			}
+			
 			
 			input interface inactAdministrator{
 				
@@ -62,6 +64,7 @@ import lu.uni.lassy.messir.libraries.calendar
 				operation iePointOfInterestEdited():ptBoolean
 				operation ieRankEdited():ptBoolean
 				operation ieMessage2(AMessage:ptString):ptBoolean
+				operation ieCategorySelected(ACategory:etCategory):ptBoolean
 	 		}
 		}
 		

@@ -5,7 +5,7 @@
 
 
 @@view uci-uciugAdministratePointOfInterest
-@instance Use-Case usecases.uci.uciugAdministratePointOfInterest 
+@instance Use-Case usecases.uciugAdministrateTheSystemPointOfInterest.uciugAdministrateTheSystemPointOfInterest
 @description "shows the sequence diagram representing the Administrate Point of interest 
 use case instance for the user goal use case \msrcode{ugAdministratePointOfInterest}."
 @caption "uci-uciugAdministratePointOfInterest use case instance sequence diagram."

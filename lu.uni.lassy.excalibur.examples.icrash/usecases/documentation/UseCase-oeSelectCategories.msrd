@@ -1,0 +1,24 @@
+/*
+@author jorge
+@date Tue Mar 28 12:02:56 CEST 2017
+*/
+
+
+@@Use Case Subfunction icrash.usecases.subfunctions.oeSelectCategories
+@description "goal is to display/select categories from the system's state"
+@protocolCondition
+"
+"
+@endProtocolConditions
+@preCondition
+"
+"
+@endPreConditions
+@postCondition
+"
+"
+@endPostConditions
+@additionalInformation
+"
+none
+"

@@ -7,6 +7,14 @@
 "its reception confirms the creation of the requested coodinator. "
 @inputEvent icrash.environment.actAdministrator.inactAdministrator.ieCoordinatorDeleted
 "its reception confirms the deletion of the requested coodinator. "
+@inputEvent icrash.environment.actAdministrator.inactAdministrator.iePointOfInterestAdded
+"its reception confirms the creation of the requested point of interest. "
+@inputEvent icrash.environment.actAdministrator.inactAdministrator.iePointOfInterestDeleted
+"its reception confirms the deletion of the requested point of interest. "
+@inputEvent icrash.environment.actAdministrator.inactAdministrator.iePointOfInterestEdited
+"its reception confirms the edition of the requested point of interest. "
+@inputEvent icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories
+"its reception confirms the selection of the requested category."
 @endInputEvents
 
 //output events
@@ -14,5 +22,13 @@
 "sent to add a new coordinator in the system's post state and environment's post state."
 @outputEvent icrash.environment.actAdministrator.outactAdministrator.oeDeleteCoordinator
 "sent to delete an existing coordinator in the system's post state and environment's post state."
+@outputEvent icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest
+"sent to add a new point of interest in the system's post state."
+@outputEvent icrash.environment.actAdministrator.outactAdministrator.oeDeletePointOfInterest
+"sent to delete a new point of interest in the system's post state."
+@outputEvent icrash.environment.actAdministrator.outactAdministrator.oeEditPointOfInterest
+"sent to edit a new point of interest in the system's post state."
+@outputEvent icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories
+"sent to select categories in the system's post state."
 
 @endOutputEvents

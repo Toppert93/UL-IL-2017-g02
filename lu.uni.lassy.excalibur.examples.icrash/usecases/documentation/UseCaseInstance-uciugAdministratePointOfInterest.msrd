@@ -4,6 +4,6 @@
 */
 
 
-@@Instance Use Case usecases.uci.uciugAdministratePointOfInterest
+@@Instance Use Case usecases.uciugAdministrateTheSystemPointOfInterest.uciugAdministrateTheSystemPointOfInterest
 @description "use case instance for the use case 
 \msrcode{ugAdministratePointOfInterest} showing the addition/edition/deletion of a PointOfInterest"

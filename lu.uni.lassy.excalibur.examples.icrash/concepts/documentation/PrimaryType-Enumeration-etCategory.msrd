@@ -9,7 +9,4 @@
 @operation
 icrash.concepts.primarytypes.datatypes.etCategory.is
 "used to determine which litteral belongs to the enumeration."
-@operation
-icrash.concepts.primarytypes.datatypes.etCategory.compare
-"used to compare categories and determine if they are identical."
 @endOperations

@@ -8,9 +8,6 @@
 icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest
 //parameters
 @parameter
-icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AdtPointsOfInterestID
-"used to initialize the id field"
-@parameter
 icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.AetCategory
 "used to initialize the category field"
 @parameter

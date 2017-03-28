@@ -1,10 +1,10 @@
-package usecases.uci {
+package usecases.uciugAdministrateTheSystemPointOfInterest {
 	import icrash.usecases.ugAdministrateTheSystem
 	import icrash.usecases.subfunctions
-
+	
 	Use Case Model {
 
-		use case instance uciugAdministratePointOfInterest : ugAdministrateTheSystem{
+		use case instance uciugAdministrateTheSystemPointOfInterest : ugAdministrateTheSystem{
 			actors {
 				bill:icrash.environment.actAdministrator
 			}
@@ -18,7 +18,7 @@ package usecases.uci {
 //-----------------------------
         bill
         executed instanceof subfunction
-              oeAddPointOfInterest("1","Police station","55.65448:1.548648","Police station: open from 8:30 until 17:30"){
+              oeAddPointOfInterest("Police station","55.65448:1.548648","Police station: open from 8:30 until 17:30"){
                 iePointOfInterestAdded returned to bill
               }
 //-----------------------------
@@ -40,6 +40,7 @@ package usecases.uci {
                 ieMessage('You are logged  out ! Good Bye ...') returned to bill
               }		
 			}
+				
+			}
 		}
-	}
 }
