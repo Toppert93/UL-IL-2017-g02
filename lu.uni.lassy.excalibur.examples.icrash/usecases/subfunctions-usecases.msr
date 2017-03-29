@@ -189,7 +189,7 @@ import icrash.environment
 				ieRankEdited() returned to actAdministrator
 			}
 	}
-
+//-----------------------------------------------------
 use case system subfunction oeSelectCategories(AdtCategory:etCategory) {
 			actor actAdministrator[primary, active]
 			returned messages{
