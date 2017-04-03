@@ -1,9 +1,0 @@
-/*
-@author jorge
-@date Mon Mar 20 15:02:11 CET 2017
-*/
-
-
-@@Instance Use Case usecases.uciugAdministrateTheSystemPointOfInterest.uciugAdministrateTheSystemPointOfInterest
-@description "use case instance for the use case 
-\msrcode{ugAdministratePointOfInterest} showing the addition/edition/deletion of a PointOfInterest"

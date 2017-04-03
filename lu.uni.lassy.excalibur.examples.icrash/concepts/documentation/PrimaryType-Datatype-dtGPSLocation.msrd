@@ -17,6 +17,6 @@
 @operation icrash.concepts.primarytypes.datatypes.dtGPSLocation.isNearTo
  "used to determine if locations are considered enough close to be treated as equivalent in the application domain context."
 
-@operationicrash.concepts.primarytypes.datatypes.dtGPSLocation.isCloseTo 
+@operation icrash.concepts.primarytypes.datatypes.dtGPSLocation.DistanceTo 
 "used to determine how close two locations are and to give an integer value representing the distance."
 @endOperations
