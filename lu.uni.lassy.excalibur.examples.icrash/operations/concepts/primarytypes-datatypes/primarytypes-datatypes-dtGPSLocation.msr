@@ -26,6 +26,10 @@ Operation Model {
     }
 		prolog{"src/Operations/Concepts/PrimaryTypesDatatypes/PrimaryTypesDatatypes-dtGPSLocation-is.pl"}
 		}
+		
+		
+		
+		
 		operation: icrash.concepts.primarytypes.datatypes.dtGPSLocation.isNearTo(aGPSLocation:dtGPSLocation):ptBoolean{
     postF{ 
         let TheResult: ptBoolean in true

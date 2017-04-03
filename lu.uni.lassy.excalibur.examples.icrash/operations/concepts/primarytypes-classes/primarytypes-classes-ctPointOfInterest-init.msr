@@ -9,9 +9,26 @@ import icrash.concepts.primarytypes.classes
 
 	Operation Model {
 
-		operation: icrash.concepts.primarytypes.classes.ctPointOfInterest.init(Aid:dtPointOfInterestID, Atype:etCategory, Alocation:dtGPSLocation, Adescription:dtDescription):ptBoolean{
+		operation: icrash.concepts.primarytypes.classes.ctPointOfInterest.init(Aid:dtPointOfInterestID, 
+																				Atype:etCategory, 
+																				Alocation:dtGPSLocation,
+																				Adescription:dtDescription
+		):ptBoolean{
 		// include below the specification information (pre,post or ocl or prolog)
+		postF{
+		if
+		(
+			let Self:ctPointOfInterest in
+			Self.id = Aid
+			and Self.type = Atype
+			and Self.location = Alocation
+			and Self.comment = Acomment
 
+			and (Self.oclIsNew and self = Self)
+		)
+			then (result = true)
+			else (result = false)
+			endif}
 		}
 	}
 }

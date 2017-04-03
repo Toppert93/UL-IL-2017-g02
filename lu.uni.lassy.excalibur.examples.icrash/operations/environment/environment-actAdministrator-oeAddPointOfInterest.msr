@@ -1,0 +1,60 @@
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeAddPointOfInterest {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+import icrash.environment
+
+	Operation Model {
+
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest(AetCategory:etCategory, AdtGPSLocation:dtGPSLocation, AdtDescription:dtDescription):ptBoolean{
+		// include below the specification information (pre,post or ocl or prolog)
+		preP{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  
+ 		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+  
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+  		and TheActor.rnctAuthenticated.vpIsLogged = true
+  		}
+		
+		postF{
+ 		let TheSystem: ctState in
+		let  TheactAdminitrator:actAdministrator in
+ 		let  ActPointOfInterest:ctPointOfInterest in
+ 		let  AetPointOfInterestCategory:etCategory in
+ 		let  APointOfInterestDescription:dtDescription in
+ 		let  AdtPointOfInterestID:dtPointOfInterestID in
+ 
+  		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheactComCompany
+		/* PostF01 */
+ 		TheSystem.nextValueForPointOfInterestID=PrenextValueForPointOfInterestID
+ 		and PrenextValueForPointOfInterestID.add(1) = PostnextValueForPointOfInterestID
+ 		and TheSystem@post.nextValueForPointOfInterestID = PostnextValueForPointOfInterestID
+
+
+ 		 /* PostF02 */
+
+		and TheSystem.nextValueForPointOfInterestID.todtString().eq(AdtPointOfInterestID)
+
+		and ActPointOfInterest.init(AdtPointOfInterestID,
+                  AetCategory,
+                  AdtGPSLocation,
+                  AdtDescription)
+      
+  		}
+  		 postP{true}
+		
+	}
+	}
+	}
+
+

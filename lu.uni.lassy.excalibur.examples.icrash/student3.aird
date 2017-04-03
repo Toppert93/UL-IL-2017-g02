@@ -509,6 +509,11 @@
     <semanticResources>operations/concepts/primarytypes-classes/primarytypes-classes-ctPointOfInterest-init.msr</semanticResources>
     <semanticResources>operations/concepts/primarytypes-datatypes/primarytypes-datatypes-dtGPSLocation-DistanceTo.msr</semanticResources>
     <semanticResources>operations/concepts/primarytypes-datatypes/primarytypes-datatypes-dtPointOfInterestID-is.msr</semanticResources>
+    <semanticResources>operations/concepts/primarytypes-datatypes/primarytypes-datatypes-etCategory-is.msr</semanticResources>
+    <semanticResources>operations/environment/environment-actAdministrator-oeAddPointOfInterest.msr</semanticResources>
+    <semanticResources>operations/environment/environment-actAdministrator-oeDeletePointOfInterest.msr</semanticResources>
+    <semanticResources>operations/environment/environment-actAdministrator-oeEditPointOfInterest.msr</semanticResources>
+    <semanticResources>operations/environment/environment-actAdministrator-oeSelectCategories.msr</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_WzMfgPWqEeSOM9Kfym77Zg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_0awOgAnJEeeHfqL9QRe_eQ" name="uc-ugAdministratePointOfInterest" representation="_0axcoAnJEeeHfqL9QRe_eQ">

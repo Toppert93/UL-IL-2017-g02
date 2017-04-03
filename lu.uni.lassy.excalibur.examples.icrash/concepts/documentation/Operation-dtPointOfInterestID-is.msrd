@@ -10,7 +10,7 @@ icrash.concepts.primarytypes.datatypes.dtPointOfInterestID.is
  "
 //postFunctional descriptions
 @postF 
-" if the length of the value attribute of a dtAlertID is a ptInteger greater than zero 
+" if the length of the value attribute of a dtAlertID is a ptInteger greater than zero and lower or equal to 100
 then the operation returns the ptBoolean true, else the ptBoolean false. "
 @endPostF
 

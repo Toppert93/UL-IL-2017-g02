@@ -10,7 +10,37 @@ import icrash.concepts.primarytypes.classes
 
 		operation: icrash.concepts.primarytypes.datatypes.dtGPSLocation.DistanceTo(AGPSLocation:dtGPSLocation):ptInteger{
 		// include below the specification information (pre,post or ocl or prolog)
-
+		postF{ 
+        let TheResult: ptBoolean in true
+        let EarthRadius: dtReal in
+        let MinDistance: dtReal in
+        let ComparedLatitude: dtLatitude in
+        let ComparedLongitude: dtLongitude in
+        let R1: dtReal in let R1a: dtReal in
+        let R2: dtReal in let R2a: dtReal in
+        
+        ( if
+          ( EarthRadius.value = 6371
+            and MinDistance.value >0
+            
+            and AdtValue.latitude = ComparedLatitude
+            and AdtValue.longitude = ComparedLongitude
+            and Self.latitude.sin() = R1a
+            and AdtValue.latitude.sin().mul(R1a) = R1
+            and Self.latitude.cos() = R2a
+            and AdtValue.latitude.cos().mul(R2a) = R2
+            
+            and AdtValue.longitude = ComparedLongitude
+            and Self.longitude.sub(ComparedLongitude).cos().mul(R2)
+                    .add(R1).acos().mul(EarthRadius).sub(MinDistance)
+                    .value.leq(0)
+          )
+          then (TheResult = true)
+          else (TheResult = false)
+          endif
+          result = TheResult
+        )
+		}
 		}
 	}
 }
