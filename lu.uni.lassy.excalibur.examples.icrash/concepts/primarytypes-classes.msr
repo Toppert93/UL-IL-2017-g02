@@ -14,6 +14,7 @@ import lu.uni.lassy.messir.libraries.calendar
 				attribute nextValueForAlertID:dtInteger
 				attribute nextValueForCrisisID:dtInteger
 				attribute nextValueForCaptcha: dtCaptcha
+				attribute nextValueForPointOfInterestID:dtInteger
 				attribute clock:dtDateAndTime
 				attribute crisisReminderPeriod:dtSecond
 				attribute maxCrisisReminderPeriod:dtSecond
@@ -22,6 +23,7 @@ import lu.uni.lassy.messir.libraries.calendar
 				
 				operation init(	AnextValueForAlertID:dtInteger,
 												AnextValueForCrisisID:dtInteger,
+												AnextValueForPointOfInterestID: dtInteger,
 				 								Aclock:dtDateAndTime,
 												AcrisisReminderPeriod:dtSecond ,
 												AmaxCrisisReminderPeriod:dtSecond ,

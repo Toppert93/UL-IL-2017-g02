@@ -1,0 +1,38 @@
+/*
+@author jorge
+@date Wed Mar 29 10:29:28 CEST 2017
+*/
+
+
+@@Operation
+icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories
+//parameters
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories.AdtCategory
+"used to initialize the category field"
+@endParameters
+
+@description "Used to select all the rows that contain the category selected by the Administrator.
+ "
+//preProtocol descriptions
+@preP
+"the system is started "
+@preP
+"the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged). "
+@endPreP
+//preFunctional descriptions
+@preF
+"It is supposed there exists at least one point of interest with the same category as the one chosen."
+@endPreF
+//postFunctional descriptions
+@postF 
+"all the points of interest with the given category as shown in a list"
+@postF
+"the administrator actor is informed about the satisfaction of its request."
+@endPostF
+//postProtocol descriptions
+@postP 
+" "
+@endPostP
+//example
+@example" "

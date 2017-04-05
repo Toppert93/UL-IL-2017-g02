@@ -9,6 +9,7 @@ import icrash.concepts.primarytypes.classes
 Operation Model {
 	
 	operation: icrash.concepts.primarytypes.classes.ctState.init(
+		AnextValueForPointOfInterestID: dtInteger,
 		AnextValueForAlertID: dtInteger, 
 		AnextValueForCrisisID: dtInteger , 
 		dtAclock:dtDateAndTime,
@@ -23,6 +24,7 @@ if
 let Self:ctState in
 
 Self.nextValueForAlertID = AnextValueForAlertID
+and Self.nextValueForPointOfInterestID = AnextValueForPointOfInterestID
 and Self.nextValueForCrisisID = AnextValueForCrisisID
 and Self.clock = Aclock
 and Self.crisisReminderPeriod = AcrisisReminderPeriod
