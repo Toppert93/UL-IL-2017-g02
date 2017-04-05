@@ -14,6 +14,8 @@ icrash.environment.actAuthenticated.outactAuthenticated.oeLogin
 "the system is started"
 @preP
 "the actor is not already logged in ! (i.e. the associated ctAuthenticated instance is not considered logged)"
+@preP
+"the nbrfails attribute is less than 3 (which means the actor attempted less than three times in a row a login without captcha test)"
 @endPreP
 
 //preFunctional descriptions
@@ -31,5 +33,7 @@ else the actor is notified that he gave incorrect data and all the administrator
 //postProtocol descriptions
 @postP 
 "if the authentication information is correct then the actor is known to be logged in ! (i.e. the associated ctAuthenticated instance with given login and password is considered logged)"
+@postP 
+"if the authentication information is correct then the actor number of failed attempts(nbrfails) goes down to zero to ensure a correct initialization."
 
 @endPostP

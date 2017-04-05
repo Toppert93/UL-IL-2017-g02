@@ -131,7 +131,7 @@ import lu.uni.lassy.messir.libraries.calendar
 			output interface outactAuthenticated{
 				operation oeLogin(AdtLogin:dtLogin , AdtPassword:dtPassword ):ptBoolean
 				operation oeLogout():ptBoolean
-				operation oeResetPassword(AdtMail:dtMail):ptBoolean
+				operation oeResetPassword(AdtLogin:dtLogin):ptBoolean
 				operation oeFillCaptcha(AdtCaptcha:dtCaptcha):ptBoolean
 			}
 			

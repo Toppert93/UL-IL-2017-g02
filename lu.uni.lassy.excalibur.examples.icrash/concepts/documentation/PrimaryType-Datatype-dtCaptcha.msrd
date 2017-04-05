@@ -1,0 +1,13 @@
+/*
+@author Steve
+@date Wed Mar 29 11:23:51 CEST 2017
+*/
+
+
+@@Primary Type Datatype icrash.concepts.primarytypes.datatypes.dtCaptcha
+@description 
+"a datatype made of an alphanumeric value used to test the user's human nature and slow down intrusions as also automatic responses."
+@operation
+icrash.concepts.primarytypes.datatypes.dtCaptcha.is
+"used to determine which strings are considered as valid captchas."
+@endOperations

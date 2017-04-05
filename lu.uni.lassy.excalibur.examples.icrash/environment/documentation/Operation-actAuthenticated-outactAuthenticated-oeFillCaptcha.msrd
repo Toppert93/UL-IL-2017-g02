@@ -9,26 +9,32 @@ icrash.environment.actAuthenticated.outactAuthenticated.oeFillCaptcha
 //parameters
 @parameter
 icrash.environment.actAuthenticated.outactAuthenticated.oeFillCaptcha.AdtCaptcha
-""
+"first information used to determine the result of the captcha test, it should correspond to the given captcha"
 @endParameters
 
-@description "
- "
+@description 
+"sent to verify correctness of the captcha test to be able to continue the login procedure. "
 //preProtocol descriptions
 @preP
-" "
+"the system is started"
+@preP
+"the actor is not already logged in ! (i.e. the associated ctAuthenticated instance is not considered logged)"
+@preP
+"the nbrfails attribute of the ctAuthenticated instance should be higher or equal 3 for a captcha test to be asked (therefore also to be filled)."
 @endPreP
 //preFunctional descriptions
 @preF
-" "
+"none "
 @endPreF
 //postFunctional descriptions
 @postF 
-" "
+"if the captcha provided by the actor corresponds to the one he should provide 
+then a success message (captcha was filled correctly) is sent to the actor;
+else the actor is notified that he gave incorrect data and needs to give the test another try. "
 @endPostF
 //postProtocol descriptions
 @postP 
-" "
+"if the captcha test is successful the nbrfails attribute goes down to zero again."
 @endPostP
 //example
 @example" "

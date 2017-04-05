@@ -22,6 +22,8 @@ preP{
   and TheSystem.vpStarted = true
 /* PreP02 */
   and TheActor.rnctAuthenticated.vpIsLogged = false
+ /* PreP03 */
+  and TheActor.rnctAuthenticated.nbrfails < 3
 }
 preF{
 /* PreF01 */
@@ -65,8 +67,10 @@ postP{
   if (TheactAuthenticated.rnctAuthenticated.pwd = AdtPassword
       and TheactAuthenticated.rnctAuthenticated.login = AdtLogin
      )
-  then (TheactAuthenticated.rnctAuthenticated@post.vpIsLogged = true)
-  else true
+  then (TheactAuthenticated.rnctAuthenticated@post.vpIsLogged = true
+  		and TheactAuthenticated.rnctAuthenticated@post.nbrfails = 0
+  )
+  else (TheactAuthenticated.rnctAuthenticated@post.nbrfails = TheactAuthenticated.rnctAuthenticated@post.nbrfails@pre + 1)
   endif
 }
 prolog{"src/Operations/Environment/OUT/outactAuthenticated-oeLogin.pl"}

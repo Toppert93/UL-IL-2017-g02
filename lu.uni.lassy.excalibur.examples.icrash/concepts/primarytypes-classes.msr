@@ -13,6 +13,7 @@ import lu.uni.lassy.messir.libraries.calendar
 			state class ctState {
 				attribute nextValueForAlertID:dtInteger
 				attribute nextValueForCrisisID:dtInteger
+				attribute nextValueForCaptcha: dtCaptcha
 				attribute clock:dtDateAndTime
 				attribute crisisReminderPeriod:dtSecond
 				attribute maxCrisisReminderPeriod:dtSecond
