@@ -4,6 +4,12 @@
 */
 
 
+/*
+@author Jorge Cruz
+@date Fri Mar 17 15:14:07 CET 2017
+*/
+
+
 @@Operation
 icrash.environment.actAdministrator.outactAdministrator.oeRankDownCoordinator
 //parameters
@@ -12,23 +18,37 @@ icrash.environment.actAdministrator.outactAdministrator.oeRankDownCoordinator.Ad
 ""
 @endParameters
 
-@description "
+@description " sent to demote a coordinator to the rank below his current rank
  "
 //preProtocol descriptions
 @preP
-" "
+" the system is started "
+
+@preP
+" the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged). "
+
 @endPreP
 //preFunctional descriptions
 @preF
-" "
+" there exists one coordinator having the given id in the pre-state. "
+
+@preF
+" the coordinator specified by the id has a higher rank than Novice (i.e. either Intermediate or Expert). "
+
 @endPreF
 //postFunctional descriptions
 @postF 
-" "
+" a message is sent to the ctAdministrator, confirming the operation has been successful, else the administrator is notified that the operation was unsuccessful. "
+
+@postF 
+" the ctCoordinator attribute expRank is decremented by one (i.e. expert to intermediate, intermediate to novice) at post. "
+
+@postF 
+" the ctCoordinator attribute expRank is set to the number of points a coordinator would have at the start of that rank (i.e. expert to intermediate -> 20 ExpPoints, intermediate to novice -> 0 ExpPoints	). "
+
 @endPostF
 //postProtocol descriptions
 @postP 
 " "
 @endPostP
-//example
-@example" "
+
