@@ -12,7 +12,10 @@ import icrash.environment
 
 		operation: icrash.environment.actAdministrator.outactAdministrator.oeEditPointOfInterest(AdtPointsOfInterestID:dtPointOfInterestID, AetCategory:etCategory, AdtGPSLocation:dtGPSLocation, AdtDescription:dtDescription):ptBoolean{
 		// include below the specification information (pre,post or ocl or prolog)
-
+		// if input is <> ""
+		// select PointOfInterest .eq(AdtPointOfInterestID) = ActPointOfInterest
+		//ctPointofinterest@post.AetCategory = newAetCategory 
+		// same for others
 		}
 	}
 }
