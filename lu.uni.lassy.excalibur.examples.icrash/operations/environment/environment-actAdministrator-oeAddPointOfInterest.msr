@@ -18,12 +18,14 @@ import icrash.environment
   
  		self.rnActor.rnSystem = TheSystem
   		and self.rnActor = TheActor
+  		
   
 		/* PreP01 */
   		and TheSystem.vpStarted = true
 		/* PreP02 */
   		and TheActor.rnctAuthenticated.vpIsLogged = true
   		}
+		
 		
 		postF{
  		let TheSystem: ctState in
@@ -49,7 +51,7 @@ import icrash.environment
                   AetCategory,
                   AdtGPSLocation,
                   AdtDescription)
-      
+      	and TheactAdministrator.rnInterfaceIN^iePointOfInterestAdded()
   		}
   		 postP{true}
 		
