@@ -899,21 +899,6 @@
     <semanticResources>usecases/OLD-documentation/UseCaseInstance-uciSimpleAndCompletePart02.msrd</semanticResources>
     <semanticResources>documentation/View-cm-view6.msrd</semanticResources>
     <semanticResources>documentation/View-em-gv-02.msrd</semanticResources>
-    <semanticResources>concepts/documentation/PrimaryType-Datatype-dtMail.msrd</semanticResources>
-    <semanticResources>%20ugResetPassword.msr</semanticResources>
-    <semanticResources>usecases/documentation/UseCase-ugResetPassword.msrd</semanticResources>
-    <semanticResources>documentation/UseCaseInstance-uciugResetPasswordFailLogin.msrd</semanticResources>
-    <semanticResources>documentation/UseCaseInstance-uciugResetPasswordWithoutLogin.msrd</semanticResources>
-    <semanticResources>usecases/documentation/UseCase-oeResetPassword.msrd</semanticResources>
-    <semanticResources>usecases/documentation/UseCase-oeFillCaptcha.msrd</semanticResources>
-    <semanticResources>documentation/View-cm-view8.msrd</semanticResources>
-    <semanticResources>documentation/View-uci-uciugResetPasswordWithoutLogin.msrd</semanticResources>
-    <semanticResources>documentation/View-uci-uciugResetPasswordFailLogin.msrd</semanticResources>
-    <semanticResources>environment/documentation/Operation-actAuthenticated-outactAuthenticated-oeFillCaptcha.msrd</semanticResources>
-    <semanticResources>documentation/View-cm-view9.msrd</semanticResources>
-    <semanticResources>documentation/View-uc-oeRankDownCoordinator.msrd</semanticResources>
-    <semanticResources>documentation/View-uci-uciugAdministrateTheSystem.msrd</semanticResources>
-    <semanticResources>usecases/usecaseinstance-ugAdministrateTheSystem-uciugAdministrateTheSystem.msr</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Aguk8EY3EeOwoLagakxXNQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_8IZyuNKSEeadaP6YRq5p0w" name="cm-pt-ct-gv-01" representation="_frDQIFBBEeOoKst3jxjvgA">
@@ -9856,6 +9841,14 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_F0Q7uGLdEeWzjIFzrt3jhA"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_WxB-f311EeS0I43P60jNmA"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_Pi4t8BonEeeY_Mv_zg4MRA" type="3010" element="_Piba8BonEeeY_Mv_zg4MRA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_Pi4t8RonEeeY_Mv_zg4MRA" fontName="Segoe UI" fontHeight="14"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Pi4t8honEeeY_Mv_zg4MRA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Pi58EBonEeeY_Mv_zg4MRA" type="3010" element="_PicCABonEeeY_Mv_zg4MRA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_Pi58ERonEeeY_Mv_zg4MRA" fontName="Segoe UI" fontHeight="14"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Pi58EhonEeeY_Mv_zg4MRA"/>
+            </children>
             <children xmi:type="notation:Node" xmi:id="_WxB-gH11EeS0I43P60jNmA" type="3010" element="_WxDzwH11EeS0I43P60jNmA">
               <styles xmi:type="notation:FontStyle" xmi:id="_F0Q7uWLdEeWzjIFzrt3jhA"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_WxB-gX11EeS0I43P60jNmA"/>
@@ -10268,6 +10261,22 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='StateClass']/@subNodeMappings[name='StateClass_Attributes']"/>
       </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_Piba8BonEeeY_Mv_zg4MRA" name="nextValueForCaptcha : dtCaptcha">
+        <target xmi:type="messir:Attribute" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.nextValueForCaptcha"/>
+        <semanticElements xmi:type="messir:Attribute" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.nextValueForCaptcha"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_Piba8RonEeeY_Mv_zg4MRA" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/attribute.png" labelAlignment="LEFT">
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='StateClass']/@subNodeMappings[name='StateClass_Attributes']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='StateClass']/@subNodeMappings[name='StateClass_Attributes']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PicCABonEeeY_Mv_zg4MRA" name="nextValueForPointOfInterestID : dtInteger">
+        <target xmi:type="messir:Attribute" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.nextValueForPointOfInterestID"/>
+        <semanticElements xmi:type="messir:Attribute" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.nextValueForPointOfInterestID"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_PicCARonEeeY_Mv_zg4MRA" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/attribute.png" labelAlignment="LEFT">
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='StateClass']/@subNodeMappings[name='StateClass_Attributes']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='StateClass']/@subNodeMappings[name='StateClass_Attributes']"/>
+      </ownedElements>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_WxDzwH11EeS0I43P60jNmA" name="clock : dtDateAndTime">
         <target xmi:type="messir:Attribute" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.clock"/>
         <semanticElements xmi:type="messir:Attribute" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.clock"/>
@@ -10308,7 +10317,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='StateClass']/@subNodeMappings[name='StateClass_Attributes']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_WxDz2X11EeS0I43P60jNmA" name="init(AnextValueForAlertID: dtInteger, AnextValueForCrisisID: dtInteger, Aclock: dtDateAndTime, AcrisisReminderPeriod: dtSecond, AmaxCrisisReminderPeriod: dtSecond, AvpLastReminder: dtDateAndTime, AvpStarted: ptBoolean): ptBoolean    " visible="false">
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_WxDz2X11EeS0I43P60jNmA" name="init(AnextValueForAlertID: dtInteger, AnextValueForCrisisID: dtInteger, AnextValueForPointOfInterestID: dtInteger, Aclock: dtDateAndTime, AcrisisReminderPeriod: dtSecond, AmaxCrisisReminderPeriod: dtSecond, AvpLastReminder: dtDateAndTime, AvpStarted: ptBoolean): ptBoolean    " visible="false">
         <target xmi:type="messir:OperationDeclaration" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.init"/>
         <semanticElements xmi:type="messir:OperationDeclaration" href="concepts/primarytypes-classes.msr#icrash.concepts.primarytypes.classes.ctState.init"/>
         <graphicalFilters xmi:type="diagram:HideFilter" xmi:id="_WxDz2n11EeS0I43P60jNmA"/>
@@ -21485,9 +21494,9 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_F0OfVmLdEeWzjIFzrt3jhA"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_arbVhX3VEeOpEb49SLHzqA"/>
             </children>
-            <children xmi:type="notation:Node" xmi:id="_ndl08BCiEeejEoe6pxZ3ZQ" type="3010" element="_ncsdEBCiEeejEoe6pxZ3ZQ">
-              <styles xmi:type="notation:FontStyle" xmi:id="_ndl08RCiEeejEoe6pxZ3ZQ" fontName="Segoe UI" fontHeight="14"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_ndl08hCiEeejEoe6pxZ3ZQ"/>
+            <children xmi:type="notation:Node" xmi:id="_zVY9cBomEeeY_Mv_zg4MRA" type="3010" element="_zTqfIBomEeeY_Mv_zg4MRA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_zVY9cRomEeeY_Mv_zg4MRA" fontName="Segoe UI" fontHeight="14"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_zVY9chomEeeY_Mv_zg4MRA"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_lh2hIBy1EeSQKph_pt8ndw" type="3010" element="_lgE_gBy1EeSQKph_pt8ndw">
               <styles xmi:type="notation:FontStyle" xmi:id="_F0OfV2LdEeWzjIFzrt3jhA"/>
@@ -22176,10 +22185,10 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='SimpleDatatype']/@subNodeMappings[name='SimpleDatatype_Operations']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_ncsdEBCiEeejEoe6pxZ3ZQ" name="isCloseTo(AGPSLocation: dtGPSLocation): ptInteger    ">
-        <target xmi:type="messir:OperationDeclaration" href="concepts/primarytypes-datatypes.msr#icrash.concepts.primarytypes.datatypes.dtGPSLocation.isCloseTo"/>
-        <semanticElements xmi:type="messir:OperationDeclaration" href="concepts/primarytypes-datatypes.msr#icrash.concepts.primarytypes.datatypes.dtGPSLocation.isCloseTo"/>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_ncsdERCiEeejEoe6pxZ3ZQ" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/operation.png" labelAlignment="LEFT">
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zTqfIBomEeeY_Mv_zg4MRA" name="DistanceTo(AGPSLocation: dtGPSLocation): ptInteger    ">
+        <target xmi:type="messir:OperationDeclaration" href="concepts/primarytypes-datatypes.msr#icrash.concepts.primarytypes.datatypes.dtGPSLocation.DistanceTo"/>
+        <semanticElements xmi:type="messir:OperationDeclaration" href="concepts/primarytypes-datatypes.msr#icrash.concepts.primarytypes.datatypes.dtGPSLocation.DistanceTo"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_zTrGMBomEeeY_Mv_zg4MRA" labelSize="14" iconPath="/lu.uni.lassy.excalibur.dsl.messir.ui/icons/operation.png" labelAlignment="LEFT">
           <description xmi:type="style:SquareDescription" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='SimpleDatatype']/@subNodeMappings[name='SimpleDatatype_Operations']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']/@ownedRepresentations[name='Messir%20Diagram']/@defaultLayer/@containerMappings[name='SimpleDatatype']/@subNodeMappings[name='SimpleDatatype_Operations']"/>
