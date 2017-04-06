@@ -22,12 +22,14 @@ import lu.uni.lassy.messir.libraries.calendar
 			}
 			datatype dtPassword extends dtString {
 				operation is():ptBoolean
+				external operation generatePassword():dtPassword
 			}
 			datatype dtMail extends dtString {
 				operation is():ptBoolean
 			}
 			datatype dtCaptcha extends dtString {
 				operation is():ptBoolean
+				external operation generateCaptcha():dtCaptcha
 			}
 			datatype dtCoordinatorID extends dtString {
 				operation is():ptBoolean
