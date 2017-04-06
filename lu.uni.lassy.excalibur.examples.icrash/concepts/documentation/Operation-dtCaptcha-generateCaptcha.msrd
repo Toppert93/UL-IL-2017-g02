@@ -1,0 +1,16 @@
+/*
+@author Steve
+@date Thu Apr 06 09:56:32 CEST 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.dtCaptcha.generateCaptcha
+@description 
+"used to generate a new captcha conform to the re:captcha algorithm. It will be asked to a user in case of a captcha test. "
+//postFunctional descriptions
+@postF 
+" "
+@endPostF
+//example
+@example" "

@@ -37,9 +37,9 @@ postF{
 	
   let TheSystem: ctState in
   let Bob:actAuthenticated in
-
+	
   let AptStringMessageForTheactAuthenticated:ptString in
-
+  let AdtNewCaptcha:dtCaptcha in
   
   self.rnActor.rnSystem = TheSystem
   and self.rnActor = TheactAuthenticated
@@ -47,7 +47,10 @@ postF{
   and /* PostF01 */
       if (TheActor.rnctAuthenticated.nextValueForCapthca
           = AdtCaptcha)
-      then (AptStringMessageForTheactAuthenticated.eq('The captcha test was successful, you may now try to login again.')
+      then 
+      		(TheSystem.nextValueForCaptcha = AdtNewCaptcha.generateCaptcha()
+      			
+      		and AptStringMessageForTheactAuthenticated.eq('The captcha test was successful, you may now try to login again.')
             and TheactAuthenticated.rnInterfaceIN^ieMessage(AptStringMessageForTheactAuthenticated)           
            )
       else (AptStringMessageForTheactAuthenticated
