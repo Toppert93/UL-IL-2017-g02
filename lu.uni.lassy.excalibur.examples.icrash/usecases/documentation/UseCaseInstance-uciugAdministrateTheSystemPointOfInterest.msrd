@@ -1,2 +1,2 @@
 @@Instance Use Case usecases.uciugAdministrateTheSystemPointOfInterest.uciugAdministrateTheSystemPointOfInterest
-@description ""
+@description "use case instance for the use case \msrcode{ugAdministrateTheSystem} showing the addition/deletion/edition of a point of interest."
