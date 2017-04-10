@@ -218,8 +218,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			anchrpnCoordinatorDetails.getChildren().remove(i);
 		TextField txtfldUserID = new TextField();
 		TextField txtfldUserName = new TextField();
+		TextField txtfldMail = new TextField();
 		PasswordField psswrdfldPassword = new PasswordField();
 		txtfldUserID.setPromptText("User ID");
+		txtfldMail.setPromptText("User Mail");
 		Button bttntypOK = null;
 		GridPane grdpn = new GridPane();
 		grdpn.add(txtfldUserID, 1, 1);
@@ -228,9 +230,11 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			bttntypOK = new Button("Create");
 			txtfldUserName.setPromptText("User name");
 			psswrdfldPassword.setPromptText("Password");
+			txtfldMail.setPromptText("User Mail");
 			grdpn.add(txtfldUserName, 1, 2);
 			grdpn.add(psswrdfldPassword, 1, 3);
-			grdpn.add(bttntypOK, 1, 4);
+			grdpn.add(txtfldMail, 1, 4);
+			grdpn.add(bttntypOK, 1, 5);
 			break;
 		case Delete:
 			bttntypOK = new Button("Delete");
@@ -248,7 +252,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 						DtCoordinatorID coordID = new DtCoordinatorID(new PtString(txtfldUserID.getText()));
 						switch(type){
 						case Add:
-							if (userController.oeAddCoordinator(txtfldUserID.getText(), txtfldUserName.getText(), psswrdfldPassword.getText()).getValue()){
+							if (userController.oeAddCoordinator(txtfldUserID.getText(), txtfldUserName.getText(), psswrdfldPassword.getText(), txtfldMail.getText()) != null){
 								listOfOpenWindows.add(new CreateICrashCoordGUI(coordID, systemstateController.getActCoordinator(txtfldUserName.getText())));
 								anchrpnCoordinatorDetails.getChildren().remove(grdpn);
 							}

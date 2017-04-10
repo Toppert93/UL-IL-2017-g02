@@ -22,6 +22,7 @@ import java.util.Hashtable;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCoordinator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
@@ -106,8 +107,10 @@ public class DbCoordinators extends DbAbstract{
 					DtLogin aLogin = new DtLogin(new PtString(res.getString("login")));
 					//coordinator's pwd
 					DtPassword aPwd = new DtPassword(new PtString(res.getString("pwd")));
+					//coordinator's mail
+					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
 
-					aCtCoordinator.init(aId, aLogin,aPwd);
+					aCtCoordinator.init(aId, aLogin,aPwd,aMail);
 					
 				}
 								
@@ -232,8 +235,9 @@ public class DbCoordinators extends DbAbstract{
 							res.getString("id")));
 					DtLogin aLogin = new DtLogin(new PtString(res.getString("login")));
 					DtPassword aPwd = new DtPassword(new PtString(res.getString("pwd")));
+					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
 					//init aCtAlert instance
-					aCtCoord.init(aId, aLogin, aPwd);
+					aCtCoord.init(aId, aLogin, aPwd, aMail);
 					
 					//add instance to the hash
 					cmpSystemCtCoord
