@@ -12,7 +12,9 @@
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary;
 
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
 
 /**
  * The Class CtCoordinator which extends the class of CtAuthenticated
@@ -25,6 +27,12 @@ public class CtCoordinator extends CtAuthenticated {
 
 	/** The id of the coordinator. */
 	public DtCoordinatorID id;
+	
+	/** The rank of a coordinator */
+	public EtExperienceRank expRank;
+	
+	/** The experience points a coordinator has gained so far */
+	public DtInteger expPoints;
 		
 	/**
 	 * Initialises the coordinator.
@@ -35,9 +43,11 @@ public class CtCoordinator extends CtAuthenticated {
 	 * @param aMail The Mail of the coordinator
 	 * @return The success of the initialisation
 	 */
-	public PtBoolean init(DtCoordinatorID aId,DtLogin aLogin,DtPassword aPwd, DtMail aMail){
+	public PtBoolean init(DtCoordinatorID aId,DtLogin aLogin,DtPassword aPwd, DtMail aMail, EtExperienceRank aRank, DtInteger aPoints){
 			super.init(aLogin, aPwd,aMail);
 			id = aId;
+			expRank = aRank;
+			expPoints = aPoints;
 			return new PtBoolean(true); 
 	}
 	

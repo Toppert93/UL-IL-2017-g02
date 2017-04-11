@@ -24,7 +24,10 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCo
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtExperienceRank;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 
 /**
@@ -109,8 +112,19 @@ public class DbCoordinators extends DbAbstract{
 					DtPassword aPwd = new DtPassword(new PtString(res.getString("pwd")));
 					//coordinator's mail
 					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
+					//coordinator's rank
+					String theRank = res.getString("expRank");
+					EtExperienceRank aRank = null;
+					if (theRank.equals(EtExperienceRank.Novice.name()))
+						aRank = EtExperienceRank.Novice;
+					if (theRank.equals(EtExperienceRank.Intermediate.name()))
+						aRank = EtExperienceRank.Intermediate;
+					if (theRank.equals(EtExperienceRank.Expert.name()))
+						aRank = EtExperienceRank.Expert; 
+					//coordinator's experience points
+					DtInteger aPoints = new DtInteger(new PtInteger(res.getInt("expPoints")));
 
-					aCtCoordinator.init(aId, aLogin,aPwd,aMail);
+					aCtCoordinator.init(aId, aLogin,aPwd,aMail, aRank, aPoints);
 					
 				}
 								
@@ -236,8 +250,20 @@ public class DbCoordinators extends DbAbstract{
 					DtLogin aLogin = new DtLogin(new PtString(res.getString("login")));
 					DtPassword aPwd = new DtPassword(new PtString(res.getString("pwd")));
 					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
+					//coordinator's rank
+					String theRank = res.getString("expRank");
+					EtExperienceRank aRank = null;
+					if (theRank.equals(EtExperienceRank.Novice.name()))
+						aRank = EtExperienceRank.Novice;
+					if (theRank.equals(EtExperienceRank.Intermediate.name()))
+						aRank = EtExperienceRank.Intermediate;
+					if (theRank.equals(EtExperienceRank.Expert.name()))
+						aRank = EtExperienceRank.Expert; 
+					//coordinator's experience points
+					DtInteger aPoints = new DtInteger(new PtInteger(res.getInt("expPoints")));
+
 					//init aCtAlert instance
-					aCtCoord.init(aId, aLogin, aPwd, aMail);
+					aCtCoord.init(aId, aLogin, aPwd, aMail, aRank, aPoints);
 					
 					//add instance to the hash
 					cmpSystemCtCoord

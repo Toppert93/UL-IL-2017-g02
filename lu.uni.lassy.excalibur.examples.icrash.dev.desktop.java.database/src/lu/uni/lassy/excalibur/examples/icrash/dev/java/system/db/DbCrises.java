@@ -35,9 +35,12 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMa
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisType;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtExperienceRank;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtDate;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtDateAndTime;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtTime;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.ICrashUtils;
@@ -344,18 +347,29 @@ public class DbCrises extends DbAbstract {
 					aCtCoordinator = new CtCoordinator();
 					//coordinator's id
 					DtCoordinatorID aId1 = new DtCoordinatorID(new PtString(
-							res.getString("coordiantor")));
+							res.getString("coordinator")));
 					//coordinator's login
 					DtLogin aLogin = new DtLogin(new PtString(
 							res.getString("login")));
 					//coordinator's pwd
 					DtPassword aPwd = new DtPassword(new PtString(
 							res.getString("pwd")));
-					//coordinator's pwd
+					//coordinator's mail
 					DtMail aMail = new DtMail(new PtString(
 							res.getString("mail")));
+					//coordinator's rank
+					String theRank = res.getString("expRank");
+					EtExperienceRank aRank = null;
+					if (theRank.equals(EtExperienceRank.Novice.name()))
+						aRank = EtExperienceRank.Novice;
+					if (theRank.equals(EtExperienceRank.Intermediate.name()))
+						aRank = EtExperienceRank.Intermediate;
+					if (theRank.equals(EtExperienceRank.Expert.name()))
+						aRank = EtExperienceRank.Expert; 
+					//coordinator's experience points
+					DtInteger aPoints = new DtInteger(new PtInteger(res.getInt("expPoints")));
 
-					aCtCoordinator.init(aId1, aLogin, aPwd,aMail);
+					aCtCoordinator.init(aId1, aLogin, aPwd,aMail, aRank, aPoints);
 
 					//add instances to the hash
 					assCtCrisisCtCoordinator.put(aCtCrisis, aCtCoordinator);
