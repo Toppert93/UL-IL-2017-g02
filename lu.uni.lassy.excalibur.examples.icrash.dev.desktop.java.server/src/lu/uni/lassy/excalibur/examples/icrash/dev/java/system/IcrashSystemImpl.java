@@ -145,7 +145,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	/**  A hashtable of the joint humans and Actor com companies in the system, stored by the human as a key. */
 	Hashtable<CtHuman, ActComCompany> assCtHumanActComCompany = new Hashtable<CtHuman, ActComCompany>();
 	
-	/**  A hashtable of the joint Point of interest and the actor administrator in the system, stored by the human as a key. */
+	/**  A hashtable of the joint Point of interest and the actor administrator in the system, stored by the point of interest as a key. */
 	Hashtable<CtPointOfInterest, ActAdministrator> assCtPointOfInterestActAdministrator = new Hashtable<CtPointOfInterest, ActAdministrator>();
 	
 	/** The logger user by the system to print information to the console. */
