@@ -1,0 +1,79 @@
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeRankDownCoordinator {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+import icrash.environment
+
+	Operation Model {
+
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeRankDownCoordinator(AdtCoordinatorID:dtCoordinatorID):ptBoolean{
+		// include below the specification information (pre,post or ocl or prolog)
+		
+		preP{
+	
+		let TheSystem:ctState in
+		let Jack:actAdministrator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+	
+	
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+ 	 	and Jack.rnctAuthenticated.vpIsLogged = true
+
+		}
+		
+		preF{
+			
+		let TheSystem:ctState in
+		let Jack:actAdministrator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+		
+		/* PreF01*/	
+		TheSystem.rnctCoordinator->select(id.eq(AdtCoordinatorID))
+  		= ColctCoordinators
+  		and ColctCoordinators->size().eq(1)
+  		
+  		/*PreF02*/
+  		and (ColctCoordinators.expRank.eq("Intermediate") or ColctCoordinators.expRank.eq("Expert"))
+			
+		}
+		
+		postF{
+			
+		let TheSystem:ctState in
+		let Jack:actAdministrator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+		
+		TheSystem.rnctCoordinator->select(id.eq(AdtCoordinatorID))
+  		= ColctCoordinators
+		
+		
+		/*PostF01*/
+		and Jack.rnInterfaceIN^ieRankEdited()
+		
+		/*PostF02*/
+		
+		if(ColctCoordinators.expRank.eq("Intermediate"))then(ColctCoordinators.@post.expRank.eq("Novice"))else(ColctCoordinators.@post.expRank.eq("Intermediate"))endif
+		
+		/*PostP02*/
+		
+		if(ColctCoordinators.expPoints >= 60)then(ColctCoordinators.@post.expPoints=20)else(ColctCoordinators.@post.expPoints=0)endif
+			
+		}
+		
+		postP{
+			true
+		}
+		
+
+		}
+	}
+}
