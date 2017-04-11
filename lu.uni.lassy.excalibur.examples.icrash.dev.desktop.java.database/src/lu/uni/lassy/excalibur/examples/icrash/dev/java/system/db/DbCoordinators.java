@@ -199,8 +199,10 @@ public class DbCoordinators extends DbAbstract{
 				String id = aCtCoordinator.id.value.getValue();
 				String login =  aCtCoordinator.login.value.getValue();
 				String pwd =  aCtCoordinator.pwd.value.getValue();
+				String rank = aCtCoordinator.expRank.name();
+				int points = aCtCoordinator.expPoints.value.getValue();
 				String statement = "UPDATE "+ dbName+ ".coordinators" +
-						" SET pwd='"+pwd+"',  login='"+ login+"' " +
+						" SET pwd='"+pwd+"',  login='"+login+"', expRank='"+rank+"', expPoints='"+points+"' " +
 						"WHERE id='"+id+"'";
 				int val = st.executeUpdate(statement);
 				log.debug(val+" row updated");
