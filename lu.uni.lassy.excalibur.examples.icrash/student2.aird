@@ -460,10 +460,12 @@
     <semanticResources>platform:/resource/lu.uni.lassy.excalibur.standard.specification.libraries/library/documentation/PrimaryType-Primitive-ptReal.msrd</semanticResources>
     <semanticResources>platform:/resource/lu.uni.lassy.excalibur.standard.specification.libraries/library/documentation/PrimaryType-Primitive-ptString.msrd</semanticResources>
     <semanticResources>documentation/View-em-gv-02.msrd</semanticResources>
-    
     <semanticResources>documentation/View-uci-uciugAdministrateTheSystem.msrd</semanticResources>
     <semanticResources>usecases/usecaseinstance-ugAdministrateTheSystem-uciugAdministrateTheSystem.msr</semanticResources>
-    
+    <semanticResources>usecases/usecaseinstance-ugAdministrateTheSystem-uciugAdministrateTheSystemPointOfInterest.msr</semanticResources>
+    <semanticResources>concepts/documentation/Operation-dtCaptcha-generateCaptcha.msrd</semanticResources>
+    <semanticResources>concepts/documentation/Operation-dtPassword-generatePassword.msrd</semanticResources>
+    <semanticResources>operations/environment/environment-actAdministrator-oeRankDownCoordinator.msr</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_VxVZ4PWqEeSOM9Kfym77Zg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_6EvWQBCiEeejEoe6pxZ3ZQ" name="uci-uciugAdministrateTheSystem" representation="_6EvWQRCiEeejEoe6pxZ3ZQ">
