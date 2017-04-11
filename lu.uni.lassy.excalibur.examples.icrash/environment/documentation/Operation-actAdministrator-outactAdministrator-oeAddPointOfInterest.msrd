@@ -32,6 +32,8 @@ icrash.environment.actAdministrator.outactAdministrator.oeAddPointOfInterest.Adt
 @endPreF
 //postFunctional descriptions
 @postF 
+" the ctState attribute for the next value for alert IDs is incremented by one at post."
+@postF 
 "the system's state has a new instance of ctPointOfInterest initialized with the given values."
 @postF
 "the administrator actor is informed about the satisfaction of its request."

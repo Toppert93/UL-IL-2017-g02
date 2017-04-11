@@ -16,9 +16,12 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 
 /**
@@ -51,6 +54,7 @@ public interface ActAdministrator extends ActAuthenticated {
 	public PtBoolean oeDeleteCoordinator(DtCoordinatorID aDtCoordinatorID)
 			throws RemoteException, NotBoundException;
 	
+	
 	/**
 	 * A message sent to the listening actor saying the coordinator was created .
 	 *
@@ -73,5 +77,17 @@ public interface ActAdministrator extends ActAuthenticated {
 	 * @return The success of the method
 	 * @throws RemoteException Thrown if the server is offline
 	 */
-	public PtBoolean ieCoordinatorUpdated() throws RemoteException;	
+	public PtBoolean ieCoordinatorUpdated() throws RemoteException;
+	/**
+	 * Add a Point of interest to the system, using the parameters passed.
+	 *
+	 * @param aCategory The category to use when creating the Point of interest
+	 * @param aLocation The location to use when creating the Point of interest
+	 * @param aDescription The description to use when creating the Point of interest
+	 * @return The success of the method
+	 * @throws RemoteException Thrown if the server is offline
+	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
+	 */
+	public PtBoolean oeAddPointOfInterest(EtCategory aEtCategory, DtGPSLocation Location,
+			DtDescription description)throws RemoteException, NotBoundException;	
 }

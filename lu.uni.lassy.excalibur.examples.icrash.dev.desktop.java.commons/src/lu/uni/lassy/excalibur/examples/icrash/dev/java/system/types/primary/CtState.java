@@ -45,6 +45,8 @@ public class CtState implements Serializable {
 	
 	/**  If the system has been started or not. */
 	public PtBoolean vpStarted;
+	/** The next available value for alert id, this is retrieved from the database at moment of system and environment creation. */
+	public DtInteger nextValueForPointOfInterestID;
 			
 	/**
 	 * Initialises the system's state.
@@ -61,11 +63,12 @@ public class CtState implements Serializable {
 	public PtBoolean init(DtInteger aNextValueForAlertID, DtInteger aNextValueForCrisisID, 
 						DtDateAndTime aClock, DtSecond aCrisisReminderPeriod, 
 						DtSecond aMaxCrisisReminderPeriod, DtDateAndTime aVpLastReminder, 
-						PtBoolean aVpStarted){
+						PtBoolean aVpStarted, DtInteger aNextValueForPointOfInterestID){
 	
 	
 				nextValueForAlertID = aNextValueForAlertID;
 				nextValueForCrisisID = aNextValueForCrisisID;
+				nextValueForPointOfInterestID = aNextValueForPointOfInterestID;
 				clock = aClock;
 				crisisReminderPeriod = aCrisisReminderPeriod;
 				maxCrisisReminderPeriod = aMaxCrisisReminderPeriod;

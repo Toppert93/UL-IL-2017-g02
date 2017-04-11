@@ -191,6 +191,29 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+DROP TABLE IF EXISTS `PointOfInterest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PointOfInterest` (
+  `id` varchar(80) NOT NULL,
+  `category` varchar(80) DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `description` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crises`
+--
+
+LOCK TABLES `crises` WRITE;
+/*!40000 ALTER TABLE `PointOfInterest` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PointOfInterest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 
 /*grant all on `database`.* to 'user'@'localhost' identified by 'password'*/
 grant all on `icrashfx`.* to 'il2_icrash'@'%' identified by 'il2_icrash';

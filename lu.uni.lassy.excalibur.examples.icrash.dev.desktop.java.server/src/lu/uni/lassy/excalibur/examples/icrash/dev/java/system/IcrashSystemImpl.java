@@ -39,23 +39,30 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbComCompanies;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbCoordinators;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbCrises;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbHumans;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtAdministrator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtAlert;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtAuthenticated;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCoordinator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtHuman;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtState;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtAlertID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtComment;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCrisisID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLatitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLongitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPhoneNumber;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisType;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtHumanKind;
@@ -67,6 +74,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtSecond;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtTime;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.AdminActors;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.ICrashUtils;
@@ -111,6 +119,10 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	/**  A hashtable of the humans in the system, stored by their phone number as a key. */
 	Hashtable<String, CtHuman> cmpSystemCtHuman = new Hashtable<String, CtHuman>();
 	
+	/**  A hashtable of the PointsOfInterest in the system, stored by their ID as a key. */
+	Hashtable<String, CtPointOfInterest> cmpSystemCtPointOfInterest = new Hashtable<String, CtPointOfInterest>();
+	
+	
 	/**  A hashtable of the actor com companies in the system, stored by their name as a key. */
 	Hashtable<String, ActComCompany> cmpSystemActComCompany = new Hashtable<String, ActComCompany>();
 
@@ -132,6 +144,9 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	
 	/**  A hashtable of the joint humans and Actor com companies in the system, stored by the human as a key. */
 	Hashtable<CtHuman, ActComCompany> assCtHumanActComCompany = new Hashtable<CtHuman, ActComCompany>();
+	
+	/**  A hashtable of the joint Point of interest and the actor administrator in the system, stored by the human as a key. */
+	Hashtable<CtPointOfInterest, ActAdministrator> assCtPointOfInterestActAdministrator = new Hashtable<CtPointOfInterest, ActAdministrator>();
 	
 	/** The logger user by the system to print information to the console. */
 	private Logger log = Log4JUtils.getInstance().getLogger();
@@ -404,6 +419,8 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		}
 		return listAdmins;
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem#getActComCompany(lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtHuman)
@@ -429,6 +446,15 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		for (CtAuthenticated auth : cmpSystemCtAuthenticated.values())
 			if (auth instanceof CtCoordinator)
 				result.add((CtCoordinator) auth);
+		return result;
+	}
+	
+	public ArrayList<CtPointOfInterest> getAllCtPointOfInterest() throws RemoteException {
+		ArrayList<CtPointOfInterest> result = new ArrayList<CtPointOfInterest>();
+		if (cmpSystemCtPointOfInterest != null){
+			for(CtPointOfInterest PointOfInterest : cmpSystemCtPointOfInterest.values())
+				result.add(PointOfInterest);
+		}
 		return result;
 	}
 	
@@ -536,10 +562,13 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			int nextValueForCrisisID = DbCrises.getMaxCrisisID() + 1;
 			DtInteger aNextValueForCrisisID = new DtInteger(new PtInteger(
 					nextValueForCrisisID));
+			int nextValueForPointOfInterestID = DbPointOfInterest.getMaxPointOfInterestID() + 1;
+			DtInteger aNextValueForPointOfInterestID = new DtInteger(new PtInteger(
+					nextValueForPointOfInterestID));
 			PtBoolean aVpStarted = new PtBoolean(true);
 			ctState.init(aNextValueForAlertID, aNextValueForCrisisID, aClock,
 					aCrisisReminderPeriod, aMaxCrisisReminderPeriod, aClock,
-					aVpStarted);
+					aVpStarted,aNextValueForPointOfInterestID);
 			/* ENV
 			PostF 2 the actMsrCreator actor instance is initiated (remember that since the
 			oeCreateSystemAndEnvironment is a special event, its role is to make consistent the post
@@ -1362,4 +1391,37 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			return new PtBoolean(false);
 		}
 	}
+
+	@Override
+	public PtBoolean oeAddPointOfInterest(EtCategory aEtCategory, DtGPSLocation location, DtDescription description)
+			throws RemoteException {
+		int nextValueForPointOfInterestID_at_pre = ctState.nextValueForPointOfInterestID.value.getValue();
+		try {
+			//PreP1
+			isSystemStarted();
+			//PreP2
+			isAdminLoggedIn();
+			
+			//PostF1				
+			ctState.nextValueForPointOfInterestID.value = new PtInteger(
+					ctState.nextValueForPointOfInterestID.value.getValue() + 1);
+			//PostF2
+			CtPointOfInterest aCtPointOfInterest = new CtPointOfInterest();
+			DtPointOfInterestID aId = new DtPointOfInterestID(new PtString(""
+					+ nextValueForPointOfInterestID_at_pre));
+			EtCategory aCategory = aEtCategory;
+			double dblLatitude = Double.parseDouble(location.latitude.toString());
+			double dblLongitude = Double.parseDouble(location.longitude.toString());
+			DtDescription aDtDescription= new DtDescription(new PtString(description.toString()));
+			DtGPSLocation aDtGPSLocation = new DtGPSLocation(new DtLatitude(new PtReal(dblLatitude)), new DtLongitude(new PtReal(dblLongitude)));
+			aCtPointOfInterest.init(aId, aCategory, aDtGPSLocation,aDtDescription);
+			//DB: insert alert in the database
+			DbPointOfInterest.insertPointOfInterest(aCtPointOfInterest);
+		}catch (Exception ex) {
+			log.error("Exception in oeAddPointOfInterest..." + ex);
+		}
+		return new PtBoolean(true);
+	}
+	
+	
 }
