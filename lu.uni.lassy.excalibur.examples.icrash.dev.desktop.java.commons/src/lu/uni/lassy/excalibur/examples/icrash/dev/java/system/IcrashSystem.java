@@ -402,6 +402,9 @@ public interface IcrashSystem extends Remote {
     public PtBoolean oeAddPointOfInterest(EtCategory aEtCategory,DtGPSLocation location, DtDescription description) throws RemoteException;
     
     public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID  adtPointOfInterestID) throws RemoteException;
+
+	public PtBoolean oeEditPointOfInterest(DtPointOfInterestID adtPointOfInterestID, EtCategory aEtCategory,
+			DtGPSLocation location, DtDescription description)throws RemoteException;
     
 	
  

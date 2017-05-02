@@ -177,5 +177,36 @@ public class AdminController extends AbstractUserController {
 		return new PtBoolean(false);
 		
 	}	
+	
+	public PtBoolean oeEditPointOfInterest(DtPointOfInterestID adtPointOfInterestID,EtCategory aEtCategory,DtGPSLocation location, DtDescription Description) throws  ServerNotBoundException,ServerOfflineException,IncorrectFormatException, StringToNumberException, RemoteException{
+		if (getUserType() == UserType.Admin){
+			ActProxyAdministratorImpl actorAdmin = (ActProxyAdministratorImpl)getAuth();
+			double dblLatitude = Double.parseDouble(location.latitude.toString());
+			double dblLongitude = Double.parseDouble(location.longitude.toString());
+			DtGPSLocation aDtGPSLocation = new DtGPSLocation(new DtLatitude(new PtReal(dblLatitude)), new DtLongitude(new PtReal(dblLongitude)));
+			DtDescription aDtDescription = new DtDescription(new PtString(Description.toString()));
+			Hashtable<JIntIs, String> ht = new Hashtable<JIntIs, String>();
+			ht.put(aDtGPSLocation.latitude, Double.toString(aDtGPSLocation.latitude.value.getValue()));
+			ht.put(aDtGPSLocation.longitude, Double.toString(aDtGPSLocation.longitude.value.getValue()));
+			ht.put(aEtCategory, aEtCategory.name());
+			ht.put(aDtDescription, aDtDescription.value.getValue());
+			ht.put(adtPointOfInterestID, adtPointOfInterestID.value.getValue());
+			try {
+				return actorAdmin.oeEditPointOfInterest(adtPointOfInterestID,aEtCategory,location,Description);
+			} catch (NumberFormatException e){
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new StringToNumberException("Longitude: " + location.longitude + " and latitude: " + location.latitude);
+			} catch (RemoteException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerOfflineException();
+			} catch (NotBoundException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerNotBoundException();
+			
+	}
+		}
+		return new PtBoolean(false);
+		
+	}	
 }
 

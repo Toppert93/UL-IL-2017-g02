@@ -1461,4 +1461,23 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	
 	}
 	
+	public PtBoolean oeEditPointOfInterest(DtPointOfInterestID aDtPointOfInterestID,EtCategory aEtCategory, DtGPSLocation location, DtDescription description) throws java.rmi.RemoteException{
+		try {
+			//PreP1
+			isSystemStarted();
+			//PreP2
+			isAdminLoggedIn();
+			CtPointOfInterest ctPoint = getCtPointOfInterest(aDtPointOfInterestID);
+			DbPointOfInterest.EditPointOfInterest(ctPoint);
+			ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
+			//admin.iePointOfInterestUpdated();
+					return new PtBoolean(true);
+			
+			
+		} catch (Exception e) {
+			log.error("Exception in oeDeleteCoordinator..." + e);
+			return new PtBoolean(false);
+		}
+	}
+	
 }

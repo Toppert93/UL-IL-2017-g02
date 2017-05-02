@@ -92,5 +92,8 @@ public interface ActAdministrator extends ActAuthenticated {
 	public PtBoolean oeAddPointOfInterest(EtCategory aEtCategory, DtGPSLocation Location,
 			DtDescription description)throws RemoteException, NotBoundException;
 
-	public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID adtPointOfInterestID)throws RemoteException, NotBoundException;;	
+	public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID adtPointOfInterestID)throws RemoteException, NotBoundException;
+
+	public PtBoolean oeEditPointOfInterest(DtPointOfInterestID adtPointOfInterestID, EtCategory aEtCategory,
+			DtGPSLocation location, DtDescription description)throws RemoteException, NotBoundException;
 }

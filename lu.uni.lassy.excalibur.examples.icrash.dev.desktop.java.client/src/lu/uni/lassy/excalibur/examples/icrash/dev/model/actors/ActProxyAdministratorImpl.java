@@ -127,4 +127,13 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 		else
 			return new PtBoolean(false);
 	}
+
+	synchronized public PtBoolean oeEditPointOfInterest(DtPointOfInterestID adtPointOfInterestID, EtCategory aEtCategory,
+			DtGPSLocation location, DtDescription description) throws RemoteException, NotBoundException {
+		if(getServerSideActor() !=null)
+			return ((ActAdministrator) getServerSideActor()).oeEditPointOfInterest(adtPointOfInterestID,aEtCategory, location, description);
+		else
+			return new PtBoolean(false);
+	
+	}
 }
