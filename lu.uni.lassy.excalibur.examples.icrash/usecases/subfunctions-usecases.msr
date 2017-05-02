@@ -196,6 +196,6 @@ use case system subfunction oeSelectCategories(AdtCategory:etCategory) {
 				ieCategorySelected(AdtCategory) returned to actAdministrator
 			}
 		}
-	}
+}
 
 }
