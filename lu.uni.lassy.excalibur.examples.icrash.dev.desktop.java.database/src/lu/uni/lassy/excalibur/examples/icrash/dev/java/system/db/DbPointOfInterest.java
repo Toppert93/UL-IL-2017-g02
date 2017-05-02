@@ -81,5 +81,33 @@ public class DbPointOfInterest extends DbAbstract {
 		}
 
 	}
+	
+	public static void DeletePointOfInterest(CtPointOfInterest aCtPointOfInterest){
+	try {
+		conn = DriverManager
+				.getConnection(url + dbName, userName, password);
+		log.debug("Connected to the database");
+
+		/********************/
+		//Delete
+
+		try {
+			String sql = "DELETE FROM " + dbName + ".PointOfInterest WHERE id = ?";
+			String id = aCtPointOfInterest.id.value.getValue();
+
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, id);
+			int rows = statement.executeUpdate();
+			log.debug(rows + " row deleted");
+		} catch (SQLException s) {
+			log.error("SQL statement is not executed! " + s);
+		}
+
+		conn.close();
+		log.debug("Disconnected from database");
+	} catch (Exception e) {
+		logException(e);
+	}
+}
 }
 

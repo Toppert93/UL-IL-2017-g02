@@ -21,6 +21,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGP
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 
@@ -89,5 +90,7 @@ public interface ActAdministrator extends ActAuthenticated {
 	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
 	 */
 	public PtBoolean oeAddPointOfInterest(EtCategory aEtCategory, DtGPSLocation Location,
-			DtDescription description)throws RemoteException, NotBoundException;	
+			DtDescription description)throws RemoteException, NotBoundException;
+
+	public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID adtPointOfInterestID)throws RemoteException, NotBoundException;;	
 }

@@ -22,6 +22,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGP
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
@@ -117,5 +118,13 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 		
 		
 	
+	}
+
+	synchronized public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID adtPointOfInterestID) throws RemoteException, NotBoundException {
+		
+		if(getServerSideActor() !=null)
+			return ((ActAdministrator) getServerSideActor()).oeDeletePointOfInterest(adtPointOfInterestID);
+		else
+			return new PtBoolean(false);
 	}
 }

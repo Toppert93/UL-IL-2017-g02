@@ -31,6 +31,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLo
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLongitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
@@ -144,6 +145,26 @@ public class AdminController extends AbstractUserController {
 			} catch (NumberFormatException e){
 				Log4JUtils.getInstance().getLogger().error(e);
 				throw new StringToNumberException("Longitude: " + location.longitude + " and latitude: " + location.latitude);
+			} catch (RemoteException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerOfflineException();
+			} catch (NotBoundException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerNotBoundException();
+			
+	}
+		}
+		return new PtBoolean(false);
+		
+	}	
+	
+	public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID adtPointOfInterestID) throws  ServerNotBoundException,ServerOfflineException,IncorrectFormatException, StringToNumberException, RemoteException{
+		if (getUserType() == UserType.Admin){
+			ActProxyAdministratorImpl actorAdmin = (ActProxyAdministratorImpl)getAuth();
+			Hashtable<JIntIs, String> ht = new Hashtable<JIntIs, String>();
+			ht.put(adtPointOfInterestID , adtPointOfInterestID.value.getValue());
+			try {
+				return actorAdmin.oeDeletePointOfInterest(adtPointOfInterestID);
 			} catch (RemoteException e) {
 				Log4JUtils.getInstance().getLogger().error(e);
 				throw new ServerOfflineException();

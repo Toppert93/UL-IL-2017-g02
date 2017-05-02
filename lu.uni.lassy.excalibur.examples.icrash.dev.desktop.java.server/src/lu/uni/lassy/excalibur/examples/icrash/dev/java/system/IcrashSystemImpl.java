@@ -1404,7 +1404,6 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			isSystemStarted();
 			//PreP2
 			isAdminLoggedIn();
-			
 			//PostF1				
 			ctState.nextValueForPointOfInterestID.value = new PtInteger(
 					ctState.nextValueForPointOfInterestID.value.getValue() + 1);
@@ -1426,5 +1425,40 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		return new PtBoolean(true);
 	}
 	
+	public PtBoolean oeDeletePointOfInterest(DtPointOfInterestID aDtPointOfInterestID) throws RemoteException {
+		try {
+			//PreP1
+			isSystemStarted();
+			//PreP2
+			isAdminLoggedIn();
+			CtPointOfInterest ctPoint = getCtPointOfInterest(aDtPointOfInterestID);
+				DbPointOfInterest.DeletePointOfInterest(ctPoint);
+				
+				ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
+				//PostF2
+			//	admin.iePointOfInterestDeleted();
+				return new PtBoolean(true);
+			
+			
+		} catch (Exception e) {
+			log.error("Exception in oeDeleteCoordinator..." + e);
+			return new PtBoolean(false);
+		}
+	}
+
+	private CtPointOfInterest getCtPointOfInterest(DtPointOfInterestID aDtPointOfInterestID) {
+		
+
+			CtPointOfInterest ctPoint = new CtPointOfInterest();
+				if (ctPoint instanceof CtPointOfInterest) {
+					PtBoolean res = ((CtPointOfInterest) ctPoint).id
+							.eq(aDtPointOfInterestID);
+					if (res.getValue())
+						return ctPoint;
+				}
+			
+			return null;
+	
+	}
 	
 }

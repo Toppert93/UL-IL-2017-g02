@@ -34,18 +34,25 @@ import icrash.environment
  		let  AetPointOfInterestCategory:etCategory in
  		let  APointOfInterestDescription:dtDescription in
  		let  AdtPointOfInterestID:dtPointOfInterestID in
+ 		let ColctPointOfInterest:Bag(ctPointOfInterest) in
  
   		self.rnActor.rnSystem = TheSystem
   		and self.rnActor = TheactComCompany
-		/* PostF01 */
+		
+		
  		TheSystem.nextValueForPointOfInterestID=PrenextValueForPointOfInterestID
  		and PrenextValueForPointOfInterestID.add(1) = PostnextValueForPointOfInterestID
+ 		
+		and TheSystem.rnctPointOfInterest->select(id.eq(PostnextValueForPointOfInterestID))
+      		= ColctPointOfInterest
+  		and ColctPointOfInterest->isEmpty() = true
+  		
  		and TheSystem@post.nextValueForPointOfInterestID = PostnextValueForPointOfInterestID
-
-
- 		 /* PostF02 */
-
 		and TheSystem.nextValueForPointOfInterestID.todtString().eq(AdtPointOfInterestID)
+		
+
+ 		 /* PostF03 */
+
 
 		and ActPointOfInterest.init(AdtPointOfInterestID,
                   AetCategory,
