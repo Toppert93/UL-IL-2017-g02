@@ -37,8 +37,8 @@ import icrash.environment
   		= ColctPointOfInterest
   		and ColctPointOfInterest->size().eq(1)
  		and ColctPointOfInterest@post.Category = AetCategory
- 		and ColctPointOfInterest@post.Category = AdtGPSLocation
- 		and ColctPointOfInterest@post.Category = AdtDescription
+ 		and ColctPointOfInterest@post.Location = AdtGPSLocation
+ 		and ColctPointOfInterest@post.Description = AdtDescription
  		and ColctPointOfInterest = TheSystem.rnctPointOfInterest->select(id.eq(AdtPointOfInterstID))
  		and TheActor.rnInterfaceIN^iePointOfInterestEdited()
  		and true
