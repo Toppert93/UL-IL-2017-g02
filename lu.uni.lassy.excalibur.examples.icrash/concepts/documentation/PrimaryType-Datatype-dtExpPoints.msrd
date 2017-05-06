@@ -1,0 +1,12 @@
+/*
+@author Jorge Cruz
+@date Sat May 06 18:12:23 CEST 2017
+*/
+
+
+@@Primary Type Datatype icrash.concepts.primarytypes.datatypes.dtExpPoints
+@description "number of experience points accumulated by a coordinator based on the amount of crises handles"
+@operation
+icrash.concepts.primarytypes.datatypes.dtExpPoints.is
+"used to determine which integers are considered to be DtExpPoints (value between 0 and 120)"
+@endOperations
