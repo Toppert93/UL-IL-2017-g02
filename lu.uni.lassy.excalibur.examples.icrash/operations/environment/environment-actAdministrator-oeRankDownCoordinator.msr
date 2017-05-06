@@ -61,12 +61,7 @@ import icrash.environment
 		
 		/*PostF02*/
 		
-		if(ColctCoordinators.expRank.eq("Intermediate"))then(ColctCoordinators.@post.expRank.eq("Novice"))else(ColctCoordinators.@post.expRank.eq("Intermediate"))endif
-		
-		/*PostP02*/
-		
-		if(ColctCoordinators.expPoints >= 60)then(ColctCoordinators.@post.expPoints=20)else(ColctCoordinators.@post.expPoints=0)endif
-			
+		if(ColctCoordinators.expRank.eq("Expert") and ColctCoordinators.expPoints >= 60)then(ColctCoordinators.@post.expRank.eq("Intermediate") and ColctCoordinators.@post.expPoints = 20)else(ColctCoordinators.@post.expRank.eq("Novice") and ColctCoordinators.@post.expPoints = 0)endif
 		}
 		
 		postP{
