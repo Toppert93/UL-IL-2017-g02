@@ -21,6 +21,7 @@ import java.util.Hashtable;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCoordinator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtExpPoints;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMail;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
@@ -122,7 +123,7 @@ public class DbCoordinators extends DbAbstract{
 					if (theRank.equals(EtExperienceRank.Expert.name()))
 						aRank = EtExperienceRank.Expert; 
 					//coordinator's experience points
-					DtInteger aPoints = new DtInteger(new PtInteger(res.getInt("expPoints")));
+					DtExpPoints aPoints = new DtExpPoints(new PtInteger(res.getInt("expPoints")));
 
 					aCtCoordinator.init(aId, aLogin,aPwd,aMail, aRank, aPoints);
 					
@@ -262,7 +263,7 @@ public class DbCoordinators extends DbAbstract{
 					if (theRank.equals(EtExperienceRank.Expert.name()))
 						aRank = EtExperienceRank.Expert; 
 					//coordinator's experience points
-					DtInteger aPoints = new DtInteger(new PtInteger(res.getInt("expPoints")));
+					DtExpPoints aPoints = new DtExpPoints(new PtInteger(res.getInt("expPoints")));
 
 					//init aCtAlert instance
 					aCtCoord.init(aId, aLogin, aPwd, aMail, aRank, aPoints);
