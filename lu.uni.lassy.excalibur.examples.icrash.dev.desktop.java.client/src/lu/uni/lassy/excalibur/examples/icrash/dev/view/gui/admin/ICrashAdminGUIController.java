@@ -11,10 +11,12 @@
  *     Thomas Mortimer - Updated client to MVC and added new design patterns
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.AdminController;
@@ -33,6 +35,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
 import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController;
 import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.coordinator.CreateICrashCoordGUI;
 import javafx.scene.layout.GridPane;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,13 +43,21 @@ import javafx.event.EventHandler;
  * This is the import section to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
  */
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 /*
  * This is the end of the import section to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
  */
@@ -60,6 +71,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	* When replacing, remember to reassign the correct methods to the button event methods and set the correct types for the tableviews
 	*/
 	
+
     /** The pane containing the logon controls. */
 	@FXML
     private Pane pnAdminLogon;
@@ -91,6 +103,20 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     /** The button that shows the controls for deleting a coordinator */
     @FXML
     private Button bttnBottomAdminCoordinatorDeleteACoordinator;
+    
+
+   
+/*
+      @FXML
+        private Button bttnAdminPointOfInterestAdd;
+
+        @FXML
+        void bttnAdminPointOfInterestAdd_OnClick(ActionEvent event) {
+		}
+*/
+        
+    @FXML
+    private Button bttnAdminPointsOfInterestListPointsOfInterest;
 
     /** The tableview of the recieved messages from the system */
     @FXML
@@ -119,8 +145,34 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     void bttnBottomAdminCoordinatorDeleteACoordinator_OnClick(ActionEvent event) {
     	showCoordinatorScreen(TypeOfEdit.Delete);
     }
+    
+   /* @FXML
+    void bttnAdminPointsOfInterestListPointsOfInterest_OnClick(ActionEvent event) throws IOException {
+    	showPointsOfInterestScreen();
+    }*/
+    
 
-    /**
+   /* private void showPointsOfInterestScreen() throws IOException {
+    	brdpnAdmin.setVisible(false);
+    	  FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("ICrashPointsOfInterest.fxml"));
+          Parent root1 = (Parent) fxmlLoader.load();
+          Stage stage = new Stage();
+          stage.initModality(Modality.APPLICATION_MODAL);
+          stage.initStyle(StageStyle.UNDECORATED);
+          stage.setTitle("Point of interest list");
+          stage.setScene(new Scene(root1));  
+          stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+               Platform.exit();
+               System.exit(0);
+            }
+         });
+		
+	}*/
+
+	/**
      * The button event that will initiate the logging on of a user
      *
      * @param event The event type thrown, we do not need this, but it must be specified
@@ -161,6 +213,16 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		Add,
 		
 		/** Deleting a coordinator. */
+		Delete
+	}
+	
+	private enum TypeOfEditPointOfInterest{
+		
+	
+		Add,
+		
+		Edit,
+	
 		Delete
 	}
 	

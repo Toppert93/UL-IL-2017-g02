@@ -1475,9 +1475,65 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			
 			
 		} catch (Exception e) {
-			log.error("Exception in oeDeleteCoordinator..." + e);
+			log.error("Exception in oeEditCoordinator..." + e);
 			return new PtBoolean(false);
 		}
 	}
+
+	@Override
+	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws RemoteException {
+		try {//PreP1
+		isSystemStarted();
+		//PreP2
+		isAdminLoggedIn();
+		ArrayList<CtPointOfInterest> SortedList = new ArrayList<CtPointOfInterest>();
+		ArrayList<CtPointOfInterest> List = getAllCtPointOfInterest();
+		for(int i= 0;i< List.size();i++){
+			if(List.get(i).Category==aEtCategory){
+				SortedList.add(List.get(i));
+			}
+		}
+		
+				return SortedList;
+		
+		
+	} catch (Exception e) {
+		log.error("Exception in oeDeleteCoordinator..." + e);
+		return null;
 	
+	}
+	}
+
+	@Override
+	public ArrayList<CtPointOfInterest> oeSelectClosestTo(DtGPSLocation location) throws RemoteException {
+		try {
+			//PreP1
+		isSystemStarted();
+		//PreP2
+		isAdminLoggedIn();
+		
+		ArrayList<CtPointOfInterest> List = getAllCtPointOfInterest();
+		CtPointOfInterest temp;
+	    for (int i = 0; i < List.size()-1; i++)
+	    {
+	        if(List.get(i).location.DistanceTo(location.latitude, location.longitude)> List.get(i+1).location.DistanceTo(location.latitude, location.longitude))
+	        {
+	            temp=List.get(i);
+	            List.set(i, List.get(i+1));
+	            List.set(i+1, temp);
+	            i=-1;
+	        }
+	    }
+		
+		
+				return List;
+		
+		
+	} catch (Exception e) {
+		log.error("Exception in oeSelectClosestTo..." + e);
+		return null;
+	
+	}
+	}
 }
+	

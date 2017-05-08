@@ -14,6 +14,7 @@ package lu.uni.lassy.excalibur.examples.icrash.dev.controller;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.IncorrectFormatException;
@@ -23,6 +24,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.StringTo
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActAdministrator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActProxyAuthenticated.UserType;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIs;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
@@ -208,5 +210,46 @@ public class AdminController extends AbstractUserController {
 		return new PtBoolean(false);
 		
 	}	
+	
+	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws ServerOfflineException, ServerNotBoundException{
+		if (getUserType() == UserType.Admin){
+			ActProxyAdministratorImpl actorAdmin = (ActProxyAdministratorImpl)getAuth();
+			Hashtable<JIntIs, String> ht = new Hashtable<JIntIs, String>();
+			ht.put(aEtCategory, aEtCategory.name());
+			try{
+				return actorAdmin.oeSelectCategory(aEtCategory);
+				
+			} catch (RemoteException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerOfflineException();
+			} catch (NotBoundException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerNotBoundException();
+			}
+		}
+		return null;
+	}
+	public ArrayList<CtPointOfInterest> oeSelectClosestTo(DtGPSLocation location) throws ServerOfflineException, ServerNotBoundException{
+		if (getUserType() == UserType.Admin){
+			ActProxyAdministratorImpl actorAdmin = (ActProxyAdministratorImpl)getAuth();
+			Hashtable<JIntIs, String> ht = new Hashtable<JIntIs, String>();
+			double dblLatitude = Double.parseDouble(location.latitude.toString());
+			double dblLongitude = Double.parseDouble(location.longitude.toString());
+			DtGPSLocation aDtGPSLocation = new DtGPSLocation(new DtLatitude(new PtReal(dblLatitude)), new DtLongitude(new PtReal(dblLongitude)));
+			ht.put(aDtGPSLocation.latitude, Double.toString(aDtGPSLocation.latitude.value.getValue()));
+			ht.put(aDtGPSLocation.longitude, Double.toString(aDtGPSLocation.longitude.value.getValue()));
+			try{
+				return actorAdmin.oeSelectClosestTo(location);
+				
+			} catch (RemoteException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerOfflineException();
+			} catch (NotBoundException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				throw new ServerNotBoundException();
+			}
+		}
+		return null;
+	}
 }
 

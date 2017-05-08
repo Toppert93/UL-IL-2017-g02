@@ -6,11 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLatitude;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLongitude;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 
 public class DbPointOfInterest extends DbAbstract {
 
@@ -152,6 +162,8 @@ public class DbPointOfInterest extends DbAbstract {
 			logException(e);
 		}
 	}
+
+	
 
 }
 

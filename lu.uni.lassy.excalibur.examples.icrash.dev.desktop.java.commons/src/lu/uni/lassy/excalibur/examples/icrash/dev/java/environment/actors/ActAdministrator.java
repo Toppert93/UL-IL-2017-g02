@@ -14,7 +14,9 @@ package lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
@@ -96,4 +98,8 @@ public interface ActAdministrator extends ActAuthenticated {
 
 	public PtBoolean oeEditPointOfInterest(DtPointOfInterestID adtPointOfInterestID, EtCategory aEtCategory,
 			DtGPSLocation location, DtDescription description)throws RemoteException, NotBoundException;
+	
+	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aetCategory) throws RemoteException, NotBoundException;
+
+	public ArrayList<CtPointOfInterest> oeSelectClosestTo(DtGPSLocation location)throws RemoteException, NotBoundException;
 }

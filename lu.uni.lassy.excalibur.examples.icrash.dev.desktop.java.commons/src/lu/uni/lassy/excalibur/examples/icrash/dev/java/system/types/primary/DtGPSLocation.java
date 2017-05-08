@@ -14,6 +14,7 @@ package lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary;
 import java.io.Serializable;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIs;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 
 /**
@@ -99,6 +100,19 @@ public class DtGPSLocation implements Serializable, JIntIs {
 				return new PtBoolean(true);
 			else
 				return new PtBoolean(false);
+		}
+		
+		public Double DistanceTo(DtLatitude aLatitude, DtLongitude aLongitude){
+			double lat1,lat2,long1,long2,dist;
+			
+			lat1 = this.latitude.value.getValue();
+			lat2 = aLatitude.value.getValue();
+			long1 = this.longitude.value.getValue();
+			long2 = aLongitude.value.getValue();
+			
+			dist = distanceBetweenTwoLocationsInKm(lat1,long1,lat2,long2);
+			
+			return dist;
 		}
 		
 		/* (non-Javadoc)
