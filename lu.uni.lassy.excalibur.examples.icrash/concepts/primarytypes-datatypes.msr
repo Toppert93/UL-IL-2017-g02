@@ -54,7 +54,7 @@ import lu.uni.lassy.messir.libraries.calendar
 				attribute longitude: dtLongitude
 				operation is():ptBoolean			
 				operation isNearTo(AGPSLocation:dtGPSLocation ):ptBoolean
-				operation DistanceTo(AGPSLocation:dtGPSLocation) : ptReal
+				operation DistanceTo(AGPSLocation:dtGPSLocation) :ptReal
 			}
 			
 			enum etCrisisStatus {

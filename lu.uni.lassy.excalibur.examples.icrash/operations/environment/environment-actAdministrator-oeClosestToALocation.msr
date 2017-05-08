@@ -1,18 +1,20 @@
-package icrash.environment.operations.actAdministrator.outactAdministrator.oeSelectCategories {
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeClosestToALocation {
 
 import lu.uni.lassy.messir.libraries.primitives
 import lu.uni.lassy.messir.libraries.math
 import lu.uni.lassy.messir.libraries.string
 import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
 
 import icrash.environment
 
-import icrash.concepts.primarytypes.datatypes
-import icrash.concepts.primarytypes.classes
+
 	Operation Model {
 
-		operation: icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories(AdtCategory:etCategory):ptBoolean{
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeClosestToALocation(AdtGPSLocation:dtGPSLocation):ptBoolean{
 		// include below the specification information (pre,post or ocl or prolog)
+
 		preP{
   		let TheSystem: ctState in
   		let TheActor:actAdministrator in
@@ -29,12 +31,25 @@ import icrash.concepts.primarytypes.classes
   		let TheSystem: ctState in
   		let TheActor:actAdministrator in
   		let CollctPointOfInterest:ctPointOfInterest in
+  		let temp:ctPointOfInterest in
+  		let i:dtInteger in
   		self.rnActor.rnSystem = TheSystem
   		and self.rnActor = TheActor
 		/* PostF01 */
-  		TheSystem.rnctPointOfInterest->select(category.eq(AetCategory))
+		and i = 0
+  		TheSystem.rnctPointOfInterest->select(AllctPointOfInterest)
  		= CollctPointOfInterest
- 		and TheActor.rnInterfaceIN^ieCategorySelected()
+ 		and for i.lt(CollctPointOfInterest.length-1)
+ 		if(CollctPointOfInterest.get(i).location.distanceTo(AdtGPSLocation)>CollctPointOfInterest.get(i+1).location.distanceTo(AdtGPSLocation))
+ 		then (temp = CollctPointOfInterest.get(i)
+ 		and (CollctPointOfInterest.set(i) = CollctPointOfInterest.get(i+1))
+ 		and (CollctPointOfInterest.set(i+1)=temp)
+ 		and i= i-1
+ 		)
+ 		
+ 		else (i=i+1)
+ 		endif
+ 		
  		and true
  		}
  		postP{true}

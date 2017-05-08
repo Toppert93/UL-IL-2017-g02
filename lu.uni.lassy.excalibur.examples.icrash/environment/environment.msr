@@ -52,7 +52,9 @@ import lu.uni.lassy.messir.libraries.calendar
 	 			
 	 			operation oeRankDownCoordinator(AdtCoordinatorID:dtCoordinatorID):ptBoolean
 	 			
-	 			operation oeSelectCategories(AdtCategory:etCategory): ptBoolean
+	 			operation oeSelectCategories(AdtCategory:etCategory): ptBoolean  //List
+	 			
+	 			operation oeClosestToALocation(AdtGPSLocation:dtGPSLocation) : ptBoolean //List
 			}
 			
 			
