@@ -1239,7 +1239,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			//PostF2
 			CtCoordinator ctCoordinator = new CtCoordinator();
 			EtExperienceRank aRank = EtExperienceRank.Novice;
-			DtInteger aPoints = new DtInteger(new PtInteger(0));
+			DtExpPoints aPoints = new DtExpPoints(new PtInteger(0));
 			ctCoordinator.init(aDtCoordinatorID, aDtLogin, aDtPassword, aDtMail, aRank, aPoints);
 			DbCoordinators.insertCoordinator(ctCoordinator);
 			
@@ -1298,7 +1298,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	 * It is worth noticing that such system operation is not used anywhere for the moment (not even included in the class' interface)
 	 * 
 	 * */
-	public PtBoolean oeUpdateCoordinator(DtCoordinatorID aDtCoordinatorID,DtLogin aDtLogin,DtPassword aDtPassword, DtMail aDtMail) throws java.rmi.RemoteException{
+	public PtBoolean oeUpdateCoordinator(DtCoordinatorID aDtCoordinatorID,DtLogin aDtLogin,DtPassword aDtPassword, DtMail aDtMail, EtExperienceRank aRank, DtExpPoints aPoints) throws java.rmi.RemoteException{
 		try {
 			//PreP1
 			isSystemStarted();
@@ -1309,7 +1309,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 				CtCoordinator aCtCoordinator = (CtCoordinator)ctAuth;
 				CtCoordinator oldCoordinator = new CtCoordinator();
 				oldCoordinator.init(aCtCoordinator.id, aCtCoordinator.login, aCtCoordinator.pwd, aCtCoordinator.mail, aCtCoordinator.expRank, aCtCoordinator.expPoints);
-				aCtCoordinator.update(aDtLogin, aDtPassword, aDtMail);
+				aCtCoordinator.update(aDtLogin, aDtPassword, aDtMail, aRank, aPoints);
 				if (DbCoordinators.updateCoordinator(aCtCoordinator).getValue()){
 					cmpSystemCtAuthenticated.remove(oldCoordinator.login.value.getValue());
 					cmpSystemCtAuthenticated.put(aCtCoordinator.login.value.getValue(), aCtCoordinator);
@@ -1318,7 +1318,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 					return new PtBoolean(true);
 				}
 				else
-					aCtCoordinator.update(oldCoordinator.login, oldCoordinator.pwd, oldCoordinator.mail);
+					aCtCoordinator.update(oldCoordinator.login, oldCoordinator.pwd, oldCoordinator.mail, oldCoordinator.expRank, oldCoordinator.expPoints);
 			}
 			return new PtBoolean(false);
 		} catch (Exception e) {

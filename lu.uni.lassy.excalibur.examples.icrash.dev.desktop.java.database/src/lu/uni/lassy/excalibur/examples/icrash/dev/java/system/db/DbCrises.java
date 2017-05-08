@@ -27,6 +27,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCr
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtComment;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCrisisID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtExpPoints;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLatitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
@@ -367,7 +368,7 @@ public class DbCrises extends DbAbstract {
 					if (theRank.equals(EtExperienceRank.Expert.name()))
 						aRank = EtExperienceRank.Expert; 
 					//coordinator's experience points
-					DtInteger aPoints = new DtInteger(new PtInteger(res.getInt("expPoints")));
+					DtExpPoints aPoints = new DtExpPoints(new PtInteger(res.getInt("expPoints")));
 
 					aCtCoordinator.init(aId1, aLogin, aPwd,aMail, aRank, aPoints);
 

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
+=======
+<?import javafx.geometry.Insets?>
+>>>>>>> branch 'master' of https://github.com/Toppert93/UL-IL-2017-g02.git
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitPane?>
@@ -83,7 +87,15 @@
                      <bottom>
                         <HBox alignment="TOP_RIGHT" prefHeight="51.0" prefWidth="748.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button id="bttnTopLogoff" fx:id="bttnAdminLogoff" disable="true" mnemonicParsing="false" onAction="#bttnTopLogoff_OnClick" prefHeight="50.0" prefWidth="100.0" text="Logoff">
+                              <Button id="bttnTopLogoff" fx:id="bttnAdminLogoff" mnemonicParsing="false" onAction="#bttnTopLogoff_OnClick" prefHeight="50.0" prefWidth="106.0" text="Reset Password">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="bttnAdminResetPassword" fx:id="bttnAdminResetPassword" disable="true" mnemonicParsing="false" onAction="#bttnBottomLoginPaneLogin_OnClick" prefHeight="50.0" prefWidth="100.0" text="Logoff">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>

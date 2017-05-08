@@ -41,10 +41,7 @@ icrash.environment.actAdministrator.outactAdministrator.oeRankDownCoordinator.Ad
 " a message is sent to the ctAdministrator, confirming the operation has been successful, else the administrator is notified that the operation was unsuccessful. "
 
 @postF 
-" the ctCoordinator attribute expRank is decremented by one (i.e. expert to intermediate, intermediate to novice) at post. "
-
-@postF 
-" the ctCoordinator attribute expRank is set to the number of points a coordinator would have at the start of that rank (i.e. expert to intermediate -> 20 ExpPoints, intermediate to novice -> 0 ExpPoints	). "
+" the ctCoordinator attribute expRank is decremented by one (i.e. expert to intermediate, intermediate to novice) and his expPoints are adjusted accordingly at post (i.e. expert to intermediate -> 20 ExpPoints, intermediate to novice -> 0 ExpPoints). "
 
 @endPostF
 //postProtocol descriptions

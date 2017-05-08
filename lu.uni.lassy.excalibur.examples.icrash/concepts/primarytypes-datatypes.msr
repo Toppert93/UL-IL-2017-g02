@@ -82,6 +82,7 @@ import lu.uni.lassy.messir.libraries.calendar
 			}
 			enum etExperienceRank {
 				constants["novice", "intermediate", "expert"]
+				operation is():ptBoolean
 			}
 		}
 	}

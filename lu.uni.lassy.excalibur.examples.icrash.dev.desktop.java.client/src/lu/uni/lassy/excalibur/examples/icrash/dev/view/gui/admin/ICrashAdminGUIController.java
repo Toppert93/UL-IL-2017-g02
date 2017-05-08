@@ -87,6 +87,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     /** The button that initiates the login function. */
     @FXML
     private Button bttnAdminLogin;
+    
+    /** The button that initiates the reset password procedure  */
+    @FXML
+    private Button bttnAdminResetPassword;
 
     /** The borderpane that contains the normal controls the user will use. */
     @FXML
@@ -180,6 +184,17 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     @FXML
     void bttnBottomLoginPaneLogin_OnClick(ActionEvent event) {
     	logon();
+    }
+    /**
+     * The button event that will initiate a reset password of a user
+     * 
+     * @param event
+     */
+    @FXML
+    void bttnResetPassword_OnClick(ActionEvent event) {
+    	/*
+    	 * TODO taking to a new screen to reset password
+    	 * */
     }
 
     /**

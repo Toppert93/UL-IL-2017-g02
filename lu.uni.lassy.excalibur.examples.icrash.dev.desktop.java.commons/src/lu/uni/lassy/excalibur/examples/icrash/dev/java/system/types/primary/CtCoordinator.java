@@ -31,7 +31,7 @@ public class CtCoordinator extends CtAuthenticated {
 	public EtExperienceRank expRank;
 	
 	/** The experience points a coordinator has gained so far */
-	public DtInteger expPoints;
+	public DtExpPoints expPoints;
 		
 	/**
 	 * Initialises the coordinator.
@@ -42,7 +42,7 @@ public class CtCoordinator extends CtAuthenticated {
 	 * @param aMail The Mail of the coordinator
 	 * @return The success of the initialisation
 	 */
-	public PtBoolean init(DtCoordinatorID aId,DtLogin aLogin,DtPassword aPwd, DtMail aMail, EtExperienceRank aRank, DtInteger aPoints){
+	public PtBoolean init(DtCoordinatorID aId,DtLogin aLogin,DtPassword aPwd, DtMail aMail, EtExperienceRank aRank, DtExpPoints aPoints){
 			super.init(aLogin, aPwd,aMail);
 			id = aId;
 			expRank = aRank;
@@ -57,10 +57,12 @@ public class CtCoordinator extends CtAuthenticated {
 	 * @param aPwd the value to change the password to 
 	 * @return the success of the update method
 	 */
-	public PtBoolean update(DtLogin aLogin,DtPassword aPwd, DtMail aMail){
+	public PtBoolean update(DtLogin aLogin,DtPassword aPwd, DtMail aMail, EtExperienceRank aRank, DtExpPoints aPoints){
 		login = aLogin;
 		pwd = aPwd;
 		mail = aMail;
+		expRank = aRank;
+		expPoints = aPoints;
 		return new PtBoolean(true);
 	}
 	

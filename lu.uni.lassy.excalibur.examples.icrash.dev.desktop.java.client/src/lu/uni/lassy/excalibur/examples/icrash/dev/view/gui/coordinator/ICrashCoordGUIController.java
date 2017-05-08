@@ -87,6 +87,10 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
     /** The button that allows a user to initiate the logon function. */
     @FXML
     private Button bttnCoordLogon;
+    
+    /** The button that initiates the reset password procedure  */
+    @FXML
+    private Button bttnCoordResetPassword;
 
     /** The main tabpane that holds the normal user controls. */
     @FXML
@@ -186,6 +190,18 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
     @FXML
     void bttnCoordLogon_OnClick(ActionEvent event) {
     	logon();
+    }
+    
+    /**
+     * The button event that will initiate a reset password of a user
+     * 
+     * @param event
+     */
+    @FXML
+    void bttnCoordResetPassword_OnClick(ActionEvent event) {
+    	/*
+    	 * TODO taking to a new screen to reset password
+    	 * */
     }
 
     /**

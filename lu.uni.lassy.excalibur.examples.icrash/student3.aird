@@ -494,6 +494,7 @@
     <semanticResources>documentation/View-uci-uciugAdministrateTheSystemPointOfInterest.msrd</semanticResources>
     <semanticResources>usecases/documentation/UseCase-oeClosestToALocation.msrd</semanticResources>
     <semanticResources>operations/environment/environment-actAdministrator-oeClosestToALocation.msr</semanticResources>
+    <semanticResources>concepts/documentation/PrimaryType-Datatype-dtExpPoints.msrd</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_WzMfgPWqEeSOM9Kfym77Zg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_n9EwUDQPEee9d49Beg9zyg" name="uci-uciugAdministrateTheSystemPointOfInterest" representation="_n9wFwDQPEee9d49Beg9zyg">
