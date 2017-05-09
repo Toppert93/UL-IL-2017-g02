@@ -1218,6 +1218,39 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		}
 		return new PtBoolean(false);
 	}
+	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem#oeLogout()
+	 */
+	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException {
+		try{
+			//PreP1
+			isSystemStarted();
+			CtAuthenticated ctAuthenticatedInstance = cmpSystemCtAuthenticated
+					.get(aDtLogin.value.getValue());
+			log.debug("current Requesting Authenticated Actor Instance is "
+					+ currentRequestingAuthenticatedActor.getLogin().value.getValue());
+			PtBoolean loginCheck = ctAuthenticatedInstance.pwd.eq(aDtLogin);
+
+			log.debug("current Associated CtAuthenticated Instance is " + ctAuthenticatedInstance.toString());
+			if (loginCheck.getValue()) {
+				String key = ctAuthenticatedInstance.login.value.getValue();
+				CtAuthenticated user = cmpSystemCtAuthenticated.get(key);
+				//PostF1
+				PtString newp = new PtString("new password");
+				DtPassword newpassword = new DtPassword(newp);
+				user.pwd = newpassword;
+				PtString aMessage = new PtString(
+						"Your password has been reset ! Check your mails !");
+				currentRequestingAuthenticatedActor.ieMessage(aMessage);
+			}
+			return new PtBoolean(true);
+		}
+		catch(Exception e){
+			log.error("Exception in oeResetPassword..." + e);
+		}
+		return new PtBoolean(false);
+	}
 
 	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem#oeAddCoordinator(lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID, lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin, lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword)

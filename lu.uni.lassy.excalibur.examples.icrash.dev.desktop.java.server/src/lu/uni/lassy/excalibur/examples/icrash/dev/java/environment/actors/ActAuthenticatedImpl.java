@@ -116,6 +116,29 @@ public abstract class ActAuthenticatedImpl extends UnicastRemoteObject
 		return res;
 	}
 	
+	synchronized public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException {
+		
+		Logger log = Log4JUtils.getInstance().getLogger();
+		
+		Registry registry = LocateRegistry.getRegistry(RmiUtils.getInstance().getHost(),RmiUtils.getInstance().getPort());
+
+		//Gathering the remote object as it was published into the registry
+		IcrashSystem iCrashSys_Server = (IcrashSystem) registry
+				.lookup("iCrashServer");
+
+		//set up ActAuthenticated instance that performs the request
+		iCrashSys_Server.setCurrentRequestingAuthenticatedActor(this);
+		
+		log.info("message ActAuthenticated.oeResetPassword sent to system");
+		PtBoolean res = iCrashSys_Server.oeResetPassword(aDtLogin);
+		
+		if(res.getValue() == true)
+			log.info("operation oeResetPassword successfully executed by the system");
+		
+		
+		return res;
+	}
+	
 	/** A list of listeners associated with this actor. */
 	protected List<ActProxyAuthenticated> listeners = new ArrayList<ActProxyAuthenticated>();
 
