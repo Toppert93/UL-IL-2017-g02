@@ -155,7 +155,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     }
     @FXML
     void bttnBottomAdminCoordinatorDemoteACoordinator_OnClick(ActionEvent event){
-    	
+    	showCoordinatorScreen(TypeOfEdit.Demote);
     }
     
     @FXML
@@ -236,7 +236,9 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		Add,
 		
 		/** Deleting a coordinator. */
-		Delete
+		Delete, 
+		
+		Demote
 	}
 	
 	private enum TypeOfEditPointOfInterest{
@@ -324,7 +326,9 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		case Delete:
 			bttntypOK = new Button("Delete");
 			grdpn.add(bttntypOK, 1, 2);
-			break;		
+			break;
+		case Demote:
+			//TODO
 		}
 		bttntypOK.setDefaultButton(true);
 		bttntypOK.setOnAction(new EventHandler<ActionEvent>() {
