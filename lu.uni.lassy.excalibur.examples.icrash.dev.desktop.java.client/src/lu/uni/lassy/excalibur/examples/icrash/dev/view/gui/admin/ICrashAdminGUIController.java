@@ -108,6 +108,8 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     @FXML
     private Button bttnBottomAdminCoordinatorDeleteACoordinator;
     
+    @FXML
+    private Button bttnBottomAdminCoordinatorDemoteACoordinator;
 
    
 /*
@@ -149,11 +151,15 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     void bttnBottomAdminCoordinatorDeleteACoordinator_OnClick(ActionEvent event) {
     	showCoordinatorScreen(TypeOfEdit.Delete);
     }
+    @FXML
+    void bttnBottomAdminCoordinatorDemoteACoordinator_OnClick(ActionEvent event){
+    	
+    }
     
-   /* @FXML
+    @FXML
     void bttnAdminPointsOfInterestListPointsOfInterest_OnClick(ActionEvent event) throws IOException {
-    	showPointsOfInterestScreen();
-    }*/
+    	//showPointsOfInterestScreen();
+    }
     
 
    /* private void showPointsOfInterestScreen() throws IOException {
