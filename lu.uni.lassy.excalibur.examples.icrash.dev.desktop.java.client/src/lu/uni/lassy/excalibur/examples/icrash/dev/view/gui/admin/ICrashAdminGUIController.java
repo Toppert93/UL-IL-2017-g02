@@ -108,6 +108,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     @FXML
     private Button bttnBottomAdminCoordinatorDeleteACoordinator;
     
+    /** The button that shows the controls for deleting a coordinator */
+    @FXML
+    private Button bttnBottomAdminCoordinatorDemoteACoordinator;
+    
 
    
 /*
