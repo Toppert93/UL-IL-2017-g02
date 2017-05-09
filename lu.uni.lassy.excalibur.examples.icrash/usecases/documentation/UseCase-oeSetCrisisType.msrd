@@ -1,0 +1,24 @@
+/*
+@author Jorge Cruz
+@date Tue May 09 15:58:59 CEST 2017
+*/
+
+
+@@Use Case Subfunction icrash.usecases.subfunctions.oeSetCrisisType
+@description "goal is to define the difficulty level (based on the severity) of a specific crisis."
+@protocolCondition
+"
+"
+@endProtocolConditions
+@preCondition
+"
+"
+@endPreConditions
+@postCondition
+"
+"
+@endPostConditions
+@additionalInformation
+"
+none
+"
