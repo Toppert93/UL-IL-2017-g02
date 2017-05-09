@@ -84,6 +84,14 @@ public abstract class AbstractUserController implements HasListeners {
 		}
 	}
 	
+	/**
+	 * The method that allows the user to reset the password.
+	 *
+	 * @param login The username to logon with
+	 * @return The success of the method
+	 * @throws ServerOfflineException Thrown if the server is currently offline
+	 * @throws ServerNotBoundException Thrown if the server hasn't been bound in the RMI settings
+	 */
 	public PtBoolean oeResetPassword(String login) throws ServerOfflineException, ServerNotBoundException {
 		
 		try{
