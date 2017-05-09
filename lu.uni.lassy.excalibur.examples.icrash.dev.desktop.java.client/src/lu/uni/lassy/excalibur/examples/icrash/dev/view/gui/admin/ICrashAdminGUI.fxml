@@ -52,7 +52,7 @@
                         <AnchorPane id="anchrpnCoordinatorDetails" fx:id="anchrpnCoordinatorDetails" prefHeight="100.0" prefWidth="348.0" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <HBox prefHeight="51.0" prefWidth="348.0" BorderPane.alignment="CENTER">
+                        <HBox prefHeight="50.0" prefWidth="348.0" BorderPane.alignment="CENTER">
                            <children>
                               <Button id="bttnBottomAdminCoordinatorAddACoordinator" fx:id="bttnBottomAdminCoordinatorAddACoordinator" mnemonicParsing="false" onAction="#bttnBottomAdminCoordinatorAddACoordinator_OnClick" prefHeight="50.0" prefWidth="100.0" text="Add a coordinator" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -64,12 +64,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button id="bttnBottomAdminCoordinatorDemoteACoordinator" fx:id="bttnBottomAdminCoordinatorDemoteACoordinator" mnemonicParsing="false" onAction="#bttnBottomAdminCoordinatorDemoteACoordinator_OnClick" prefHeight="51.0" prefWidth="100.0" text="Demote Coordinator" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button id="bttnAdminPointsOfInterestListPointsOfInterest" fx:id="bttnAdminPointsOfInterestListPointsOfInterest" mnemonicParsing="false" onAction="#bttnAdminPointsOfInterestListPointsOfInterest_OnClick" prefHeight="50.0" prefWidth="107.0" text="List of points of interest" textOverrun="LEADING_WORD_ELLIPSIS" wrapText="true">
+                              <Button id="bttnBottomAdminCoordinatorDemoteACoordinator" fx:id="bttnBottomAdminCoordinatorDemoteACoordinator" mnemonicParsing="false" onAction="#bttnBottomAdminCoordinatorDemoteACoordinator_OnClick" prefHeight="50.0" prefWidth="150.0" text="Demote Coordinator" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -77,6 +72,17 @@
                            </children>
                         </HBox>
                      </top>
+                     <left>
+                        <HBox prefHeight="150.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button id="bttnAdminPointsOfInterestListPointsOfInterest" fx:id="bttnAdminPointsOfInterestListPointsOfInterest" mnemonicParsing="false" onAction="#bttnAdminPointsOfInterestListPointsOfInterest_OnClick" prefHeight="50.0" prefWidth="200.0" text="List of points of interest" textOverrun="LEADING_WORD_ELLIPSIS" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </left>
                   </BorderPane>
                </children>
             </AnchorPane>
