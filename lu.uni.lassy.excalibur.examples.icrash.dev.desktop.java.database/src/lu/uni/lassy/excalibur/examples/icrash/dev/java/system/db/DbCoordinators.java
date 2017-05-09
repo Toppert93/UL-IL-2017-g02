@@ -298,8 +298,6 @@ public class DbCoordinators extends DbAbstract{
 			try{
 				Statement st = conn.createStatement();
 				String id = aCtCoordinator.id.value.getValue();
-				String login =  aCtCoordinator.login.value.getValue();
-				String pwd =  aCtCoordinator.pwd.value.getValue();
 				String rank = aCtCoordinator.expRank.name();
 				int points = aCtCoordinator.expPoints.value.getValue();
 				if(rank.equals(EtExperienceRank.Expert.name())){
