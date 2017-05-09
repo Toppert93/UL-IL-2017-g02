@@ -421,6 +421,8 @@ public interface IcrashSystem extends Remote {
 	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws RemoteException;
     
 	public ArrayList<CtPointOfInterest> oeSelectClosestTo(DtGPSLocation location) throws RemoteException;
+
+	public PtBoolean oeRankDownCoordinator(DtCoordinatorID aDtCoordinatorID) throws RemoteException;
  
 
 }

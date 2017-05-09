@@ -1569,5 +1569,29 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	
 	}
 	}
+
+	@Override
+	public PtBoolean oeRankDownCoordinator(DtCoordinatorID aDtCoordinatorID) throws RemoteException {
+		try {
+			//PreP1
+			isSystemStarted();
+			//PreP2
+			isAdminLoggedIn();
+			CtAuthenticated ctAuth = getCtCoordinator(aDtCoordinatorID);
+			if (ctAuth != null && ctAuth instanceof CtCoordinator) {
+				CtCoordinator aCtCoordinator = (CtCoordinator)ctAuth;
+				DbCoordinators.rankDownCoordinator(aCtCoordinator);
+				//PostF1
+				ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
+				//PostF2
+				admin.ieCoordinatorDemoted();
+				return new PtBoolean(true);
+			}
+			return new PtBoolean(false);
+		} catch (Exception e) {
+			log.error("Exception in oeRankDownCoordinator..." + e);
+			return new PtBoolean(false);
+		}
+	}
 }
 	

@@ -281,6 +281,45 @@ public class ActAdministratorImpl extends ActAuthenticatedImpl implements
 
 		
 	}
+
+	@Override
+	public PtBoolean oeRankDownCoordinator(DtCoordinatorID aDtCoordinatorID) throws RemoteException, NotBoundException {
+		Logger log = Log4JUtils.getInstance().getLogger();
+
+		Registry registry = LocateRegistry.getRegistry(RmiUtils.getInstance().getHost(),RmiUtils.getInstance().getPort());
+
+		//Gathering the remote object as it was published into the registry
+		IcrashSystem iCrashSys_Server = (IcrashSystem) registry
+				.lookup("iCrashServer");
+
+		//set up ActAuthenticated instance that performs the request
+		iCrashSys_Server.setCurrentRequestingAuthenticatedActor(this);
+
+		log.info("message ActAdministrator.oeRankDownCoordinator sent to system");
+		PtBoolean res = iCrashSys_Server.oeRankDownCoordinator(aDtCoordinatorID);
+
+		if (res.getValue() == true)
+			log.info("operation oeRankDownCoordinator successfully executed by the system");
+
+		return res;
+		
+	}
+
+	@Override
+	public PtBoolean ieCoordinatorDemoted() throws RemoteException {
+		for (Iterator<ActProxyAuthenticated> iterator = listeners.iterator(); iterator
+				.hasNext();) {
+			ActProxyAuthenticated aProxy = iterator.next();
+			try {
+				if (aProxy instanceof ActProxyAdministrator)
+					((ActProxyAdministrator) aProxy).ieCoordinatorDemoted();
+			} catch (RemoteException e) {
+				Log4JUtils.getInstance().getLogger().error(e);
+				iterator.remove();
+			}
+		}
+		return new PtBoolean(true);
+	}
 }
 
 

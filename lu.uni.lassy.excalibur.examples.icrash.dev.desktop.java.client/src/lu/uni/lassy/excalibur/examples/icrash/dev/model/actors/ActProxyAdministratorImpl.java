@@ -161,5 +161,13 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public PtBoolean ieCoordinatorDemoted() throws RemoteException {
+		Logger log = Log4JUtils.getInstance().getLogger();
+		log.info("message ActAdministrator.ieCoordinatorDemoted received from system");
+		listOfMessages.add(new Message(MessageType.ieCoordinatorDemoted));
+		return new PtBoolean(true);
+	}
 	
 }

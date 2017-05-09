@@ -86,6 +86,8 @@ public interface ActProxyAdministrator extends ActProxyAuthenticated {
 	 * @throws RemoteException Thrown if the server is offline
 	 */
 	public PtBoolean ieCoordinatorUpdated() throws RemoteException;
+
+	public PtBoolean ieCoordinatorDemoted() throws RemoteException;
 	
 	
 }

@@ -102,4 +102,8 @@ public interface ActAdministrator extends ActAuthenticated {
 	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aetCategory) throws RemoteException, NotBoundException;
 
 	public ArrayList<CtPointOfInterest> oeSelectClosestTo(DtGPSLocation location)throws RemoteException, NotBoundException;
+	
+	public PtBoolean oeRankDownCoordinator(DtCoordinatorID aDtCoordinatorID) throws RemoteException, NotBoundException;
+
+	public PtBoolean ieCoordinatorDemoted() throws RemoteException;
 }

@@ -284,6 +284,53 @@ public class DbCoordinators extends DbAbstract{
 
 		return cmpSystemCtCoord;
 	}
+
+	public static PtBoolean rankDownCoordinator(CtCoordinator aCtCoordinator) {
+		
+		PtBoolean success = new PtBoolean(false);
+		try {
+			conn = DriverManager.getConnection(url+dbName,userName,password);
+			log.debug("Connected to the database");
+
+			/********************/
+			//edit
+			
+			try{
+				Statement st = conn.createStatement();
+				String id = aCtCoordinator.id.value.getValue();
+				String login =  aCtCoordinator.login.value.getValue();
+				String pwd =  aCtCoordinator.pwd.value.getValue();
+				String rank = aCtCoordinator.expRank.name();
+				int points = aCtCoordinator.expPoints.value.getValue();
+				if(rank.equals(EtExperienceRank.Expert.name())){
+					rank = EtExperienceRank.Intermediate.name();
+					points = 20;
+				} else if (rank.equals(EtExperienceRank.Intermediate.name())){
+					rank = EtExperienceRank.Novice.name();
+					points = 0;
+				} else {
+					log.error("Coordinator is already at the lowest rank");
+					return success;
+				}
+				
+				String statement = "UPDATE "+ dbName+ ".coordinators" +
+						" SET expRank='"+rank+"', expPoints='"+points+"' " +
+						"WHERE id='"+id+"'";
+				int val = st.executeUpdate(statement);
+				log.debug(val+" row updated");
+				success = new PtBoolean(val == 1);
+			}
+			catch (SQLException s){
+				log.error("SQL statement is not executed! "+s);
+			}
+			conn.close();
+			log.debug("Disconnected from database");
+		} catch (Exception e) {
+			logException(e);
+		}
+		return success;
+		
+	}
 	
 
 }
