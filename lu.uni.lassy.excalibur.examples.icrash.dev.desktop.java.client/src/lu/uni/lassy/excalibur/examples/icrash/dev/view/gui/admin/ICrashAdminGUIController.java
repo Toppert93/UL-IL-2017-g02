@@ -28,6 +28,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerOf
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActAdministrator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
@@ -200,9 +201,9 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
      */
     @FXML
     void bttnResetPassword_OnClick(ActionEvent event) {
-    	/*
-    	 * TODO taking to a new screen to reset password
-    	 * */
+
+
+    	resetPassword();
     }
 
     /**
@@ -411,6 +412,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	 */
 	@Override
 	public void resetPassword() {
+
 		if(txtfldAdminUserName.getText().length() > 0){
 			try {
 				if (userController.oeResetPassword(txtfldAdminUserName.getText()).getValue())
@@ -420,6 +422,20 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 				showExceptionErrorMessage(e);
 			}	
     	}
+		
+		else if(txtfldAdminUserName.getText().length() == 0) try {
+			
+			DtLogin userlogin = userController.getAuth().getLogin();
+			String thisuser = userlogin.toString();
+			if (userController.oeResetPassword(thisuser).getValue())
+				logonShowPanes(false);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  	catch (ServerOfflineException | ServerNotBoundException e) {
+			showExceptionErrorMessage(e);
+		}	
+		
     	else
     		showWarningNoDataEntered();
 	}

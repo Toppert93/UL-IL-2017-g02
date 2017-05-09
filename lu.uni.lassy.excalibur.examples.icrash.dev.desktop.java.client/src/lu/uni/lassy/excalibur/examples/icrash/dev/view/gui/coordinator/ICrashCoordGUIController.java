@@ -28,6 +28,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActPro
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtAlert;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
@@ -151,6 +152,17 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
     /** The button that allows a user to logoff. */
     @FXML
     private Button bttnCoordLogoff;
+    
+    /**
+     * The button event that will initiate a reset password of a user
+     * 
+     * @param event
+     */
+    @FXML
+    void bttnResetPassword_OnClick(ActionEvent event) {
+
+    	resetPassword();
+    }
 
     /**
      * Button event that deals with changing the status of a crisis
@@ -495,6 +507,40 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 		}
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logon()
+	 */
+	@Override
+	public void resetPassword() {
+
+		if(txtfldCoordLogonUserName.getText().length() > 0){
+			try {
+				if (userController.oeResetPassword(txtfldCoordLogonUserName.getText()).getValue())
+					logonShowPanes(false);
+			}
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+    	}
+		
+		else if(txtfldCoordLogonUserName.getText().length() == 0) try {
+			
+			DtLogin userlogin = userController.getAuth().getLogin();
+			String thisuser = userlogin.toString();
+			if (userController.oeResetPassword(thisuser).getValue())
+				logonShowPanes(false);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  	catch (ServerOfflineException | ServerNotBoundException e) {
+			showExceptionErrorMessage(e);
+		}	
+		
+    	else
+    		showWarningNoDataEntered();
+	}
+	
 	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logonShowPanes(boolean)
 	 */
@@ -605,9 +651,4 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 		return new PtBoolean(true);
 	}
 
-	@Override
-	public void resetPassword() {
-		// TODO Auto-generated method stub
-		
-	}
 }
