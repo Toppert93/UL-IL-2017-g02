@@ -57,6 +57,16 @@ public interface ActProxyAuthenticated extends Remote, JIntHasServerSideActor, J
 	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
 	 */
 	public PtBoolean oeLogout() throws RemoteException, NotBoundException;
+	
+	/**
+	 * Performs the oeResetPassword function with the username provided.
+	 *
+	 * @param aDtLogin The username to logon with
+	 * @return The success of the operation
+	 * @throws RemoteException Thrown if the server is offline
+	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
+	 */
+	public PtBoolean oeResetPassword() throws RemoteException, NotBoundException;
 
 	/**
 	 * Recieves a message to the actor, this must be displayed on the user's GUI screen as well.

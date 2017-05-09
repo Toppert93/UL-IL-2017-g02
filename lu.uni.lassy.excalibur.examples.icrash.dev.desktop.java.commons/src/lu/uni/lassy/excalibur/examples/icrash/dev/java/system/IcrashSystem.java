@@ -344,6 +344,17 @@ public interface IcrashSystem extends Remote {
 	 */
 	public PtBoolean oeLogout() throws RemoteException; 
 	
+	
+	/**
+	 * Processes a password reset for the username specified.
+	 *
+	 * @param aDtLogin The username to login with
+	 * @return The success of the method
+	 * @throws RemoteException Thrown if the server is offline
+	 */
+	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException;
+	
+	
 	/**
 	 * Adds a coordinator with the details specified.
 	 *
@@ -353,6 +364,7 @@ public interface IcrashSystem extends Remote {
 	 * @return The success of the method
 	 * @throws RemoteException Thrown if the server is offline
 	 */
+	
 	public PtBoolean oeAddCoordinator(DtCoordinatorID aDtCoordinatorID,DtLogin aDtLogin,DtPassword aDtPassword, DtMail aDtMail) throws RemoteException; 	
 	
 	/**

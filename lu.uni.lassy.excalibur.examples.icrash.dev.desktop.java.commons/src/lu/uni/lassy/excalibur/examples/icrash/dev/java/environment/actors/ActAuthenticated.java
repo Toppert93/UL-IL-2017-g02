@@ -56,6 +56,16 @@ public interface ActAuthenticated extends java.rmi.Remote, Serializable, JIntIsA
 	public PtBoolean oeLogout() throws RemoteException, NotBoundException;
 	
 	/**
+	 * Allows a user to reset his password.
+	 *
+	 * @param aDtLogin The username to logon with
+	 * @return The success of the method
+	 * @throws RemoteException Thrown if the server isn't online
+	 * @throws NotBoundException Thrown if the server has not been bound in the RMI settings
+	 */
+	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException;
+	
+	/**
 	 * Adds the proxy actor as a listener to this class.
 	 *
 	 * @param aActProxyAuthenticated The proxy actor to add as a listener to this class
