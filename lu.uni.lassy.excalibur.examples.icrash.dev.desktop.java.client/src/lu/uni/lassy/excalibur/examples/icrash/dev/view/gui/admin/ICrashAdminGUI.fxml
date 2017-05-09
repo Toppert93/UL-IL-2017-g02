@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
-=======
+
 <?import javafx.geometry.Insets?>
->>>>>>> branch 'master' of https://github.com/Toppert93/UL-IL-2017-g02.git
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitPane?>
