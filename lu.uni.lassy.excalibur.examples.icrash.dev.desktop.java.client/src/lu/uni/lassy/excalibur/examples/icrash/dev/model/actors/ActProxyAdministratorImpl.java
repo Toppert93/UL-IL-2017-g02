@@ -155,5 +155,11 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 			return null;
 	
 	}
+
+	@Override
+	public PtBoolean oeResetPassword() throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

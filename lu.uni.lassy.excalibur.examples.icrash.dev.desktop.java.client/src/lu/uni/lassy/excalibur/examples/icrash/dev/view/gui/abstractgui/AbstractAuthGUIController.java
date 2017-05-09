@@ -27,6 +27,12 @@ public abstract class AbstractAuthGUIController extends AbstractGUIController im
 	 * A method that allows the user to logoff the sever. Will often call a function from inside the user's specific controller class.
 	 */
 	public abstract void logoff();
+	
+	/**
+	 * A method that allows the user to reset his password. Will often call a function from inside the user's specific controller class.
+	 */
+	public abstract void resetPassword();
+	
 	/**
 	 * Runs the function to show the logon pane or hide it depending on the boolean passed.
 	 * If true, will hide the logon pane otherwise will show the logon pane

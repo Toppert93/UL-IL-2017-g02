@@ -393,6 +393,26 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			showExceptionErrorMessage(e);
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logon()
+	 */
+	@Override
+	public void resetPassword() {
+		if(txtfldAdminUserName.getText().length() > 0){
+			try {
+				if (userController.oeResetPassword(txtfldAdminUserName.getText()).getValue())
+					logonShowPanes(false);
+			}
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+    	}
+    	else
+    		showWarningNoDataEntered();
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractGUIController#closeForm()
 	 */

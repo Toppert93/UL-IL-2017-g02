@@ -604,4 +604,10 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 		}
 		return new PtBoolean(true);
 	}
+
+	@Override
+	public void resetPassword() {
+		// TODO Auto-generated method stub
+		
+	}
 }

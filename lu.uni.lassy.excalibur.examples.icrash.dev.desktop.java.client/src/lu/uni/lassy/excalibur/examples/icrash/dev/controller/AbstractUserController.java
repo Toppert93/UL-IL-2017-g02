@@ -83,6 +83,21 @@ public abstract class AbstractUserController implements HasListeners {
 			throw new ServerNotBoundException();
 		}
 	}
+	
+	public PtBoolean oeResetPassword(String login) throws ServerOfflineException, ServerNotBoundException {
+		
+		try{
+			return this.getAuth().oeResetPassword();
+		} catch (RemoteException e) {
+			Log4JUtils.getInstance().getLogger().error(e);
+			throw new ServerOfflineException();
+		} catch (NotBoundException e) {
+			Log4JUtils.getInstance().getLogger().error(e);
+			throw new ServerNotBoundException();
+		}
+		
+	}
+	
 	/**
 	 * Gets the type of user that is currently logged on. It will return either a coordinator or a administrator
 	 * @return Returns an enum of type UserType, found in the class ActProxyAuthenticatedImpl 

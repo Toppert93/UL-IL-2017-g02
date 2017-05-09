@@ -23,6 +23,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCr
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtAlertID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtComment;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCrisisID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisType;
@@ -227,6 +228,18 @@ public class ActProxyCoordinatorImpl extends ActProxyAuthenticatedImpl
 	@Override
 	public PtBoolean oeLogout() throws RemoteException, NotBoundException {
 		return super.oeLogout();
+	}
+
+	@Override
+	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return super.oeResetPassword(aDtLogin);
+	}
+
+	@Override
+	public PtBoolean oeResetPassword() throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
