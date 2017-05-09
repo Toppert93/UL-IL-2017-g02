@@ -93,9 +93,9 @@ public abstract class AbstractUserController implements HasListeners {
 	 * @throws ServerNotBoundException Thrown if the server hasn't been bound in the RMI settings
 	 */
 	public PtBoolean oeResetPassword(String login) throws ServerOfflineException, ServerNotBoundException {
-		
+		DtLogin aDtLogin = new DtLogin(new PtString(login));
 		try{
-			return this.getAuth().oeResetPassword();
+			return this.getAuth().oeResetPassword(aDtLogin);
 		} catch (RemoteException e) {
 			Log4JUtils.getInstance().getLogger().error(e);
 			throw new ServerOfflineException();

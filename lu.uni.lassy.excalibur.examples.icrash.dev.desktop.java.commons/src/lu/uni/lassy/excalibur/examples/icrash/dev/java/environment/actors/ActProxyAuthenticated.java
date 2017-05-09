@@ -66,7 +66,7 @@ public interface ActProxyAuthenticated extends Remote, JIntHasServerSideActor, J
 	 * @throws RemoteException Thrown if the server is offline
 	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
 	 */
-	public PtBoolean oeResetPassword() throws RemoteException, NotBoundException;
+	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException;
 
 	/**
 	 * Recieves a message to the actor, this must be displayed on the user's GUI screen as well.

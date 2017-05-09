@@ -236,10 +236,6 @@ public class ActProxyCoordinatorImpl extends ActProxyAuthenticatedImpl
 		return super.oeResetPassword(aDtLogin);
 	}
 
-	@Override
-	public PtBoolean oeResetPassword() throws RemoteException, NotBoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
