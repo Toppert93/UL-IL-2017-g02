@@ -1,0 +1,16 @@
+/*
+@author Jorge Cruz
+@date Tue May 09 18:23:36 CEST 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.etExperienceRank.is
+@description "used to determine which strings are considered as valid etExperienceRank
+ "
+//postFunctional descriptions
+@postF 
+" returns true if the string is either 'Novice', 'Intermediate' or 'Expert'."
+@endPostF
+//example
+@example" "

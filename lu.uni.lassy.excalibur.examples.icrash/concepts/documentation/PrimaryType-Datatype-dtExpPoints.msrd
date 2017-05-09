@@ -5,7 +5,7 @@
 
 
 @@Primary Type Datatype icrash.concepts.primarytypes.datatypes.dtExpPoints
-@description "number of experience points accumulated by a coordinator based on the amount of crises handles"
+@description "number of experience points accumulated by a coordinator based on the amount of crises handled"
 @operation
 icrash.concepts.primarytypes.datatypes.dtExpPoints.is
 "used to determine which integers are considered to be DtExpPoints (value between 0 and 120)"

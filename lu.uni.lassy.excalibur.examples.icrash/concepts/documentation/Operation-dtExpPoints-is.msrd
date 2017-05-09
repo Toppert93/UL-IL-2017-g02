@@ -1,0 +1,16 @@
+/*
+@author Jorge Cruz
+@date Tue May 09 18:23:31 CEST 2017
+*/
+
+
+@@Operation
+icrash.concepts.primarytypes.datatypes.dtExpPoints.is
+@description "used to determine which integers are considered as valid dtExpPoints
+ "
+//postFunctional descriptions
+@postF 
+" returns true if the integer has a value between 0 and 120 (inclusive)"
+@endPostF
+//example
+@example" "
