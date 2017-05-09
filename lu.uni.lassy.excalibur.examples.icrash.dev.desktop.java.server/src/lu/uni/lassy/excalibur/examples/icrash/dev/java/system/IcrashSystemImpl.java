@@ -1545,19 +1545,24 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		isSystemStarted();
 		//PreP2
 		isAdminLoggedIn();
-		
 		ArrayList<CtPointOfInterest> List = getAllCtPointOfInterest();
 		CtPointOfInterest temp;
-	    for (int i = 0; i < List.size()-1; i++)
-	    {
+		boolean flag;
+		flag =true;
+		while(flag){
+			flag = false;
+			for (int i = 0; i < List.size()-1; i++)
+			{
 	        if(List.get(i).location.DistanceTo(location.latitude, location.longitude)> List.get(i+1).location.DistanceTo(location.latitude, location.longitude))
-	        {
+	        	{
 	            temp=List.get(i);
 	            List.set(i, List.get(i+1));
 	            List.set(i+1, temp);
-	            i=-1;
-	        }
-	    }
+	            flag = true;
+	            
+	        	}
+			}
+		}
 		
 		
 				return List;

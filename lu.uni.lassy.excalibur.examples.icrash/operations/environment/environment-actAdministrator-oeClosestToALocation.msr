@@ -12,7 +12,7 @@ import icrash.environment
 
 	Operation Model {
 
-		operation: icrash.environment.actAdministrator.outactAdministrator.oeClosestToALocation(AdtGPSLocation:dtGPSLocation):ptBoolean{
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeClosestToALocation(AdtGPSLocation:dtGPSLocation):ptBoolean /* List*/{
 		// include below the specification information (pre,post or ocl or prolog)
 
 		preP{
@@ -32,25 +32,28 @@ import icrash.environment
   		let TheActor:actAdministrator in
   		let CollctPointOfInterest:ctPointOfInterest in
   		let temp:ctPointOfInterest in
-  		let i:dtInteger in
+  		let j:dtInteger in
+  		let flag:ptBoolean in
   		self.rnActor.rnSystem = TheSystem
   		and self.rnActor = TheActor
 		/* PostF01 */
-		and i = 0
+		and j = 0
+		and flag = true
   		TheSystem.rnctPointOfInterest->select(AllctPointOfInterest)
  		= CollctPointOfInterest
- 		and for i.lt(CollctPointOfInterest.length-1)
- 		if(CollctPointOfInterest.get(i).location.distanceTo(AdtGPSLocation)>CollctPointOfInterest.get(i+1).location.distanceTo(AdtGPSLocation))
- 		then (temp = CollctPointOfInterest.get(i)
- 		and (CollctPointOfInterest.set(i) = CollctPointOfInterest.get(i+1))
- 		and (CollctPointOfInterest.set(i+1)=temp)
- 		and i= i-1
- 		)
+ 		and while (flag)
+ 		flag =  false 
+ 		and while (j.lt(CollctPointOfInterest.length-1))
+ 		if (CollctPointOfInterset.get(j).location.distanceTo(AdtGPSLocation)> CollctPointOfInterest.get(j+1).location.distanceTO(AdtGPSLocation) )
+ 		 then (temp =CollctPointOfInterset.get(j) 
+ 		 and CollctPointOfInterset.set(j)= CollctPointOfInterset.get(j+1)
+ 		 and CollctPointOfInterset.set(j+1)= temp 
+ 		 and j = j+1
+ 		 and flag = true)
+ 		 else (j= j+1) 
+ 		 endif 
  		
- 		else (i=i+1)
- 		endif
  		
- 		and true
  		}
  		postP{true}
 		}
