@@ -201,5 +201,11 @@ use case system subfunction oeClosestToALocation(aDtGPSLocation:dtGPSLocation) {
 			
 	}
 
-}
+use case system subfunction oeSetCrisisType() {
+			actor actCoordinator[primary, active]
+			returned messages {
+      			ieMessage(AMessage) returned to actCoordinator
+    		}
+		}
+	}
 }
