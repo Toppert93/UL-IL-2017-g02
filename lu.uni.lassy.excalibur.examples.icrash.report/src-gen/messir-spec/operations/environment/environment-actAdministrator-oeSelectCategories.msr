@@ -1,0 +1,43 @@
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeSelectCategories {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+
+import icrash.environment
+
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+	Operation Model {
+
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories(AdtCategory:etCategory):ptBoolean{
+		// include below the specification information (pre,post or ocl or prolog)
+		preP{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  
+ 		 self.rnActor.rnSystem = TheSystem
+ 		 and self.rnActor = TheActor
+  
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+  		and TheActor.rnctAuthenticated.vpIsLogged = true
+		}
+		postF{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  		let CollctPointOfInterest:ctPointOfInterest in
+  		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+		/* PostF01 */
+  		TheSystem.rnctPointOfInterest->select(category.eq(AetCategory))
+ 		= CollctPointOfInterest
+ 		and TheActor.rnInterfaceIN^ieCategorySelected()
+ 		and true
+ 		}
+ 		postP{true}
+		}
+	}
+}

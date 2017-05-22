@@ -1,0 +1,46 @@
+package usecases.uciugAdministrateTheSystemPointOfInterest {
+	import icrash.usecases.ugAdministrateTheSystem
+	import icrash.usecases.subfunctions
+	
+	Use Case Model {
+
+		use case instance uciugAdministrateTheSystemPointOfInterest : ugAdministrateTheSystem{
+			actors {
+				bill:icrash.environment.actAdministrator
+			}
+			use case steps {
+//-----------------------------
+        bill
+        executed instanceof subfunction
+              oeLogin("icrashadmin","7WXC1359"){
+                ieMessage('You are logged ! Welcome ...') returned to bill
+              }
+//-----------------------------
+        bill
+        executed instanceof subfunction
+              oeAddPointOfInterest("Police station","55.65448:1.548648","Police station: open from 8:30 until 17:30"){
+                iePointOfInterestAdded returned to bill
+              }
+//-----------------------------
+        bill
+        executed instanceof subfunction
+              oeEditPointOfInterest("1","Police station : open from 9:00 until 17:00"){
+                iePointOfInterestEdited returned to bill
+              }
+//-----------------------------
+        bill
+        executed instanceof subfunction
+              oeDeletePointOfInterest("1"){
+                iePointOfInterestDeleted returned to bill
+              }		
+//-----------------------------
+        bill
+        executed instanceof subfunction
+              oeLogout{
+                ieMessage('You are logged  out ! Good Bye ...') returned to bill
+              }		
+			}
+				
+			}
+		}
+}

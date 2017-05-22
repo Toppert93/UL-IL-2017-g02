@@ -1,0 +1,84 @@
+\subsection{Operation Model for oeSelectCategories}
+
+\label{OM-oeSelectCategories}
+
+
+The \msrcode{oeSelectCategories} operation has the following properties:
+
+	\begin{operationmodel}
+	\addheading{Operation}
+	\adddoublerow{oeSelectCategories}{Used to select all the rows that contain the category selected by the Administrator.
+	 }
+
+	\addrowheading{Parameters}
+	\addnumbereddoublerow{}{AdtCategory: etCategory}{used to initialize the category field} 
+
+	\addrowheading{Return type}
+	\addsinglerow{ptBoolean}
+
+	\addrowheading{Pre-Condition (protocol)}
+	\addnumberedsinglerow{PreP}{the system is started }
+	\addnumberedsinglerow{PreP}{the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged). }
+		
+	\addrowheading{Pre-Condition (functional)}
+	\addnumberedsinglerow{PreF}{It is supposed there exists at least one point of interest with the same category as the one chosen.}
+
+	\addrowheading{Post-Condition (functional)}
+	\addnumberedsinglerow{PostF}{all the points of interest with the given category as shown in a list}
+	\addnumberedsinglerow{PostF}{the administrator actor is informed about the satisfaction of its request.}
+
+	\addrowheading{Post-Condition (protocol)}
+	\addnumberedsinglerow{PostP}{ }
+	\end{operationmodel}
+
+
+
+	% ------------------------------------------
+	% MCL Listing
+	% ------------------------------------------
+	\vspace{1cm}
+	The listing~\ref{OM-actAdministrator-oeSelectCategories-MCL-LST} provides the \msrmessir (MCL-oriented) specification of the operation.
+	
+	\scriptsize
+	\vspace{0.5cm}
+	\begin{lstlisting}[style=MessirStyle,firstnumber=auto,captionpos=b,caption={\msrmessir (MCL-oriented) specification of the operation \emph{oeSelectCategories}.},label=OM-actAdministrator-oeSelectCategories-MCL-LST]
+
+	/* Pre Protocol:*/ 
+	preP{let TheSystem: ctState in
+	  		let TheActor:actAdministrator in
+	  
+	 		 self.rnActor.rnSystem = TheSystem
+	 		 and self.rnActor = TheActor
+	  
+			/* PreP01 */
+	  		and TheSystem.vpStarted = true
+			/* PreP02 */
+	  		and TheActor.rnctAuthenticated.vpIsLogged = true}
+	
+	
+	/* Post Functional:*/ 
+	postF{let TheSystem: ctState in
+	  		let TheActor:actAdministrator in
+	  		let CollctPointOfInterest:ctPointOfInterest in
+	  		self.rnActor.rnSystem = TheSystem
+	  		and self.rnActor = TheActor
+			/* PostF01 */
+	  		TheSystem.rnctPointOfInterest->select(category.eq(AetCategory))
+	 		= CollctPointOfInterest
+	 		and TheActor.rnInterfaceIN^ieCategorySelected()
+	 		and true}
+	
+	/* Post Protocol:*/ 
+	postP{ true}
+	
+	\end{lstlisting}
+	\normalsize 
+	
+	
+	
+	
+
+
+
+
+

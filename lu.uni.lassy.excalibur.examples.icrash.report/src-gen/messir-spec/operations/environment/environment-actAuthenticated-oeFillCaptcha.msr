@@ -1,0 +1,85 @@
+package icrash.environment.operations.actAuthenticated.outactAuthenticated.oeFillCaptcha {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+import icrash.environment
+
+	Operation Model {
+
+		operation: icrash.environment.actAuthenticated.outactAuthenticated.oeFillCaptcha(AdtCaptcha:dtCaptcha):ptBoolean{
+preP{
+	
+	let TheSystem:ctState in
+	let Bob:actAuthenticated in
+	self.rnActor.rnSystem = TheSystem
+	and self.rnActor = Bob
+	
+	
+/* PreP01 */
+  and TheSystem.vpStarted = true
+/* PreP02 */
+  and TheActor.rnctAuthenticated.vpIsLogged = false
+ /* PreP03 */
+  and TheActor.rnctAuthenticated.nbrfails >= 3
+}
+
+preF{
+	
+true	
+	
+}
+
+postF{
+	
+  let TheSystem: ctState in
+  let Bob:actAuthenticated in
+	
+  let AptStringMessageForTheactAuthenticated:ptString in
+  let AdtNewCaptcha:dtCaptcha in
+  
+  self.rnActor.rnSystem = TheSystem
+  and self.rnActor = TheactAuthenticated
+  
+  and /* PostF01 */
+      if (TheActor.rnctAuthenticated.nextValueForCapthca
+          = AdtCaptcha)
+      then 
+      		(TheSystem.nextValueForCaptcha = AdtNewCaptcha.generateCaptcha()
+      			
+      		and AptStringMessageForTheactAuthenticated.eq('The captcha test was successful, you may now try to login again.')
+            and TheactAuthenticated.rnInterfaceIN^ieMessage(AptStringMessageForTheactAuthenticated)           
+           )
+      else (AptStringMessageForTheactAuthenticated
+            .eq('Wrong captcha, you need to succeed the captcha tets in order to be able to login. A new captcha will be send.')
+            and TheactAuthenticated.rnInterfaceIN^ieMessage(AptStringMessageForTheactAuthenticated)
+           )
+      endif
+	
+	
+}
+
+postP{
+
+  let TheSystem: ctState in
+  let Bob:actAuthenticated in
+
+  self.rnActor.rnSystem = TheSystem
+  and self.rnActor = TheactAuthenticated
+/* PostP01 */
+  if (TheActor.rnctAuthenticated.nextValueForCapthca = AdtCaptcha 	
+  )
+  then (Bob.rnctAuthenticated@post.nbrfails = 0)
+  else true
+  endif	
+	
+}
+
+
+
+		}
+	}
+}

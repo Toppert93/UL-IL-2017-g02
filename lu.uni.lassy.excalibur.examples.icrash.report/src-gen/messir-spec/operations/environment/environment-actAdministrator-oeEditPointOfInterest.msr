@@ -1,0 +1,49 @@
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeEditPointOfInterest {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+import icrash.environment
+
+	Operation Model {
+
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeEditPointOfInterest(AdtPointsOfInterestID:dtPointOfInterestID, AetCategory:etCategory, AdtGPSLocation:dtGPSLocation, AdtDescription:dtDescription):ptBoolean{
+		
+		preP{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  
+ 		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+  		
+  
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+  		and TheActor.rnctAuthenticated.vpIsLogged = true
+  		}
+  		
+  		preF{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+   
+ 		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+		/* PreF01 */
+  		TheSystem.rnctPointOfInterest->select(id.eq(AdtPointOfInterestID))
+  		= ColctPointOfInterest
+  		and ColctPointOfInterest->size().eq(1)
+ 		and ColctPointOfInterest@post.Category = AetCategory
+ 		and ColctPointOfInterest@post.Location = AdtGPSLocation
+ 		and ColctPointOfInterest@post.Description = AdtDescription
+ 		and ColctPointOfInterest = TheSystem.rnctPointOfInterest->select(id.eq(AdtPointOfInterstID))
+ 		and TheActor.rnInterfaceIN^iePointOfInterestEdited()
+ 		and true
+		}
+		
+		}
+	}
+}

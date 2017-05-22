@@ -1,0 +1,60 @@
+package usecases.uciugSecurelyUseSystemFailLogin {
+	import icrash.usecases.ugSecurelyUseSystem
+    import icrash.concepts.primarytypes.datatypes
+    import icrash.environment
+    import icrash.usecases.subfunctions
+
+	Use Case Model {
+
+		use case instance uciugSecurelyUseSystemFailLogin : ugSecurelyUseSystem{
+			actors {
+				Theuser:actAuthenticated
+			}
+			use case steps {
+//-----------------------------
+     Theuser 
+     executed instanceof subfunction 
+     		oeLogin("failed","login") {
+			ieMessage('Your password is not correct. Wrong attempts : 1') returned to Theuser
+						}
+//-----------------------------
+     Theuser 
+     executed instanceof subfunction 
+     		oeLogin("failed","login") {
+			ieMessage('Your password is not correct. Wrong attempts : 2') returned to Theuser
+						}
+//-----------------------------	
+     Theuser 
+     executed instanceof subfunction 
+     		oeLogin("failed","login") {
+			ieMessage('Your password is not correct. Wrong attempts : 3.') returned to Theuser
+			ieMessage('You need to fill out a captcha to be able to login now. You can also do a password reset.') returned to Theuser
+						}
+//-----------------------------	
+     Theuser 
+     executed instanceof subfunction 
+     		oeFillCaptcha("wrong captcha") {
+			ieMessage('Your captcha is not correct. Try again.') returned to Theuser
+						}												
+//-----------------------------
+     Theuser 
+     executed instanceof subfunction 
+     		oeFillCaptcha("successful captcha") {
+			ieMessage('Your captcha is correct. You may try to login again.') returned to Theuser
+						}												
+//-----------------------------	
+        Theuser
+        executed instanceof subfunction
+              oeLogin("Theuser","7WXC1359"){
+                ieMessage('You are logged ! Welcome ...') returned to Theuser
+              }
+//-----------------------------
+        Theuser
+        executed instanceof subfunction
+              oeLogout{
+                ieMessage('You are logged out ! Good Bye ...') returned to Theuser
+              }					
+			}
+		}
+	}
+}

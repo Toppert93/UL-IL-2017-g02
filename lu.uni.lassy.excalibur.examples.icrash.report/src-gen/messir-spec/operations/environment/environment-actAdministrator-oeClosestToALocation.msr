@@ -1,0 +1,61 @@
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeClosestToALocation {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+
+import icrash.environment
+
+
+	Operation Model {
+
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeClosestToALocation(AdtGPSLocation:dtGPSLocation):ptBoolean /* List*/{
+		// include below the specification information (pre,post or ocl or prolog)
+
+		preP{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  
+ 		 self.rnActor.rnSystem = TheSystem
+ 		 and self.rnActor = TheActor
+  
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+  		and TheActor.rnctAuthenticated.vpIsLogged = true
+		}
+		postF{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  		let CollctPointOfInterest:ctPointOfInterest in
+  		let temp:ctPointOfInterest in
+  		let j:dtInteger in
+  		let flag:ptBoolean in
+  		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+		/* PostF01 */
+		and j = 0
+		and flag = true
+  		TheSystem.rnctPointOfInterest->select(AllctPointOfInterest)
+ 		= CollctPointOfInterest
+ 		and while (flag)
+ 		flag =  false 
+ 		and while (j.lt(CollctPointOfInterest.length-1))
+ 		if (CollctPointOfInterset.get(j).location.distanceTo(AdtGPSLocation)> CollctPointOfInterest.get(j+1).location.distanceTO(AdtGPSLocation) )
+ 		 then (temp =CollctPointOfInterset.get(j) 
+ 		 and CollctPointOfInterset.set(j)= CollctPointOfInterset.get(j+1)
+ 		 and CollctPointOfInterset.set(j+1)= temp 
+ 		 and j = j+1
+ 		 and flag = true)
+ 		 else (j= j+1) 
+ 		 endif 
+ 		
+ 		
+ 		}
+ 		postP{true}
+		}
+	}
+}

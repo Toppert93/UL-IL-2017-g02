@@ -1,0 +1,60 @@
+package icrash.environment.operations.actAdministrator.outactAdministrator.oeDeletePointOfInterest {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.environment
+
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+
+	Operation Model {
+
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeDeletePointOfInterest(AdtPointOfInterestID:dtPointOfInterestID):ptBoolean{
+		// include below the specification information (pre,post or ocl or prolog)
+		preP{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  
+ 		 self.rnActor.rnSystem = TheSystem
+ 		 and self.rnActor = TheActor
+  
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+  		and TheActor.rnctAuthenticated.vpIsLogged = true
+		}
+		preF{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+   
+  		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+		/* PreF01 */
+  		TheSystem.rnctPointOfInterest->select(id.eq(AdtPointOfInterestID))
+  		= ColctPointOfInterest
+  		and ColctPointOfInterest->size().eq(1)
+		}
+		postF{
+  		let TheSystem: ctState in
+  		let TheActor:actAdministrator in
+  		let ThectPointOfInterest:ctPointOfInterest in
+  		self.rnActor.rnSystem = TheSystem
+  		and self.rnActor = TheActor
+		/* PostF01 */
+  		TheSystem.rnctPointOfInterest->select(id.eq(AdtPointOfInterestID))
+ 		= ThectPointOfInterest
+  		and ThectPointOfInterest.msrIsKilled
+ 
+ 		/* PostF02 */
+  		and TheActor.rnInterfaceIN^iePointOfInterestDeleted()
+
+ /* Post Protocol:*/
+/* PostP01 */
+ and true
+ }
+ postP{true}
+		}
+	}
+}

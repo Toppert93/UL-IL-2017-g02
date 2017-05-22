@@ -1,0 +1,112 @@
+\subsection{Operation Model for oeFillCaptcha}
+
+\label{OM-oeFillCaptcha}
+
+
+The \msrcode{oeFillCaptcha} operation has the following properties:
+
+	\begin{operationmodel}
+	\addheading{Operation}
+	\adddoublerow{oeFillCaptcha}{sent to verify correctness of the captcha test to be able to continue the login procedure. }
+
+	\addrowheading{Parameters}
+	\addnumbereddoublerow{}{AdtCaptcha: dtCaptcha}{first information used to determine the result of the captcha test, it should correspond to the given captcha} 
+
+	\addrowheading{Return type}
+	\addsinglerow{ptBoolean}
+
+	\addrowheading{Pre-Condition (protocol)}
+	\addnumberedsinglerow{PreP}{the system is started}
+	\addnumberedsinglerow{PreP}{the actor is not already logged in ! (i.e. the associated ctAuthenticated instance is not considered logged)}
+	\addnumberedsinglerow{PreP}{the nbrfails attribute of the ctAuthenticated instance should be higher or equal 3 for a captcha test to be asked (therefore also to be filled).}
+		
+	\addrowheading{Pre-Condition (functional)}
+	\addnumberedsinglerow{PreF}{none }
+
+	\addrowheading{Post-Condition (functional)}
+	\addnumberedsinglerow{PostF}{if the captcha provided by the actor corresponds to the one he should provide 
+	then a success message (captcha was filled correctly) is sent to the actor;
+	else the actor is notified that he gave incorrect data and needs to give the test another try. }
+
+	\addrowheading{Post-Condition (protocol)}
+	\addnumberedsinglerow{PostP}{if the captcha test is successful the nbrfails attribute goes down to zero again.}
+	\end{operationmodel}
+
+
+
+	% ------------------------------------------
+	% MCL Listing
+	% ------------------------------------------
+	\vspace{1cm}
+	The listing~\ref{OM-actAuthenticated-oeFillCaptcha-MCL-LST} provides the \msrmessir (MCL-oriented) specification of the operation.
+	
+	\scriptsize
+	\vspace{0.5cm}
+	\begin{lstlisting}[style=MessirStyle,firstnumber=auto,captionpos=b,caption={\msrmessir (MCL-oriented) specification of the operation \emph{oeFillCaptcha}.},label=OM-actAuthenticated-oeFillCaptcha-MCL-LST]
+
+	/* Pre Protocol:*/ 
+	preP{let TheSystem:ctState in
+		let Bob:actAuthenticated in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Bob
+		
+		
+	/* PreP01 */
+	  and TheSystem.vpStarted = true
+	/* PreP02 */
+	  and TheActor.rnctAuthenticated.vpIsLogged = false
+	 /* PreP03 */
+	  and TheActor.rnctAuthenticated.nbrfails >= 3}
+	
+	/* Pre Functional:*/
+	preF{true}
+	
+	/* Post Functional:*/ 
+	postF{let TheSystem: ctState in
+	  let Bob:actAuthenticated in
+		
+	  let AptStringMessageForTheactAuthenticated:ptString in
+	  let AdtNewCaptcha:dtCaptcha in
+	  
+	  self.rnActor.rnSystem = TheSystem
+	  and self.rnActor = TheactAuthenticated
+	  
+	  and /* PostF01 */
+	      if (TheActor.rnctAuthenticated.nextValueForCapthca
+	          = AdtCaptcha)
+	      then 
+	      		(TheSystem.nextValueForCaptcha = AdtNewCaptcha.generateCaptcha()
+	      			
+	      		and AptStringMessageForTheactAuthenticated.eq('The captcha test was successful, you may now try to login again.')
+	            and TheactAuthenticated.rnInterfaceIN^ieMessage(AptStringMessageForTheactAuthenticated)           
+	           )
+	      else (AptStringMessageForTheactAuthenticated
+	            .eq('Wrong captcha, you need to succeed the captcha tets in order to be able to login. A new captcha will be send.')
+	            and TheactAuthenticated.rnInterfaceIN^ieMessage(AptStringMessageForTheactAuthenticated)
+	           )
+	      endif}
+	
+	/* Post Protocol:*/ 
+	postP{ let TheSystem: ctState in
+	  let Bob:actAuthenticated in
+	
+	  self.rnActor.rnSystem = TheSystem
+	  and self.rnActor = TheactAuthenticated
+	/* PostP01 */
+	  if (TheActor.rnctAuthenticated.nextValueForCapthca = AdtCaptcha 	
+	  )
+	  then (Bob.rnctAuthenticated@post.nbrfails = 0)
+	  else true
+	  endif}
+	
+	\end{lstlisting}
+	\normalsize 
+	
+	
+	
+	
+
+
+
+
+

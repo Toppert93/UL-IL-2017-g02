@@ -1,0 +1,104 @@
+\subsection{Operation Model for oeRankDownCoordinator}
+
+\label{OM-oeRankDownCoordinator}
+
+
+The \msrcode{oeRankDownCoordinator} operation has the following properties:
+
+	\begin{operationmodel}
+	\addheading{Operation}
+	\adddoublerow{oeRankDownCoordinator}{ sent to demote a coordinator to the rank below his current rank
+	 }
+
+	\addrowheading{Parameters}
+	\addnumbereddoublerow{}{AdtCoordinatorID: dtCoordinatorID}{} 
+
+	\addrowheading{Return type}
+	\addsinglerow{ptBoolean}
+
+	\addrowheading{Pre-Condition (protocol)}
+	\addnumberedsinglerow{PreP}{ the system is started }
+	\addnumberedsinglerow{PreP}{ the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged). }
+		
+	\addrowheading{Pre-Condition (functional)}
+	\addnumberedsinglerow{PreF}{ there exists one coordinator having the given id in the pre-state. }
+	\addnumberedsinglerow{PreF}{ the coordinator specified by the id has a higher rank than Novice (i.e. either Intermediate or Expert). }
+
+	\addrowheading{Post-Condition (functional)}
+	\addnumberedsinglerow{PostF}{ a message is sent to the ctAdministrator, confirming the operation has been successful, else the administrator is notified that the operation was unsuccessful. }
+	\addnumberedsinglerow{PostF}{ the ctCoordinator attribute expRank is decremented by one (i.e. expert to intermediate, intermediate to novice) and his expPoints are adjusted accordingly at post (i.e. expert to intermediate -> 20 ExpPoints, intermediate to novice -> 0 ExpPoints). }
+
+	\addrowheading{Post-Condition (protocol)}
+	\addnumberedsinglerow{PostP}{ }
+	\end{operationmodel}
+
+
+
+	% ------------------------------------------
+	% MCL Listing
+	% ------------------------------------------
+	\vspace{1cm}
+	The listing~\ref{OM-actAdministrator-oeRankDownCoordinator-MCL-LST} provides the \msrmessir (MCL-oriented) specification of the operation.
+	
+	\scriptsize
+	\vspace{0.5cm}
+	\begin{lstlisting}[style=MessirStyle,firstnumber=auto,captionpos=b,caption={\msrmessir (MCL-oriented) specification of the operation \emph{oeRankDownCoordinator}.},label=OM-actAdministrator-oeRankDownCoordinator-MCL-LST]
+
+	/* Pre Protocol:*/ 
+	preP{let TheSystem:ctState in
+			let Jack:actAdministrator in
+			self.rnActor.rnSystem = TheSystem
+			and self.rnActor = Jack
+		
+		
+			/* PreP01 */
+	  		and TheSystem.vpStarted = true
+			/* PreP02 */
+	 	 	and Jack.rnctAuthenticated.vpIsLogged = true}
+	
+	/* Pre Functional:*/
+	preF{let TheSystem:ctState in
+			let Jack:actAdministrator in
+			self.rnActor.rnSystem = TheSystem
+			and self.rnActor = Jack
+			
+			/* PreF01*/	
+			TheSystem.rnctCoordinator->select(id.eq(AdtCoordinatorID))
+	  		= ColctCoordinators
+	  		and ColctCoordinators->size().eq(1)
+	  		
+	  		/*PreF02*/
+	  		and (ColctCoordinators.expRank.eq("Intermediate") or ColctCoordinators.expRank.eq("Expert"))}
+	
+	/* Post Functional:*/ 
+	postF{let TheSystem:ctState in
+			let Jack:actAdministrator in
+			self.rnActor.rnSystem = TheSystem
+			and self.rnActor = Jack
+			
+			TheSystem.rnctCoordinator->select(id.eq(AdtCoordinatorID))
+	  		= ColctCoordinators
+			
+			
+			/*PostF01*/
+			and Jack.rnInterfaceIN^ieRankEdited()
+			
+			/*PostF02*/
+			
+			if(ColctCoordinators.expRank.eq("Expert") and ColctCoordinators.expPoints >= 60)then(ColctCoordinators.@post.expRank.eq("Intermediate") and ColctCoordinators.@post.expPoints = 20)
+			else(ColctCoordinators.@post.expRank.eq("Novice") and ColctCoordinators.@post.expPoints = 0)endif}
+	
+	/* Post Protocol:*/ 
+	postP{ true}
+	
+	\end{lstlisting}
+	\normalsize 
+	
+	
+	
+	
+
+
+
+
+

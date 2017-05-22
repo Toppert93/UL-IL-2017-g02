@@ -1,0 +1,61 @@
+\subsection{Operation Model for is}
+
+\label{OM-is}
+
+
+The \msrcode{is} operation has the following properties:
+
+	\begin{operationmodel}
+	\addheading{Operation}
+	\adddoublerow{is}{used to determine which strings are considered as valid description.
+	 }
+
+
+	\addrowheading{Return type}
+	\addsinglerow{ptBoolean}
+
+		
+
+	\addrowheading{Post-Condition (functional)}
+	\addnumberedsinglerow{PostF}{true iff the length of the string value is not more than 280 characters.}
+
+	\end{operationmodel}
+
+
+
+	% ------------------------------------------
+	% MCL Listing
+	% ------------------------------------------
+	\vspace{1cm}
+	The listing~\ref{OM-dtDescription-is-MCL-LST} provides the \msrmessir (MCL-oriented) specification of the operation.
+	
+	\scriptsize
+	\vspace{0.5cm}
+	\begin{lstlisting}[style=MessirStyle,firstnumber=auto,captionpos=b,caption={\msrmessir (MCL-oriented) specification of the operation \emph{is}.},label=OM-dtDescription-is-MCL-LST]
+
+	
+	
+	/* Post Functional:*/ 
+	postF{let TheResult: ptBoolean in
+	        ( if
+	          ( MaxLength = 280
+	            and AdtValue.value.length().leq(MaxLength)
+	          )
+	          then (TheResult = true)
+	          else (TheResult = false)
+	          endif
+	          result = TheResult
+	        )}
+	
+	
+	\end{lstlisting}
+	\normalsize 
+	
+	
+	
+	
+
+
+
+
+

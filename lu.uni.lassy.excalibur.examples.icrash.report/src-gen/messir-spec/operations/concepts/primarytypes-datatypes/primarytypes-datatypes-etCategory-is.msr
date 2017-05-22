@@ -1,0 +1,30 @@
+package icrash.concepts.primarytypes.datatypes.operations.datatypes.etCategory.is {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+
+	Operation Model {
+
+		operation: icrash.concepts.primarytypes.datatypes.etCategory.is():ptBoolean{
+		// include below the specification information (pre,post or ocl or prolog)
+		postF{ 
+        let TheResult: ptBoolean in
+        ( if
+          ( self = Hospital
+            or self = Police station
+            or self = Garage
+            or self = Parking
+            or self = Insurance Office
+            or self = Fire station
+          )
+          then (TheResult = true)
+          else (TheResult = false)
+          endif
+          result = TheResult
+        )
+        }
+		}
+	}
+}

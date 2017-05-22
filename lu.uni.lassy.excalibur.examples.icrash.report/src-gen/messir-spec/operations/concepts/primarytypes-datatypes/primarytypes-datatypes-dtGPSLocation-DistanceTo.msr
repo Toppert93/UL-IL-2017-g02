@@ -1,0 +1,41 @@
+package icrash.concepts.primarytypes.datatypes.operations.datatypes.dtGPSLocation.DistanceTo {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+	Operation Model {
+
+		operation: icrash.concepts.primarytypes.datatypes.dtGPSLocation.DistanceTo(AGPSLocation:dtGPSLocation):ptReal{
+		// include below the specification information (pre,post or ocl or prolog)
+		postF{ 
+      	let Result :ptReal in
+      	let EarthRadius : dtReal = 6371000 in 
+      	let Rlat1 : dtReal in let Rlat1a : dtReal in
+      	let Rlong1 : dtReal in let Rlong1a : dtReal in
+      	let Deltalat : dtReal in let Deltalong : dtReal in
+      	let a1: dtReal in let a2:dtReal in 
+      	let a3: dtReal in let a : dtReal in
+      	let c1: dtReal in let c: dtReal in
+      	
+      	and Rlat1 = self.latitude.toRad()
+      	and Rlat1a = adtValue.latitude.toRad()
+      	and Rlong1 = self.longitude.toRad()
+      	and Rlong1a = adtValue.latitude.toRad()
+      	and Deltalat = Rlat1a.sub(Rlat1)
+      	and Deltalong = Rlong1a.sub(Rlong1)
+      	and a1 = Deltalat.div(2).sin().power(2)
+      	and a2 = Rlat1.cos().mult(Rlat1a.cos())
+      	and a3 = Deltalong.div(2).sin().power(2)
+      	and a4 = a1.add(a2.mult(a3))
+      	and c1 = a4.sub(1).power(2)
+      	and c = atan(a4.power(2),c1).mult(2)
+      	and Result =  EarthRadius.mult(c).asptReal()    	
+      	      	}
+		}
+	}
+}
+
+

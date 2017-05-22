@@ -1,0 +1,34 @@
+package icrash.concepts.primarytypes.classes.operations.classes.ctPointOfInterest.init {
+
+import lu.uni.lassy.messir.libraries.primitives
+import lu.uni.lassy.messir.libraries.math
+import lu.uni.lassy.messir.libraries.string
+import lu.uni.lassy.messir.libraries.calendar
+import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
+
+	Operation Model {
+
+		operation: icrash.concepts.primarytypes.classes.ctPointOfInterest.init(Aid:dtPointOfInterestID, 
+																				Atype:etCategory, 
+																				Alocation:dtGPSLocation,
+																				Adescription:dtDescription
+		):ptBoolean{
+		// include below the specification information (pre,post or ocl or prolog)
+		postF{
+		if
+		(
+			let Self:ctPointOfInterest in
+			Self.id = Aid
+			and Self.type = Atype
+			and Self.location = Alocation
+			and Self.comment = Acomment
+
+			and (Self.oclIsNew and self = Self)
+		)
+			then (result = true)
+			else (result = false)
+			endif}
+		}
+	}
+}
