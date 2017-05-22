@@ -613,7 +613,8 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			DtLogin aLogin = new DtLogin(new PtString(adminName));
 			DtPassword aPwd = new DtPassword(new PtString("7WXC1359"));
 			DtMail aMail = new DtMail(new PtString("admin@admin.com"));
-			ctAdmin.init(aLogin, aPwd, aMail);
+			DtInteger aNbrAttempts = new DtInteger(new PtInteger(0));
+			ctAdmin.init(aLogin, aPwd, aMail, aNbrAttempts);
 			/*
 			PostF 7 the association between ctAdministrator and actAdministrator is made of 
 			one couple made of the jointly specified instances.
@@ -1273,7 +1274,10 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			CtCoordinator ctCoordinator = new CtCoordinator();
 			EtExperienceRank aRank = EtExperienceRank.Novice;
 			DtExpPoints aPoints = new DtExpPoints(new PtInteger(0));
-			ctCoordinator.init(aDtCoordinatorID, aDtLogin, aDtPassword, aDtMail, aRank, aPoints);
+			PtInteger newvalue = new PtInteger(0);
+			DtInteger aNbrAttempts = new DtInteger(newvalue);
+
+			ctCoordinator.init(aDtCoordinatorID, aDtLogin, aDtPassword, aDtMail, aNbrAttempts, aRank, aPoints);
 			DbCoordinators.insertCoordinator(ctCoordinator);
 			
 			
@@ -1341,7 +1345,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			if (ctAuth != null && ctAuth instanceof CtCoordinator){
 				CtCoordinator aCtCoordinator = (CtCoordinator)ctAuth;
 				CtCoordinator oldCoordinator = new CtCoordinator();
-				oldCoordinator.init(aCtCoordinator.id, aCtCoordinator.login, aCtCoordinator.pwd, aCtCoordinator.mail, aCtCoordinator.expRank, aCtCoordinator.expPoints);
+				oldCoordinator.init(aCtCoordinator.id, aCtCoordinator.login, aCtCoordinator.pwd, aCtCoordinator.mail, aCtCoordinator.nbrattempts, aCtCoordinator.expRank, aCtCoordinator.expPoints);
 				aCtCoordinator.update(aDtLogin, aDtPassword, aDtMail, aRank, aPoints);
 				if (DbCoordinators.updateCoordinator(aCtCoordinator).getValue()){
 					cmpSystemCtAuthenticated.remove(oldCoordinator.login.value.getValue());

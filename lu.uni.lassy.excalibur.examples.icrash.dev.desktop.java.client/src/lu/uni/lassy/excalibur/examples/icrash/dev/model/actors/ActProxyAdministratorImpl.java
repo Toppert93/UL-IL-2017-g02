@@ -27,6 +27,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMa
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
@@ -164,6 +165,12 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 		log.info("message ActAdministrator.ieCoordinatorDemoted received from system");
 		listOfMessages.add(new Message(MessageType.ieCoordinatorDemoted));
 		return new PtBoolean(true);
+	}
+
+	@Override
+	public DtInteger getNbrOfAttempts() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

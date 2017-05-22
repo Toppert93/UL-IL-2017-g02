@@ -19,6 +19,7 @@ import java.rmi.RemoteException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 
@@ -34,6 +35,14 @@ public interface ActAuthenticated extends java.rmi.Remote, Serializable, JIntIsA
 	 * @throws RemoteException Thrown if the server isn't online
 	 */
 	public DtLogin getLogin() throws RemoteException;	
+	
+	/**
+	 * Gets the username of user associated with this actor.
+	 *
+	 * @return the username of the associated user
+	 * @throws RemoteException Thrown if the server isn't online
+	 */
+	public DtInteger getNbrOfAttempts() throws RemoteException;
 	
 	/**
 	 * Allows a user to logon to the system.

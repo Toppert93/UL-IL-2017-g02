@@ -31,6 +31,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCr
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
@@ -80,6 +81,12 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
     /** The textfield for entering in the username for logging on. */
     @FXML
     private TextField txtfldCoordLogonUserName;
+    
+
+    /** The textfield for entering in the captcha for the captcha test. */
+    @FXML
+    private TextField txtfldCoordCaptcha;
+
 
     /** The passwordfield for entering in the password for logging on. */
     @FXML
@@ -88,6 +95,10 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
     /** The button that allows a user to initiate the logon function. */
     @FXML
     private Button bttnCoordLogon;
+    
+    /** The button that allows a user to initiate the captcha function. */
+    @FXML
+    private Button bttnCoordCaptcha;
     
     /** The button that initiates the reset password procedure  */
     @FXML
@@ -477,20 +488,30 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	 */
 	@Override
 	public void logon() {
-		if(txtfldCoordLogonUserName.getText().length() > 0 && psswrdfldCoordLogonPassword.getText().length() > 0){
-			try {
-				if (userController.oeLogin(txtfldCoordLogonUserName.getText(), psswrdfldCoordLogonPassword.getText()).getValue()){
-					if (userController.getUserType() == UserType.Coordinator){
-						logonShowPanes(true);
+
+		try {
+			if(userController.getAuth().getNbrOfAttempts().value.getValue()<3){
+			if(txtfldCoordLogonUserName.getText().length() > 0 && psswrdfldCoordLogonPassword.getText().length() > 0){
+				try {
+					if (userController.oeLogin(txtfldCoordLogonUserName.getText(), psswrdfldCoordLogonPassword.getText()).getValue()){
+						if (userController.getUserType() == UserType.Coordinator){
+							logonShowPanes(true);
+						}
 					}
 				}
+				catch (ServerOfflineException | ServerNotBoundException e) {
+					showExceptionErrorMessage(e);
+				}
 			}
-			catch (ServerOfflineException | ServerNotBoundException e) {
-				showExceptionErrorMessage(e);
+			else
+				showWarningNoDataEntered();
 			}
-    	}
-    	else
-    		showWarningNoDataEntered();
+			else
+			{/*do captcha*/}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/* (non-Javadoc)
@@ -553,6 +574,28 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 			tbpnMain.getSelectionModel().selectFirst();
 			cmbbxAlertStatus.setValue(EtAlertStatus.pending);
 			cmbbxCrisisStatus.setValue(EtCrisisStatus.pending);
+		}
+		else{
+			txtfldCoordLogonUserName.setText("");
+			psswrdfldCoordLogonPassword.setText("");
+			txtfldCoordLogonUserName.requestFocus();
+			
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#captchaShowPanes(boolean)
+	 */
+	protected void captchaShowPanes(boolean captchaOn){
+		tbpnMain.setVisible(!captchaOn);
+		bttnCoordLogoff.setDisable(captchaOn);
+		pnLogon.setVisible(!captchaOn);
+		bttnCoordLogon.setDefaultButton(!captchaOn);
+		bttnCoordCaptcha.setDefaultButton(captchaOn);
+		txtfldCoordCaptcha.setVisible(captchaOn);
+		if (captchaOn){
+
+
 		}
 		else{
 			txtfldCoordLogonUserName.setText("");

@@ -29,6 +29,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtMa
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.RmiUtils;
@@ -319,6 +320,12 @@ public class ActAdministratorImpl extends ActAuthenticatedImpl implements
 			}
 		}
 		return new PtBoolean(true);
+	}
+
+	@Override
+	public DtInteger getNbrOfAttempts() {
+		// TODO Auto-generated method stub
+		return  super.getNbrOfAttempts();
 	}
 }
 

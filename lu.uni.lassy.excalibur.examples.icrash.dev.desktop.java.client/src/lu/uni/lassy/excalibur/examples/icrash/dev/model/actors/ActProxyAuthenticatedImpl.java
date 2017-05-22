@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.*;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
@@ -60,6 +61,13 @@ public abstract class ActProxyAuthenticatedImpl extends UnicastRemoteObject impl
 	 */
 	public DtLogin getLogin() throws RemoteException{
 		return this.getServerSideActor().getLogin();
+	}
+	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActProxyAuthenticated#getName()
+	 */
+	public DtInteger getNbrOfAttempts() throws RemoteException{
+		return this.getServerSideActor().getNbrOfAttempts();
 	}
 	
 	/* (non-Javadoc)

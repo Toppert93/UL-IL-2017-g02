@@ -113,6 +113,8 @@ public class DbCoordinators extends DbAbstract{
 					DtPassword aPwd = new DtPassword(new PtString(res.getString("pwd")));
 					//coordinator's mail
 					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
+					//coordinator's NbrOfAttemps
+					DtInteger aNbrAttempts = new DtInteger(new PtInteger(res.getInt("nbrattempts")));
 					//coordinator's rank
 					String theRank = res.getString("expRank");
 					EtExperienceRank aRank = null;
@@ -125,7 +127,7 @@ public class DbCoordinators extends DbAbstract{
 					//coordinator's experience points
 					DtExpPoints aPoints = new DtExpPoints(new PtInteger(res.getInt("expPoints")));
 
-					aCtCoordinator.init(aId, aLogin,aPwd,aMail, aRank, aPoints);
+					aCtCoordinator.init(aId, aLogin,aPwd,aMail, aNbrAttempts, aRank, aPoints);
 					
 				}
 								
@@ -253,6 +255,7 @@ public class DbCoordinators extends DbAbstract{
 					DtLogin aLogin = new DtLogin(new PtString(res.getString("login")));
 					DtPassword aPwd = new DtPassword(new PtString(res.getString("pwd")));
 					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
+					DtInteger aNbrAttempts = new DtInteger(new PtInteger(res.getInt("nbrattempts")));
 					//coordinator's rank
 					String theRank = res.getString("expRank");
 					EtExperienceRank aRank = null;
@@ -266,7 +269,7 @@ public class DbCoordinators extends DbAbstract{
 					DtExpPoints aPoints = new DtExpPoints(new PtInteger(res.getInt("expPoints")));
 
 					//init aCtAlert instance
-					aCtCoord.init(aId, aLogin, aPwd, aMail, aRank, aPoints);
+					aCtCoord.init(aId, aLogin, aPwd, aMail, aNbrAttempts, aRank, aPoints);
 					
 					//add instance to the hash
 					cmpSystemCtCoord

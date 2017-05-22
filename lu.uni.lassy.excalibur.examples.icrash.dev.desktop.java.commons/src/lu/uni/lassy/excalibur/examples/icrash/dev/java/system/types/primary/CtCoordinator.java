@@ -42,8 +42,8 @@ public class CtCoordinator extends CtAuthenticated {
 	 * @param aMail The Mail of the coordinator
 	 * @return The success of the initialisation
 	 */
-	public PtBoolean init(DtCoordinatorID aId,DtLogin aLogin,DtPassword aPwd, DtMail aMail, EtExperienceRank aRank, DtExpPoints aPoints){
-			super.init(aLogin, aPwd,aMail);
+	public PtBoolean init(DtCoordinatorID aId,DtLogin aLogin,DtPassword aPwd, DtMail aMail, DtInteger aNbrAttempts, EtExperienceRank aRank, DtExpPoints aPoints){
+			super.init(aLogin, aPwd,aMail, aNbrAttempts);
 			id = aId;
 			expRank = aRank;
 			expPoints = aPoints;

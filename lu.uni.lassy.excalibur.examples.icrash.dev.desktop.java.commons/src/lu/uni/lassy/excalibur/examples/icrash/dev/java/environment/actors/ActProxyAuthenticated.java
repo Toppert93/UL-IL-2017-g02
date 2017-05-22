@@ -21,6 +21,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntH
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 
@@ -37,6 +38,15 @@ public interface ActProxyAuthenticated extends Remote, JIntHasServerSideActor, J
 	 * @throws RemoteException Thrown if the server is offline
 	 */
 	public DtLogin getLogin() throws RemoteException;
+	
+	/**
+	 * Gets the NbrOfAttempts of the user associated with this actor.
+	 *
+	 * @return DtInteger NbrOfAttempts associated with this actor
+	 * @throws RemoteException Thrown if the server is offline
+	 */
+	public DtInteger getNbrOfAttempts() throws RemoteException;
+	
 	/**
 	 * Performs the oeLogin function with the username and password provided.
 	 *

@@ -12,6 +12,9 @@
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIs;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
@@ -50,5 +53,17 @@ public class DtPassword  extends DtString implements JIntIs{
 		 */
 		public PtString getExpectedDataStructure(){
 			return new PtString("Expected strucutre of the password is to have a minimum length of " + _minLength); 
+		}
+		
+		/*
+		 *  generates a new secured password
+		 * */
+		public DtPassword generateNewPassword(){
+			
+			SecureRandom random = new SecureRandom();
+			String randomString = new BigInteger(130, random).toString(32);
+			DtPassword newpassword = new DtPassword(new PtString(randomString)); 
+			
+			return newpassword;
 		}
 }

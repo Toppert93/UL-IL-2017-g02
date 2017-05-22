@@ -13,7 +13,10 @@
 package lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary;
 
 import java.io.Serializable;
+
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
 
 /**
  * The Class CtAuthenticated, which is the base class that all users inherit from.
@@ -35,6 +38,9 @@ public abstract class CtAuthenticated implements Serializable {
 	/**  A check to see if the current Ct class is considered logged into the system. */
 	public PtBoolean vpIsLogged;	
 	
+	/**  The user's attempts to log in */
+	public DtInteger nbrattempts;	
+	
 	/**
 	 * Initialisation of the user.
 	 *
@@ -43,10 +49,13 @@ public abstract class CtAuthenticated implements Serializable {
 	 * * @param aMail The Mail of the user
 	 * @return The success of the initialisation of the user
 	 */
-	public PtBoolean init(DtLogin aLogin, DtPassword aPwd, DtMail aMail){
+	public PtBoolean init(DtLogin aLogin, DtPassword aPwd, DtMail aMail, DtInteger aNbrAttempts){
 			login = aLogin;
 			pwd = aPwd;
 			mail = aMail;
+			PtInteger newvalue = new PtInteger(0);
+			DtInteger initialvalue = new DtInteger(newvalue);
+			aNbrAttempts = initialvalue;
 			vpIsLogged = new PtBoolean(false);
 			return new PtBoolean(true); 
 	}

@@ -24,6 +24,7 @@ import java.util.List;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
@@ -45,6 +46,9 @@ public abstract class ActAuthenticatedImpl extends UnicastRemoteObject
 	/** The login of the class type associated with this actor. */
 	private DtLogin login;
 	
+	/** The nbrOfAttempts of the class type associated with this actor. */
+	private DtInteger nbrAttempts;
+	
 	/**
 	 * Instantiates a new server side actor of type authenticated.
 	 *
@@ -62,6 +66,13 @@ public abstract class ActAuthenticatedImpl extends UnicastRemoteObject
 	 */
 	public DtLogin getLogin() {
 		return login;
+	}
+	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActAuthenticated#getNbrOfAttempts()
+	 */
+	public DtInteger getNbrOfAttempts() {
+		return nbrAttempts;
 	}
 
 	/* (non-Javadoc)

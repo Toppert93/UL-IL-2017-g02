@@ -2,6 +2,9 @@ package lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary;
 
 
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIs;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
@@ -45,5 +48,17 @@ public class DtCaptcha  extends DtString implements JIntIs{
 		 */
 		public PtString getExpectedDataStructure(){
 			return new PtString("Expected strucutre of the captcha is to have a minimum length of " + _minLength); 
+		}
+		
+		/*
+		 *  generates a new  captcha
+		 * */
+		public DtCaptcha generateNewCaptcha(){
+			
+			SecureRandom random = new SecureRandom();
+			String randomString = new BigInteger(130, random).toString(32);
+			DtCaptcha newcaptcha = new DtCaptcha(new PtString(randomString)); 
+			
+			return newcaptcha;
 		}
 }

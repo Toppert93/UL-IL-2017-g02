@@ -358,6 +358,7 @@ public class DbCrises extends DbAbstract {
 					//coordinator's mail
 					DtMail aMail = new DtMail(new PtString(
 							res.getString("mail")));
+					DtInteger aNbrAttempts = new DtInteger(new PtInteger(res.getInt("nbrattempts")));
 					//coordinator's rank
 					String theRank = res.getString("expRank");
 					EtExperienceRank aRank = null;
@@ -370,7 +371,7 @@ public class DbCrises extends DbAbstract {
 					//coordinator's experience points
 					DtExpPoints aPoints = new DtExpPoints(new PtInteger(res.getInt("expPoints")));
 
-					aCtCoordinator.init(aId1, aLogin, aPwd,aMail, aRank, aPoints);
+					aCtCoordinator.init(aId1, aLogin, aPwd,aMail, aNbrAttempts, aRank, aPoints);
 
 					//add instances to the hash
 					assCtCrisisCtCoordinator.put(aCtCrisis, aCtCoordinator);

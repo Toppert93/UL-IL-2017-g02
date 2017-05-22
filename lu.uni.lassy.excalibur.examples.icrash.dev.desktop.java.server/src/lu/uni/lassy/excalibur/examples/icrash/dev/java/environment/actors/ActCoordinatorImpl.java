@@ -27,6 +27,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLo
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisType;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.RmiUtils;
@@ -331,5 +332,11 @@ public class ActCoordinatorImpl extends ActAuthenticatedImpl implements ActCoord
 		if(res.getValue() == true)
 			log.info("operation oeGetAlertsSet successfully executed by the system");
 		return res;
+	}
+
+	@Override
+	public DtInteger getNbrOfAttempts() {
+		// TODO Auto-generated method stub
+		return super.getNbrOfAttempts();
 	}
 }
