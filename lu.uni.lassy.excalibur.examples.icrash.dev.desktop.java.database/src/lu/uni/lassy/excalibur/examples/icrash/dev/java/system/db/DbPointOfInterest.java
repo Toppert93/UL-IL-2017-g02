@@ -142,7 +142,7 @@ public class DbPointOfInterest extends DbAbstract {
 				double longitude = aCtPointOfInterest.location.longitude.value
 						.getValue();
 
-				String description = aCtPointOfInterest.Description.value.getValue();
+				String description = aCtPointOfInterest.Description.toString();
 
 				PreparedStatement statement = conn.prepareStatement(sql);
 				statement.setString(1, category);

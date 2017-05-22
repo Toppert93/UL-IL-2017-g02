@@ -1480,16 +1480,19 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		}
 	}
 
-	private CtPointOfInterest getCtPointOfInterest(DtPointOfInterestID aDtPointOfInterestID) {
+	private CtPointOfInterest getCtPointOfInterest(DtPointOfInterestID aDtPointOfInterestID) throws RemoteException {
 		
 
-			CtPointOfInterest ctPoint = new CtPointOfInterest();
-				if (ctPoint instanceof CtPointOfInterest) {
-					PtBoolean res = ((CtPointOfInterest) ctPoint).id
-							.eq(aDtPointOfInterestID);
-					if (res.getValue())
-						return ctPoint;
+			ArrayList<CtPointOfInterest> ctPoint = getAllCtPointOfInterest();
+			for(int i = 0; i<ctPoint.size();i++){
+				if(ctPoint.get(i).id == aDtPointOfInterestID){
+						CtPointOfInterest pointofinterest = ctPoint.get(i);
+						
+				
+			
+						return pointofinterest;
 				}
+			}
 			
 			return null;
 	
@@ -1520,15 +1523,15 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		isSystemStarted();
 		//PreP2
 		isAdminLoggedIn();
-		ArrayList<CtPointOfInterest> SortedList = new ArrayList<CtPointOfInterest>();
+		ArrayList<CtPointOfInterest> SelectedList = new ArrayList<CtPointOfInterest>();
 		ArrayList<CtPointOfInterest> List = getAllCtPointOfInterest();
 		for(int i= 0;i< List.size();i++){
 			if(List.get(i).Category==aEtCategory){
-				SortedList.add(List.get(i));
+				SelectedList.add(List.get(i));
 			}
 		}
 		
-				return SortedList;
+				return SelectedList;
 		
 		
 	} catch (Exception e) {
