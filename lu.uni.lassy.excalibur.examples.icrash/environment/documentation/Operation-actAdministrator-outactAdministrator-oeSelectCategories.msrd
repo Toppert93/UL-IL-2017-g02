@@ -22,13 +22,11 @@ icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories.AdtCa
 @endPreP
 //preFunctional descriptions
 @preF
-"It is supposed there exists at least one point of interest with the same category as the one chosen."
+" "
 @endPreF
 //postFunctional descriptions
 @postF 
-"all the points of interest with the given category as shown in a list"
-@postF
-"the administrator actor is informed about the satisfaction of its request."
+"all the points of interest with the given category are selected"
 @endPostF
 //postProtocol descriptions
 @postP 

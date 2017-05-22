@@ -22,7 +22,7 @@ icrash.environment.actAdministrator.outactAdministrator.oeDeletePointOfInterest.
 @endPreP
 //preFunctional descriptions
 @preF
-"it is supposed that there exist one ctCoordinator instance with the same 
+"it is supposed that there exist only one ctPointOfInterest instance with the same 
 \msrcode{id} attribute than the one the administrator wants to delete."
 @endPreF
 //postFunctional descriptions

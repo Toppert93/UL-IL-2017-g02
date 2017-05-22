@@ -34,7 +34,7 @@ import icrash.concepts.primarytypes.classes
 		/* PostF01 */
   		TheSystem.rnctPointOfInterest->select(category.eq(AetCategory))
  		= CollctPointOfInterest
- 		and TheActor.rnInterfaceIN^ieCategorySelected()
+ 		
  		and true
  		}
  		postP{true}

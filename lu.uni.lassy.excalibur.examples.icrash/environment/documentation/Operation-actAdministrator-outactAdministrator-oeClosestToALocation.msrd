@@ -1,0 +1,35 @@
+/*
+@author jorge
+@date Wed May 10 10:00:37 CEST 2017
+*/
+
+
+@@Operation
+icrash.environment.actAdministrator.outactAdministrator.oeClosestToALocation
+//parameters
+@parameter
+icrash.environment.actAdministrator.outactAdministrator.oeClosestToALocation.AdtGPSLocation
+""
+@endParameters
+
+@description "Sorts a list with the closest location to a given location to the furthest location to a given location."
+//preProtocol descriptions
+@preP
+"the system is started "
+@preP
+"the actor logged previously and did not log out ! (i.e. the associated ctAdministrator instance is considered logged). "
+@endPreP
+//preFunctional descriptions
+@preF
+" "
+@endPreF
+//postFunctional descriptions
+@postF 
+"returns a sorted list so that the closest location to a given location is on top to the furthest location to a given location at the end."
+@endPostF
+//postProtocol descriptions
+@postP 
+" "
+@endPostP
+//example
+@example" "

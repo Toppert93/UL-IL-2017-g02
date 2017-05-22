@@ -49,10 +49,7 @@ import icrash.concepts.primarytypes.classes
  
  		/* PostF02 */
   		and TheActor.rnInterfaceIN^iePointOfInterestDeleted()
-
- /* Post Protocol:*/
-/* PostP01 */
- and true
+  		and true
  }
  postP{true}
 		}

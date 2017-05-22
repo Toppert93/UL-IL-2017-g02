@@ -35,7 +35,7 @@ icrash.environment.actAdministrator.outactAdministrator.oeEditPointOfInterest.Ad
 @endPreF
 //postFunctional descriptions
 @postF 
-"The values for the attributes selected by the system's actor actAdministrator are modified to the ones the administrator's given values. "
+"The values for the attributes selected by the system's actor actAdministrator are modified and replaced by the given values. "
 @postF
 "the administrator actor is informed about the satisfaction of its request."
 @endPostF
