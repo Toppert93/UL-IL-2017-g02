@@ -11,6 +11,8 @@
  *     Thomas Mortimer - Updated client to MVC and added new design patterns
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
+import java.awt.Label;
+import java.awt.TextArea;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -25,11 +27,22 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.Incorrec
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.IncorrectFormatException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerNotBoundException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerOfflineException;
+import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.StringToNumberException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActAdministrator;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLatitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLongitude;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
@@ -52,6 +65,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -76,6 +92,21 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     /** The pane containing the logon controls. */
 	@FXML
     private Pane pnAdminLogon;
+	
+	@FXML
+	private SplitPane pnAdminPointOfInterest;
+	
+	@FXML 
+	private AnchorPane pnAdminLog;
+	
+	@FXML
+	private AnchorPane PnAdminPOI;
+	
+	@FXML
+	private TreeTableView<String> TreeTableViewPOI;
+	
+	@FXML
+	private AnchorPane PnAdminTreeView;
 
     /** The textfield that allows input of a username for logon. */
     @FXML
@@ -113,17 +144,16 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     @FXML
     private Button bttnBottomAdminCoordinatorDemoteACoordinator;
     
+    @FXML
+    private Button bttnAdminAddpointofinterest;
+    
+    @FXML
+    private Button bttnAdminEditpointofinterest;
+    
+    @FXML
+    private Button bttnAdminDeletepointofinterest;
 
-   
-/*
-      @FXML
-        private Button bttnAdminPointOfInterestAdd;
-
-        @FXML
-        void bttnAdminPointOfInterestAdd_OnClick(ActionEvent event) {
-		}
-*/
-        
+  
     @FXML
     private Button bttnAdminPointsOfInterestListPointsOfInterest;
 
@@ -161,30 +191,34 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     
     @FXML
     void bttnAdminPointsOfInterestListPointsOfInterest_OnClick(ActionEvent event) throws IOException {
-    	//showPointsOfInterestScreen();
+    	pnAdminPointOfInterest.setVisible(true);
+    	pnAdminLog.setVisible(false);
+    	PnAdminPOI.setVisible(true);
+    	PnAdminTreeView.setVisible(true);
+    	
+    }
+    @FXML
+    void bttnAdminAddpointofinterest_OnClick(ActionEvent event) throws IOException{
+    	showPointOfInterestScreen(TypeOfEditPointOfInterest.Add);
+    	ArrayList<CtPointOfInterest> Collection = IcrashSystem.getAllCtPointOfInterest();
+		
+			TreeTableRow row= new TreeTableRow<>();
+			row.setText("55");
+			
+	
+		
+		
     }
     
-
-   /* private void showPointsOfInterestScreen() throws IOException {
-    	brdpnAdmin.setVisible(false);
-    	  FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("ICrashPointsOfInterest.fxml"));
-          Parent root1 = (Parent) fxmlLoader.load();
-          Stage stage = new Stage();
-          stage.initModality(Modality.APPLICATION_MODAL);
-          stage.initStyle(StageStyle.UNDECORATED);
-          stage.setTitle("Point of interest list");
-          stage.setScene(new Scene(root1));  
-          stage.show();
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent e) {
-               Platform.exit();
-               System.exit(0);
-            }
-         });
-		
-	}*/
-
+    @FXML
+    void bttnAdminEditpointofinterest_OnClick(ActionEvent event) throws IOException{
+    	showPointOfInterestScreen(TypeOfEditPointOfInterest.Edit);
+    }
+    
+    @FXML
+    void bttnAdminDeletepointofinterest_OnClick(ActionEvent event) throws IOException{
+    	showPointOfInterestScreen(TypeOfEditPointOfInterest.Delete);
+    }
 	/**
      * The button event that will initiate the logging on of a user
      *
@@ -296,6 +330,90 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		setUpMessageTables(tblvwAdminMessages);
 	}
 
+	
+	private void showPointOfInterestScreen(TypeOfEditPointOfInterest type){
+		GridPane grdpn = new GridPane();
+		TextField txtfldPOIID = new TextField();
+		TextField txtfldCategory = new TextField();
+		TextField txtfldlongitude = new TextField();
+		TextField txtfldlatitude = new TextField();
+		TextField txtfldDescription = new TextField();
+		txtfldPOIID.setPromptText("Point of interest ID");
+		txtfldCategory.setPromptText("Category");
+		txtfldlongitude.setPromptText("Longitude");
+		txtfldlatitude.setPromptText("latitude");
+		txtfldDescription.setPromptText("Description");
+		Button bttntypeConfirm = new Button("Confirm");
+		switch(type){
+		case Add:
+			
+			grdpn.add(txtfldCategory, 1, 1);
+			grdpn.add(txtfldlongitude, 1, 2);
+			grdpn.add(txtfldlatitude, 1, 3);
+		    grdpn.add(txtfldDescription, 1, 4);
+		    grdpn.add(bttntypeConfirm,1,5);
+			
+			break;
+		case Edit:
+			grdpn.add(txtfldPOIID, 1, 0);
+			grdpn.add(txtfldCategory, 1, 1);
+			grdpn.add(txtfldlongitude, 1, 2);
+			grdpn.add(txtfldlatitude, 1, 3);
+		    grdpn.add(txtfldDescription, 1, 4);
+		    grdpn.add(bttntypeConfirm,1,5);
+			break;
+		case Delete:
+			grdpn.add(txtfldPOIID, 1, 0);
+			grdpn.add(bttntypeConfirm, 1, 1);
+			break;
+		}
+		PnAdminPOI.getChildren().add(grdpn);
+		AnchorPane.setTopAnchor(grdpn, 50.0);
+		AnchorPane.setLeftAnchor(grdpn, 0.0);
+		AnchorPane.setBottomAnchor(grdpn, 0.0);
+		AnchorPane.setRightAnchor(grdpn, 0.0);
+		bttntypeConfirm.setDefaultButton(true);
+		bttntypeConfirm.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				PnAdminPOI.getChildren().remove(grdpn);
+				if (!checkIfAllDialogHasBeenFilledIn(grdpn))
+					showWarningNoDataEntered();
+				else{
+					
+						switch(type){
+						case Add:
+								DtDescription Description =  new DtDescription(new PtString(txtfldDescription.getText()));
+								
+								DtLatitude latitude = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
+								DtLongitude longitude = new DtLongitude(new PtReal(Double.valueOf(txtfldlongitude.getText())));
+								DtGPSLocation location = new DtGPSLocation(latitude,longitude);
+								
+								EtCategory category = EtCategory.valueOf(txtfldCategory.getText());
+								
+							try {
+								if (userController.oeAddPointOfInterest(category,location,Description) != null){
+									
+									
+								}else {showErrorMessage("Unable to add point of interest", "An error occured when addingg a point of interest");
+								
+							}
+							}catch (RemoteException | ServerNotBoundException | ServerOfflineException
+									| IncorrectFormatException | StringToNumberException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+								
+							break;
+						
+						
+							
+				}
+			}
+				}
+		});
+			
+		
+	}
 	/**
 	 * Shows the modify coordinator screen.
 	 *

@@ -398,7 +398,10 @@ public interface IcrashSystem extends Remote {
     * @return all of the class type point of interest in the system
     * @throws RemoteException Thrown if the server is offline
     */
-    public ArrayList<CtPointOfInterest> getAllCtPointOfInterest() throws RemoteException;
+    public static ArrayList<CtPointOfInterest> getAllCtPointOfInterest() throws RemoteException {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 
 	/**

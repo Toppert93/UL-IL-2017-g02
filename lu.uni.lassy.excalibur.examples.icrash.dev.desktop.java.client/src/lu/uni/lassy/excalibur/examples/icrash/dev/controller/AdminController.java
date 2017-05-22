@@ -133,15 +133,11 @@ public class AdminController extends AbstractUserController {
 	public PtBoolean oeAddPointOfInterest(EtCategory aEtCategory,DtGPSLocation location, DtDescription Description) throws  ServerNotBoundException,ServerOfflineException,IncorrectFormatException, StringToNumberException, RemoteException{
 		if (getUserType() == UserType.Admin){
 			ActProxyAdministratorImpl actorAdmin = (ActProxyAdministratorImpl)getAuth();
-			double dblLatitude = Double.parseDouble(location.latitude.toString());
-			double dblLongitude = Double.parseDouble(location.longitude.toString());
-			DtGPSLocation aDtGPSLocation = new DtGPSLocation(new DtLatitude(new PtReal(dblLatitude)), new DtLongitude(new PtReal(dblLongitude)));
-			DtDescription aDtDescription = new DtDescription(new PtString(Description.toString()));
 			Hashtable<JIntIs, String> ht = new Hashtable<JIntIs, String>();
-			ht.put(aDtGPSLocation.latitude, Double.toString(aDtGPSLocation.latitude.value.getValue()));
-			ht.put(aDtGPSLocation.longitude, Double.toString(aDtGPSLocation.longitude.value.getValue()));
+			ht.put(location.latitude, Double.toString(location.latitude.value.getValue()));
+			ht.put(location.longitude, Double.toString(location.longitude.value.getValue()));
 			ht.put(aEtCategory, aEtCategory.name());
-			ht.put(aDtDescription, aDtDescription.value.getValue());
+			ht.put(Description, Description.value.getValue());
 			try {
 				return actorAdmin.oeAddPointOfInterest(aEtCategory,location,Description);
 			} catch (NumberFormatException e){
