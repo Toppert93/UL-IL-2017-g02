@@ -204,6 +204,11 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     	pnAdminLog.setVisible(false);
     	PnAdminPOI.setVisible(true);
     	PnAdminTreeView.setVisible(true);
+    	ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+		for (int i =0 ; i<Collection.size();i++){
+			TableViewPOI.getItems().add(String.valueOf(i));
+			addPointofInterestToTableView(TableViewPOI,i);
+		}
     	
     }
     
@@ -222,7 +227,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     	
     	TableViewPOI.getColumns().clear();
     	
-    	TableViewPOI.getItems().add("gg");
+    	
     	tblcolID.setCellValueFactory(cellData -> {
             
             return new ReadOnlyStringWrapper(Collection.get(i).id.toString());
@@ -247,15 +252,19 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
             return new ReadOnlyStringWrapper(Collection.get(i).Description.toString());
         });
     	
+    	
     	TableViewPOI.getColumns().add(tblcolID);
     	TableViewPOI.getColumns().add(tblcolCategory);
     	TableViewPOI.getColumns().add(tblcollat);
     	TableViewPOI.getColumns().add(tblcollong);
     	TableViewPOI.getColumns().add(tblcoldes);
-    
+    	
+            
+        
     	
     	
 	}
+    
     
     @FXML
     void bttnAdminEditpointofinterest_OnClick(ActionEvent event) throws IOException{
@@ -441,10 +450,13 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 							
 								if (userController.oeAddPointOfInterest(category,location,Description) != null){
 									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+									TableViewPOI.getItems().clear();
 									for (int i =0 ; i<Collection.size();i++){
+										TableViewPOI.getItems().add(String.valueOf(i));
 									addPointofInterestToTableView(TableViewPOI,i);
 									
 									}
+								
 								}else showErrorMessage("Unable to add point of interest", "An error occured when addingg a point of interest");
 								
 							break;
@@ -452,7 +464,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 						case Delete :
 								DtPointOfInterestID ID = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
 								if (userController.oeDeletePointOfInterest(ID) != null){
-								
+									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+									for (int i =0 ; i<Collection.size();i++){
+										addPointofInterestToTableView(TableViewPOI,i);
+									}
 								}else showErrorMessage("Unable to delete point of interest", "An error occured when deleting a point of interest");
 							
 								break;

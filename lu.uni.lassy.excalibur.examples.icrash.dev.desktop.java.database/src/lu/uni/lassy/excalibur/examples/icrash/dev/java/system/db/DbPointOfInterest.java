@@ -147,6 +147,7 @@ public class DbPointOfInterest extends DbAbstract {
 						.getValue();
 				String description = aCtPointOfInterest.Description.toString();
 				String id = aCtPointOfInterest.id.value.getValue();
+
 				String sql = "UPDATE "
 						+ dbName
 						+ ".PointOfInterest SET `category` = ?, `latitude` = ?, `longitude` = ?,"

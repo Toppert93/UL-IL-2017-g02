@@ -1493,6 +1493,9 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			//PreP2
 			isAdminLoggedIn();
 			CtPointOfInterest ctPoint = DbPointOfInterest.getCtPointOfInterest(aDtPointOfInterestID);
+			ctPoint.Category = aEtCategory;
+			ctPoint.Description = description;
+			ctPoint.location = location;
 			DbPointOfInterest.EditPointOfInterest(ctPoint);
 			ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
 			//admin.iePointOfInterestUpdated();

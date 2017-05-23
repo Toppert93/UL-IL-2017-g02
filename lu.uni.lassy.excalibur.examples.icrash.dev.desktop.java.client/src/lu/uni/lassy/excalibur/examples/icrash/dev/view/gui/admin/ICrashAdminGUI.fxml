@@ -19,7 +19,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin.ICrashAdminGUIController">
    <children>
-      <AnchorPane id="pnAdminLog" fx:id="pnAdminLog" layoutX="200.0" layoutY="100.0" prefHeight="500.0" prefWidth="400.0" visible="false">
+      <AnchorPane id="pnAdminLog" fx:id="pnAdminLog" layoutX="200.0" layoutY="100.0" prefHeight="500.0" prefWidth="400.0">
          <children>
             <SplitPane dividerPositions="0.5149863760217984" orientation="VERTICAL" prefHeight="509.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
@@ -119,16 +119,16 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <SplitPane id="pnAdminPointOfInterest" fx:id="pnAdminPointOfInterest" dividerPositions="0.5" focusTraversable="false" orientation="VERTICAL" prefHeight="700.0" prefWidth="800.0">
+      <SplitPane id="pnAdminPointOfInterest" fx:id="pnAdminPointOfInterest" dividerPositions="0.5" focusTraversable="false" orientation="VERTICAL" prefHeight="700.0" prefWidth="800.0" visible="false">
         <items>
-          <AnchorPane id="PnAdminPOI" fx:id="PnAdminPOI" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane id="PnAdminPOI" fx:id="PnAdminPOI" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" visible="false">
                <children>
                   <Button id="bttnAdminAddpointofinterest" fx:id="bttnAdminAddpointofinterest" layoutX="50.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminAddpointofinterest_OnClick" text="Add point of interest" />
                   <Button id="bttnAdminEditpointofinterest" fx:id="bttnAdminEditpointofinterest" layoutX="250.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminEditpointofinterest_OnClick" text="Edit point of interest" />
                   <Button id="bttnAdminDeletepointofinterest" fx:id="bttnAdminDeletepointofinterest" layoutX="450.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminDeletepointofinterest_OnClick" text="delete point of interest" />
                </children>
             </AnchorPane>
-          <AnchorPane id="PnAdminTreeView" fx:id="PnAdminTreeView" minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="798.0">
+          <AnchorPane id="PnAdminTreeView" fx:id="PnAdminTreeView" minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="798.0" visible="false">
                <children>
                   <ComboBox layoutX="119.0" layoutY="14.0" prefWidth="150.0" />
                   <Label layoutX="58.0" layoutY="18.0" text="Category :" />
