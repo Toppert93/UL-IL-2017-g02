@@ -38,10 +38,10 @@ public class CtPointOfInterest implements Serializable {
 			 DtGPSLocation aLocation,
 			DtDescription aDescription) {
 
-		id = aid;
-		Category = aCategory;	
-		location = aLocation;
-		Description = aDescription;
+		this.id = aid;
+		this.Category = aCategory;	
+		this.location = aLocation;
+		this.Description = aDescription;
 
 		return new PtBoolean(true);
 

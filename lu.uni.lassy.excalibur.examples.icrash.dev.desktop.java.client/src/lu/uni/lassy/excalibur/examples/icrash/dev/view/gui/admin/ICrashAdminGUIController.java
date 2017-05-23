@@ -11,16 +11,42 @@
  *     Thomas Mortimer - Updated client to MVC and added new design patterns
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
-import java.awt.Label;
-import java.awt.TextArea;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.ReadOnlyDoubleWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+/*
+ * This is the import section to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
+ */
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Callback;
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.AdminController;
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.SystemStateController;
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.IncorrectActorException;
@@ -29,8 +55,9 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerNo
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerOfflineException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.StringToNumberException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActAdministrator;
-import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
@@ -38,43 +65,15 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGP
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLatitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLongitude;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
-import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
-import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
 import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController;
 import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.coordinator.CreateICrashCoordGUI;
-import javafx.scene.layout.GridPane;
-import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-/*
- * This is the import section to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
- */
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableRow;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 /*
  * This is the end of the import section to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
  */
@@ -90,8 +89,15 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	
 
     /** The pane containing the logon controls. */
+
+	
 	@FXML
     private Pane pnAdminLogon;
+	TableColumn<String,String> tblcolID = new TableColumn<>("ID");
+	TableColumn<String,String> tblcolCategory = new TableColumn<>("Category");
+	TableColumn<String,String> tblcollat = new TableColumn<>("Latitude");
+	TableColumn<String,String> tblcollong = new TableColumn<>("Longitude");
+	TableColumn<String,String> tblcoldes = new TableColumn<>("Description");
 	
 	@FXML
 	private SplitPane pnAdminPointOfInterest;
@@ -103,7 +109,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	private AnchorPane PnAdminPOI;
 	
 	@FXML
-	private TreeTableView<String> TreeTableViewPOI;
+	private TableView<String> TableViewPOI;
 	
 	@FXML
 	private AnchorPane PnAdminTreeView;
@@ -153,13 +159,16 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     @FXML
     private Button bttnAdminDeletepointofinterest;
 
-  
+   
     @FXML
     private Button bttnAdminPointsOfInterestListPointsOfInterest;
 
     /** The tableview of the recieved messages from the system */
     @FXML
     private TableView<Message> tblvwAdminMessages;
+    
+    
+    
 
     /** The button that allows a user to logoff */
     @FXML
@@ -197,18 +206,56 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     	PnAdminTreeView.setVisible(true);
     	
     }
+    
+
     @FXML
     void bttnAdminAddpointofinterest_OnClick(ActionEvent event) throws IOException{
     	showPointOfInterestScreen(TypeOfEditPointOfInterest.Add);
-    	ArrayList<CtPointOfInterest> Collection = IcrashSystem.getAllCtPointOfInterest();
+    	
+	}
+       
+    	
 		
-			TreeTableRow row= new TreeTableRow<>();
-			row.setText("55");
-			
-	
-		
-		
-    }
+    
+    public void addPointofInterestToTableView(TableView<String> TableViewPOI, int i){
+    	ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+    	
+    	TableViewPOI.getColumns().clear();
+    	
+    	TableViewPOI.getItems().add("gg");
+    	tblcolID.setCellValueFactory(cellData -> {
+            
+            return new ReadOnlyStringWrapper(Collection.get(i).id.toString());
+        });
+    	tblcolCategory.setCellValueFactory(cellData -> {
+          
+            return new ReadOnlyStringWrapper(Collection.get(i).Category.name());
+        });
+    	
+    	tblcollat.setCellValueFactory(cellData -> {
+            
+            return new ReadOnlyStringWrapper(Double.toString( Collection.get(i).location.latitude.value.getValue()));
+        });
+    	
+    	tblcollong.setCellValueFactory(cellData -> {
+            
+            return new ReadOnlyStringWrapper(Double.toString( Collection.get(i).location.longitude.value.getValue()));
+        });
+    	
+    	tblcoldes.setCellValueFactory(cellData -> {
+            
+            return new ReadOnlyStringWrapper(Collection.get(i).Description.toString());
+        });
+    	
+    	TableViewPOI.getColumns().add(tblcolID);
+    	TableViewPOI.getColumns().add(tblcolCategory);
+    	TableViewPOI.getColumns().add(tblcollat);
+    	TableViewPOI.getColumns().add(tblcollong);
+    	TableViewPOI.getColumns().add(tblcoldes);
+    
+    	
+    	
+	}
     
     @FXML
     void bttnAdminEditpointofinterest_OnClick(ActionEvent event) throws IOException{
@@ -379,9 +426,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 				if (!checkIfAllDialogHasBeenFilledIn(grdpn))
 					showWarningNoDataEntered();
 				else{
-					
+					try{
 						switch(type){
 						case Add:
+							
 								DtDescription Description =  new DtDescription(new PtString(txtfldDescription.getText()));
 								
 								DtLatitude latitude = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
@@ -390,28 +438,55 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 								
 								EtCategory category = EtCategory.valueOf(txtfldCategory.getText());
 								
-							try {
+							
 								if (userController.oeAddPointOfInterest(category,location,Description) != null){
+									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+									for (int i =0 ; i<Collection.size();i++){
+									addPointofInterestToTableView(TableViewPOI,i);
 									
-									
-								}else {showErrorMessage("Unable to add point of interest", "An error occured when addingg a point of interest");
+									}
+								}else showErrorMessage("Unable to add point of interest", "An error occured when addingg a point of interest");
 								
-							}
+							break;
+						
+						case Delete :
+								DtPointOfInterestID ID = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
+								if (userController.oeDeletePointOfInterest(ID) != null){
+								
+								}else showErrorMessage("Unable to delete point of interest", "An error occured when deleting a point of interest");
+							
+								break;
+						case Edit:
+								DtDescription Description1 =  new DtDescription(new PtString(txtfldDescription.getText()));
+								DtPointOfInterestID ID1 = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
+								DtLatitude latitude1 = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
+								DtLongitude longitude1 = new DtLongitude(new PtReal(Double.valueOf(txtfldlongitude.getText())));
+								DtGPSLocation location1 = new DtGPSLocation(latitude1,longitude1);
+							
+								EtCategory category1 = EtCategory.valueOf(txtfldCategory.getText());
+								if (userController.oeEditPointOfInterest(ID1,category1,location1,Description1) != null){
+									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+									for (int i =0 ; i<Collection.size();i++){
+										addPointofInterestToTableView(TableViewPOI,i);
+									}
+								}else showErrorMessage("Unable to edit point of interest", "An error occured when editing a point of interest");
+							
+								break;
+						}	
 							}catch (RemoteException | ServerNotBoundException | ServerOfflineException
 									| IncorrectFormatException | StringToNumberException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 								
-							break;
+							
 						
 						
 							
 				}
 			}
-				}
-		});
-			
+				});
+		
 		
 	}
 	/**

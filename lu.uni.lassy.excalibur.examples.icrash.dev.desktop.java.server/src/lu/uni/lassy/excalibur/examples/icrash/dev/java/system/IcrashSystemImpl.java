@@ -153,6 +153,8 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	/** The logger user by the system to print information to the console. */
 	private Logger log = Log4JUtils.getInstance().getLogger();
 	
+	public ArrayList<CtPointOfInterest> ctPointList = DbPointOfInterest.getAllCtPointOfInterest();
+	
 	/*
 	 * ********************************
 	 * Internal operations 
@@ -1449,14 +1451,12 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			CtPointOfInterest aCtPointOfInterest = new CtPointOfInterest();
 			DtPointOfInterestID aId = new DtPointOfInterestID(new PtString(""
 					+ nextValueForPointOfInterestID_at_pre));
-			EtCategory aCategory = aEtCategory;
-			double dblLatitude = Double.parseDouble(location.latitude.toString());
-			double dblLongitude = Double.parseDouble(location.longitude.toString());
-			DtDescription aDtDescription= new DtDescription(new PtString(description.toString()));
-			DtGPSLocation aDtGPSLocation = new DtGPSLocation(new DtLatitude(new PtReal(dblLatitude)), new DtLongitude(new PtReal(dblLongitude)));
-			aCtPointOfInterest.init(aId, aCategory, aDtGPSLocation,aDtDescription);
+		
+			aCtPointOfInterest.init(aId, aEtCategory, location,description);
+			
 			//DB: insert alert in the database
 			DbPointOfInterest.insertPointOfInterest(aCtPointOfInterest);
+			cmpSystemCtPointOfInterest.put(aCtPointOfInterest.id.value.getValue(), aCtPointOfInterest);
 		}catch (Exception ex) {
 			log.error("Exception in oeAddPointOfInterest..." + ex);
 		}
@@ -1469,7 +1469,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			isSystemStarted();
 			//PreP2
 			isAdminLoggedIn();
-			CtPointOfInterest ctPoint = getCtPointOfInterest(aDtPointOfInterestID);
+			CtPointOfInterest ctPoint  = DbPointOfInterest.getCtPointOfInterest(aDtPointOfInterestID);
 				DbPointOfInterest.DeletePointOfInterest(ctPoint);
 				
 				ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
@@ -1484,23 +1484,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		}
 	}
 
-	private CtPointOfInterest getCtPointOfInterest(DtPointOfInterestID aDtPointOfInterestID) throws RemoteException {
-		
 
-			ArrayList<CtPointOfInterest> ctPoint = getAllCtPointOfInterest();
-			for(int i = 0; i<ctPoint.size();i++){
-				if(ctPoint.get(i).id == aDtPointOfInterestID){
-						CtPointOfInterest pointofinterest = ctPoint.get(i);
-						
-				
-			
-						return pointofinterest;
-				}
-			}
-			
-			return null;
-	
-	}
 	
 	public PtBoolean oeEditPointOfInterest(DtPointOfInterestID aDtPointOfInterestID,EtCategory aEtCategory, DtGPSLocation location, DtDescription description) throws java.rmi.RemoteException{
 		try {
@@ -1508,7 +1492,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			isSystemStarted();
 			//PreP2
 			isAdminLoggedIn();
-			CtPointOfInterest ctPoint = getCtPointOfInterest(aDtPointOfInterestID);
+			CtPointOfInterest ctPoint = DbPointOfInterest.getCtPointOfInterest(aDtPointOfInterestID);
 			DbPointOfInterest.EditPointOfInterest(ctPoint);
 			ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
 			//admin.iePointOfInterestUpdated();
@@ -1516,7 +1500,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			
 			
 		} catch (Exception e) {
-			log.error("Exception in oeEditCoordinator..." + e);
+			log.error("Exception in oePointOfInterest..." + e);
 			return new PtBoolean(false);
 		}
 	}
