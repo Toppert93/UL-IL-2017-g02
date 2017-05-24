@@ -11,7 +11,7 @@ import icrash.concepts.primarytypes.datatypes
 import icrash.concepts.primarytypes.classes
 	Operation Model {
 
-		operation: icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories(AdtCategory:etCategory):ptBoolean{
+		operation: icrash.environment.actAdministrator.outactAdministrator.oeSelectCategories(AetCategory:etCategory):ptBoolean{
 		// include below the specification information (pre,post or ocl or prolog)
 		preP{
   		let TheSystem: ctState in
@@ -32,10 +32,11 @@ import icrash.concepts.primarytypes.classes
   		self.rnActor.rnSystem = TheSystem
   		and self.rnActor = TheActor
 		/* PostF01 */
-  		TheSystem.rnctPointOfInterest->select(category.eq(AetCategory))
- 		= CollctPointOfInterest
- 		
- 		and true
+		// need iterator
+  		and if (CollctPointofInterest.get(i).category.equals(AetCatgory)) 
+  			then true
+  		else (false) 		
+ 		endif
  		}
  		postP{true}
 		}
