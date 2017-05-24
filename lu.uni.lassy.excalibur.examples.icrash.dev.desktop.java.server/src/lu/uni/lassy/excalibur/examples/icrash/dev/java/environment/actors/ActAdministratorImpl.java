@@ -21,6 +21,7 @@ import java.util.Iterator;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
@@ -326,6 +327,12 @@ public class ActAdministratorImpl extends ActAuthenticatedImpl implements
 	public DtInteger getNbrOfAttempts() {
 		// TODO Auto-generated method stub
 		return  super.getNbrOfAttempts();
+	}
+
+	@Override
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return super.oeFillCaptcha(aDtCaptcha);
 	}
 }
 

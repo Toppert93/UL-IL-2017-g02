@@ -30,6 +30,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtHu
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtState;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtAlertID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtComment;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCrisisID;
@@ -426,6 +427,8 @@ public interface IcrashSystem extends Remote {
 	public ArrayList<CtPointOfInterest> oeSelectClosestTo(DtGPSLocation location) throws RemoteException;
 
 	public PtBoolean oeRankDownCoordinator(DtCoordinatorID aDtCoordinatorID) throws RemoteException;
+
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException;
  
 
 }

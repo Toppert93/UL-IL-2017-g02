@@ -620,10 +620,7 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#captchaShowPanes(boolean)
 	 */
 	protected void captchaShowPanes(boolean captchaOn){
-		tbpnMain.setVisible(!captchaOn);
-		bttnCoordLogoff.setDisable(captchaOn);
-		pnLogon.setVisible(!captchaOn);
-		bttnCoordLogon.setDefaultButton(!captchaOn);
+
 		bttnCoordCaptcha.setDefaultButton(captchaOn);
 		txtfldCoordCaptcha.setVisible(captchaOn);
 		if (captchaOn){

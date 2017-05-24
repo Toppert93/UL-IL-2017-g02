@@ -19,6 +19,7 @@ import java.rmi.RemoteException;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntHasServerSideActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
@@ -77,6 +78,16 @@ public interface ActProxyAuthenticated extends Remote, JIntHasServerSideActor, J
 	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
 	 */
 	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException;
+	
+	/**
+	 * Performs the oeFillcaptcha function with the captcha provided.
+	 *
+	 * @param aDtCaptcha The captcha entered by the user
+	 * @return The success of the operation
+	 * @throws RemoteException Thrown if the server is offline
+	 * @throws NotBoundException Thrown if the server has not been bound correctly in RMI settings
+	 */
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException;
 
 	/**
 	 * Recieves a message to the actor, this must be displayed on the user's GUI screen as well.
@@ -115,5 +126,7 @@ public interface ActProxyAuthenticated extends Remote, JIntHasServerSideActor, J
 	 * @throws RemoteException the remote exception
 	 */
 	public UserType getUserType() throws RemoteException;
+
+
 	
 }

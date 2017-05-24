@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.IcrashSystem;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
@@ -145,6 +146,29 @@ public abstract class ActAuthenticatedImpl extends UnicastRemoteObject
 		
 		if(res.getValue() == true)
 			log.info("operation oeResetPassword successfully executed by the system");
+		
+		
+		return res;
+	}
+	
+	synchronized public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException {
+		
+		Logger log = Log4JUtils.getInstance().getLogger();
+		
+		Registry registry = LocateRegistry.getRegistry(RmiUtils.getInstance().getHost(),RmiUtils.getInstance().getPort());
+
+		//Gathering the remote object as it was published into the registry
+		IcrashSystem iCrashSys_Server = (IcrashSystem) registry
+				.lookup("iCrashServer");
+
+		//set up ActAuthenticated instance that performs the request
+		iCrashSys_Server.setCurrentRequestingAuthenticatedActor(this);
+		
+		log.info("message ActAuthenticated.oeFillCaptcha sent to system");
+		PtBoolean res = iCrashSys_Server.oeFillCaptcha(aDtCaptcha);
+		
+		if(res.getValue() == true)
+			log.info("operation oeFillCaptcha successfully executed by the system");
 		
 		
 		return res;

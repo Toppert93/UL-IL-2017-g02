@@ -17,6 +17,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
@@ -100,4 +101,15 @@ public interface ActAuthenticated extends java.rmi.Remote, Serializable, JIntIsA
 	 * @throws RemoteException Thrown if the server isn't online
 	 */
 	public PtBoolean ieMessage(PtString aMessage) throws RemoteException;
+
+	
+	/**
+	 * Allows a user to enter a captcha for a captcha test.
+	 *
+	 * @param aDtcaptcha The captcha the user enters 
+	 * @return The success of the method
+	 * @throws RemoteException Thrown if the server isn't online
+	 * @throws NotBoundException Thrown if the server has not been bound in the RMI settings
+	 */
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException;
 }
