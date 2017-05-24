@@ -37,7 +37,7 @@ public class CreateMonitor implements CreatedWindows{
 	 * @param yPosition the y position of where to put the window on the screen
 	 */
 	public CreateMonitor(double xPosition, double yPosition){
-		start(xPosition, yPosition);
+		start(xPosition, yPosition); 
 	}
 	/** The stage that will host the form. */
 	private Stage stage;
