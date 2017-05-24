@@ -636,7 +636,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			Hashtable<String, CtCoordinator> cmpSystemCtCoordinator = DbCoordinators.getSystemCoordinators();
 			for(CtCoordinator ctCoord: cmpSystemCtCoordinator.values()){
 				cmpSystemCtAuthenticated.put(ctCoord.login.value.getValue(), ctCoord);
-				ActCoordinator actCoord = new ActCoordinatorImpl(ctCoord.login);
+				ActCoordinator actCoord = new ActCoordinatorImpl(ctCoord.login,ctCoord.expRank,ctCoord.expPoints);
 				env.setActCoordinator(ctCoord.login.value.getValue(), actCoord);
 				assCtAuthenticatedActAuthenticated.put(ctCoord, actCoord);
 				assCtCoordinatorActCoordinator.put(ctCoord, actCoord);
@@ -1036,7 +1036,15 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 				//go through all existing crises
 				for (String crisisKey : cmpSystemCtCrisis.keySet()) {
 					CtCrisis crisis = cmpSystemCtCrisis.get(crisisKey);
-					if (crisis.status.toString().equals(aEtCrisisStatus.toString()))
+					String cType = null;
+					if(crisis.type.toString().equals("small")){
+						cType = "Novice";
+					} else if(crisis.type.toString().equals("medium")){
+						cType="Intermediate";
+					} else {
+						cType="Expert";
+					}
+					if (crisis.status.toString().equals(aEtCrisisStatus.toString()) && cType.equals(aActCoordinator.getExpRank().name()))
 						//PostF1
 						crisis.isSentToCoordinator(aActCoordinator);
 				}
@@ -1112,12 +1120,23 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 							break;
 					}
 				}
+				
+				//PostF4
+				if(theActCoordinator.getExpPoints().value.getValue()==19){
+					theActCoordinator.setExpRank(EtExperienceRank.Intermediate);
+				} else if(theActCoordinator.getExpPoints().value.getValue()==59){
+					theActCoordinator.setExpRank(EtExperienceRank.Expert);
+				} else if(theActCoordinator.getExpPoints().value.getValue()==120){
+					theActCoordinator.setExpPoints(new DtExpPoints(new PtInteger(theActCoordinator.getExpPoints().value.getValue()-1)));
+				}
+				theActCoordinator.setExpPoints(new DtExpPoints(new PtInteger(theActCoordinator.getExpPoints().value.getValue()+1)));
 	
-				//PostF4	
+				//PostF5	
 				PtString aMessage = new PtString("The crisis "
 						//+ "with ID '"
 						//+ aDtCrisisID.value.getValue() + "' "
 								+ "is now closed !");
+				
 				try {
 					theActCoordinator.ieMessage(aMessage);
 				} catch (RemoteException e) {
@@ -1304,13 +1323,13 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			IcrashEnvironment env = (IcrashEnvironment) registry
 					.lookup("iCrashEnvironment");
 			//PostF1
-			ActCoordinator actCoordinator = new ActCoordinatorImpl(aDtLogin);
+			EtExperienceRank aRank = EtExperienceRank.Novice;
+			DtExpPoints aPoints = new DtExpPoints(new PtInteger(0));
+			ActCoordinator actCoordinator = new ActCoordinatorImpl(aDtLogin, aRank, aPoints);
 			env.setActCoordinator(aDtLogin.value.getValue(), actCoordinator);
 
 			//PostF2
 			CtCoordinator ctCoordinator = new CtCoordinator();
-			EtExperienceRank aRank = EtExperienceRank.Novice;
-			DtExpPoints aPoints = new DtExpPoints(new PtInteger(0));
 			PtInteger newvalue = new PtInteger(0);
 			DtInteger aNbrAttempts = new DtInteger(newvalue);
 

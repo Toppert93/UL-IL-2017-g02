@@ -24,10 +24,12 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtAl
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtComment;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCrisisID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtExpPoints;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisType;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtExperienceRank;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
@@ -42,6 +44,9 @@ public class ActCoordinatorImpl extends ActAuthenticatedImpl implements ActCoord
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 227L;
+	
+	private EtExperienceRank expRank;
+	private DtExpPoints expPoints;
 
 	/**
 	 * Instantiates a new server side actor of type coordinator.
@@ -49,10 +54,28 @@ public class ActCoordinatorImpl extends ActAuthenticatedImpl implements ActCoord
 	 * @param n The username of the actor, this is of type DtLogin. It is used in identifying the correct actor when working with their Class type (CtCoordinator)
 	 * @throws RemoteException Thrown if the server is offline
 	 */
-	public ActCoordinatorImpl(DtLogin n) throws RemoteException {
+	public ActCoordinatorImpl(DtLogin n, EtExperienceRank aRank, DtExpPoints aPoints) throws RemoteException {
 		super(n);
+		expRank=aRank;
+		expPoints=aPoints;
 	}
 	
+	public EtExperienceRank getExpRank() {
+		return expRank;
+	}
+
+	public void setExpRank(EtExperienceRank expRank) {
+		this.expRank = expRank;
+	}
+
+	public DtExpPoints getExpPoints() {
+		return expPoints;
+	}
+
+	public void setExpPoints(DtExpPoints expPoints) {
+		this.expPoints = expPoints;
+	}
+
 	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActCoordinator#oeGetCrisisSet(lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus)
 	 */
