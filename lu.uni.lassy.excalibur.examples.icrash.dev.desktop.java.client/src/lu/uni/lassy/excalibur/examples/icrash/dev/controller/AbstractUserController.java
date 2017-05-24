@@ -18,6 +18,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerNo
 import lu.uni.lassy.excalibur.examples.icrash.dev.controller.exceptions.ServerOfflineException;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActProxyAuthenticated;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActProxyAuthenticated.UserType;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
@@ -97,6 +98,28 @@ public abstract class AbstractUserController implements HasListeners {
 		DtLogin aDtLogin = new DtLogin(new PtString(login));
 		try{
 			return this.getAuth().oeResetPassword(aDtLogin);
+		} catch (RemoteException e) {
+			Log4JUtils.getInstance().getLogger().error(e);
+			throw new ServerOfflineException();
+		} catch (NotBoundException e) {
+			Log4JUtils.getInstance().getLogger().error(e);
+			throw new ServerNotBoundException();
+		}
+		
+	}
+	
+	/**
+	 * The method that allows the user to reset the password.
+	 *
+	 * @param captcha entered by the user
+	 * @return The success of the method
+	 * @throws ServerOfflineException Thrown if the server is currently offline
+	 * @throws ServerNotBoundException Thrown if the server hasn't been bound in the RMI settings
+	 */
+	public PtBoolean oeFillCaptcha(String captcha) throws ServerOfflineException, ServerNotBoundException {
+		DtCaptcha aDtCaptcha = new DtCaptcha(new PtString(captcha));
+		try{
+			return this.getAuth().oeFillCaptcha(aDtCaptcha);
 		} catch (RemoteException e) {
 			Log4JUtils.getInstance().getLogger().error(e);
 			throw new ServerOfflineException();

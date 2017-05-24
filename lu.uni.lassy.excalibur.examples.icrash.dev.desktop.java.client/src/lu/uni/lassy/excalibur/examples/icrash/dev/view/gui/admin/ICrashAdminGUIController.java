@@ -117,6 +117,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     /** The textfield that allows input of a username for logon. */
     @FXML
     private TextField txtfldAdminUserName;
+    
+    /** The textfield that allows input of a captcha for the captcha test. */
+    @FXML
+    private TextField txtfldAdminCaptcha;
 
     /** The passwordfield that allows input of a password for logon. */
     @FXML
@@ -125,6 +129,12 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     /** The button that initiates the login function. */
     @FXML
     private Button bttnAdminLogin;
+    
+    
+    /** The button that initiates the login function. */
+    @FXML
+    private Button bttnAdminCaptcha;
+    
     
     /** The button that initiates the reset password procedure  */
     @FXML
@@ -295,6 +305,18 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 
     	resetPassword();
     }
+    
+    /**
+     * The button event that will initiate a captcha validation of a user's captcha test
+     * 
+     * @param event
+     */
+    @FXML
+    void bttnBottomCaptchaPaneLogin_OnClick(ActionEvent event) {
+
+
+    	fillCaptcha();
+    }
 
     /**
      * The button event that will initiate the logging off of a user
@@ -359,6 +381,9 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		brdpnAdmin.setVisible(loggedOn);
 		bttnAdminLogoff.setDisable(!loggedOn);
 		bttnAdminLogin.setDefaultButton(!loggedOn);
+		
+		txtfldAdminCaptcha.setVisible(false);
+		bttnAdminCaptcha.setVisible(false);
 		if (!loggedOn){
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
@@ -367,8 +392,26 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 				anchrpnCoordinatorDetails.getChildren().remove(i);
 		}
 		
-	}	
+	}
 	
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#captchaShowPanes(boolean)
+	 */
+	protected void captchaShowPanes(boolean captchaOn){
+
+		pnAdminLogon.setVisible(!captchaOn);
+		brdpnAdmin.setVisible(captchaOn);
+		bttnAdminLogoff.setDisable(!captchaOn);
+		bttnAdminLogin.setDefaultButton(!captchaOn);
+		if (!captchaOn){
+			txtfldAdminUserName.setText("");
+			psswrdfldAdminPassword.setText("");
+			txtfldAdminUserName.requestFocus();
+			for (int i = anchrpnCoordinatorDetails.getChildren().size() -1; i >= 0; i--)
+				anchrpnCoordinatorDetails.getChildren().remove(i);
+		}
+		
+	}
 	/**
 	 * Server has gone down.
 	 */
@@ -643,6 +686,27 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		}  	catch (ServerOfflineException | ServerNotBoundException e) {
 			showExceptionErrorMessage(e);
 		}	
+		
+    	else
+    		showWarningNoDataEntered();
+	}
+	
+	/* (non-Javadoc)
+	 *
+	 */
+	@Override
+	public void fillCaptcha() {
+
+		if(txtfldAdminCaptcha.getText().length() > 0){
+			try {
+				if (userController.oeFillCaptcha(txtfldAdminCaptcha.getText()).getValue())
+					logonShowPanes(true);
+			}
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+    	}
+			
 		
     	else
     		showWarningNoDataEntered();

@@ -142,6 +142,14 @@
                                     </Button>
                                  </children>
                               </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+                  <Pane id="pnLogon" fx:id="pnCoordCaptcha" layoutX="10.0" layoutY="10.0" prefHeight="509.0" prefWidth="748.0">
+                     <children>
+                        <AnchorPane prefHeight="306.0" prefWidth="350.0">
+                           <children>
                               <GridPane layoutX="10.0" layoutY="10.0" prefHeight="306.0" prefWidth="350.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

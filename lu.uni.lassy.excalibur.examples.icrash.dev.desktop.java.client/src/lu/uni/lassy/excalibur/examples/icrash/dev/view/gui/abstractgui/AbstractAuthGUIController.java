@@ -40,5 +40,7 @@ public abstract class AbstractAuthGUIController extends AbstractGUIController im
 	 * @param loggedOn Is the user logged onto the system?
 	 */
 	protected abstract void logonShowPanes(boolean loggedOn);
+
+	public abstract void fillCaptcha();
 	
 }

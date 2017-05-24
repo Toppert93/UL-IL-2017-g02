@@ -21,6 +21,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActPro
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtAlert;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtAlertID;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtComment;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCrisisID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
@@ -234,6 +235,12 @@ public class ActProxyCoordinatorImpl extends ActProxyAuthenticatedImpl
 	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException {
 		// TODO Auto-generated method stub
 		return super.oeResetPassword(aDtLogin);
+	}
+
+	@Override
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return super.oeFillCaptcha(aDtCaptcha);
 	}
 
 

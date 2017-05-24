@@ -18,6 +18,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.*;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPassword;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
@@ -94,10 +95,17 @@ public abstract class ActProxyAuthenticatedImpl extends UnicastRemoteObject impl
 	}
 	
 	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActProxyAuthenticated#oeLogout()
+	 *
 	 */
 	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException{
 		return this._serverSideActor.oeResetPassword(aDtLogin);
+	}
+	
+	/* (non-Javadoc)
+	 * 
+	 */
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException{
+		return this._serverSideActor.oeFillCaptcha(aDtCaptcha);
 	}
 	
 	/* (non-Javadoc)

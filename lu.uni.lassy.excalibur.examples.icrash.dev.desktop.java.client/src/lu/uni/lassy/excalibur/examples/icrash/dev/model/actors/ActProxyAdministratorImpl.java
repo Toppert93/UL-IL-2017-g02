@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActAdministrator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActProxyAdministrator;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
@@ -170,7 +171,19 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 	@Override
 	public DtInteger getNbrOfAttempts() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return super.getNbrOfAttempts();
+	}
+
+	@Override
+	public PtBoolean oeFillCaptcha(DtCaptcha aDtCaptcha) throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return super.oeFillCaptcha(aDtCaptcha);
+	}
+	
+	@Override
+	public PtBoolean oeResetPassword(DtLogin aDtLogin) throws RemoteException, NotBoundException {
+		// TODO Auto-generated method stub
+		return super.oeResetPassword(aDtLogin);
 	}
 	
 }

@@ -222,9 +222,20 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
      */
     @FXML
     void bttnCoordResetPassword_OnClick(ActionEvent event) {
-    	/*
-    	 * TODO taking to a new screen to reset password
-    	 * */
+    
+    	resetPassword();
+    }
+    
+    /**
+     * The button event that will initiate a captcha validation of a user's captcha test
+     * 
+     * @param event
+     */
+    @FXML
+    void bttnBottomCaptchaPaneLogin_OnClick(ActionEvent event) {
+
+
+    	fillCaptcha();
     }
 
     /**
@@ -563,6 +574,28 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	}
 	
 	/* (non-Javadoc)
+	 *
+	 */
+	@Override
+	public void fillCaptcha() {
+
+		if(txtfldCoordCaptcha.getText().length() > 0){
+			try {
+				if (userController.oeFillCaptcha(txtfldCoordCaptcha.getText()).getValue())
+					logonShowPanes(false);
+					captchaShowPanes(false);
+			}
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+   	}
+			
+		
+   	else
+   		showWarningNoDataEntered();
+	}
+	
+	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logonShowPanes(boolean)
 	 */
 	protected void logonShowPanes(boolean loggedOn){
@@ -693,5 +726,7 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 		}
 		return new PtBoolean(true);
 	}
+
+
 
 }
