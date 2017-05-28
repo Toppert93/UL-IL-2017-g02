@@ -57,6 +57,7 @@ public class DtCaptcha  extends DtString implements JIntIs{
 			
 			SecureRandom random = new SecureRandom();
 			String randomString = new BigInteger(130, random).toString(32);
+			randomString = randomString.substring(0, 6);
 			DtCaptcha newcaptcha = new DtCaptcha(new PtString(randomString)); 
 			
 			return newcaptcha;

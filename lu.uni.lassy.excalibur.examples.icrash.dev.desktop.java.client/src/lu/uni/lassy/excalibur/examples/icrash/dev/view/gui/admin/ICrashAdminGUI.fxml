@@ -40,8 +40,13 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <TextField fx:id="txtfldAdminCaptcha" promptText="Enter captcha here..." GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                                    <Button id="bttnAdminCaptcha" fx:id="bttnAdminCaptcha" defaultButton="true" mnemonicParsing="false" onAction="#bttnBottomCaptchaPaneLogin_OnClick" text="Validate Captcha" GridPane.rowIndex="3">
+                                    <Label id="lblCaptcha" fx:id="lblCaptcha" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtfldAdminCaptcha" promptText="Enter captcha here..." visible="false" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <Button id="bttnAdminCaptcha" fx:id="bttnAdminCaptcha" defaultButton="true" mnemonicParsing="false" onAction="#bttnBottomCaptchaPaneLogin_OnClick" text="Validate Captcha" visible="false" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>

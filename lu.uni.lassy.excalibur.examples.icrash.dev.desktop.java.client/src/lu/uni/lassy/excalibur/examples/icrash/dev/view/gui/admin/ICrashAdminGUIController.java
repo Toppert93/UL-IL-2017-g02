@@ -11,6 +11,7 @@
  *     Thomas Mortimer - Updated client to MVC and added new design patterns
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
+
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -40,6 +41,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.layout.AnchorPane;
@@ -59,6 +61,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbPointOfIntere
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
@@ -81,6 +84,8 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.coordinator.CreateICr
  * The Class ICrashGUIController, which deals with handling the GUI and it's functions for the Administrator.
  */
 public class ICrashAdminGUIController extends AbstractAuthGUIController {
+	
+	int attempts = 0;
 	
 	/*
 	* This section of controls and methods is to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
@@ -134,7 +139,11 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     /** The button that initiates the login function. */
     @FXML
     private Button bttnAdminCaptcha;
+   
+    /** The label that contains the new captcha. */
+    @FXML
     
+    private Label lblCaptcha; 
     
     /** The button that initiates the reset password procedure  */
     @FXML
@@ -382,8 +391,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		bttnAdminLogoff.setDisable(!loggedOn);
 		bttnAdminLogin.setDefaultButton(!loggedOn);
 		
-		txtfldAdminCaptcha.setVisible(false);
-		bttnAdminCaptcha.setVisible(false);
+
 		if (!loggedOn){
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
@@ -398,14 +406,23 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#captchaShowPanes(boolean)
 	 */
 	protected void captchaShowPanes(boolean captchaOn){
-
+		
+		String generatedCaptcha = "";
+		DtCaptcha newCaptcha = new DtCaptcha(new PtString(generatedCaptcha));
+		newCaptcha = newCaptcha.generateNewCaptcha();
+		
+		lblCaptcha.setText(newCaptcha.value.getValue());
+		lblCaptcha.setVisible(captchaOn);
 		pnAdminLogon.setVisible(!captchaOn);
-		brdpnAdmin.setVisible(captchaOn);
-		bttnAdminLogoff.setDisable(!captchaOn);
 		bttnAdminLogin.setDefaultButton(!captchaOn);
+		
+		txtfldAdminCaptcha.setVisible(captchaOn);
+		bttnAdminCaptcha.setVisible(captchaOn);
+		bttnAdminCaptcha.setDefaultButton(captchaOn);
 		if (!captchaOn){
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
+			txtfldAdminCaptcha.setText("");
 			txtfldAdminUserName.requestFocus();
 			for (int i = anchrpnCoordinatorDetails.getChildren().size() -1; i >= 0; i--)
 				anchrpnCoordinatorDetails.getChildren().remove(i);
@@ -625,16 +642,24 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		AnchorPane.setRightAnchor(grdpn, 0.0);
 		txtfldUserID.requestFocus();
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logon()
 	 */
 	@Override
 	public void logon() {
+		
 		if(txtfldAdminUserName.getText().length() > 0 && psswrdfldAdminPassword.getText().length() > 0){
 			try {
+				
+				if (attempts < 3){
 				if (userController.oeLogin(txtfldAdminUserName.getText(), psswrdfldAdminPassword.getText()).getValue())
 					logonShowPanes(true);
+				else attempts++;
+				}
+				else {
+					captchaShowPanes(true);
+				}
 			}
 			catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
@@ -684,10 +709,13 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	@Override
 	public void fillCaptcha() {
 
-		if(txtfldAdminCaptcha.getText().length() > 0){
+		if((txtfldAdminCaptcha.getText().length() > 0) && (txtfldAdminCaptcha.getText().equals(lblCaptcha.getText()))){
 			try {
-				if (userController.oeFillCaptcha(txtfldAdminCaptcha.getText()).getValue())
-					logonShowPanes(true);
+				if (userController.oeFillCaptcha(txtfldAdminCaptcha.getText()).getValue()){
+					captchaShowPanes(false);
+					attempts = 0;
+				}
+				else{captchaShowPanes(true);}
 			}
 			catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
