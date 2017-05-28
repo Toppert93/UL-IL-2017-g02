@@ -56,11 +56,14 @@ public class DbCoordinators extends DbAbstract{
 				String id = aCtCoordinator.id.value.getValue();
 				String login =  aCtCoordinator.login.value.getValue();
 				String pwd =  aCtCoordinator.pwd.value.getValue();
+				String mail = aCtCoordinator.mail.value.getValue();
+				int nbrOfAttempts = aCtCoordinator.nbrattempts.value.getValue();
+				
 	
 				log.debug("[DATABASE]-Insert coordinator");
 				int val = st.executeUpdate("INSERT INTO "+ dbName+ ".coordinators" +
-											"(id,login,pwd)" + 
-											"VALUES("+"'"+id+"'"+",'"+login+"','"+pwd+"')");
+											"(id,login,pwd,mail,nbrOfAttempts)" + 
+											"VALUES("+"'"+id+"'"+",'"+login+"','"+pwd+"','"+mail+"','"+nbrOfAttempts+"')");
 				
 				log.debug(val + " row affected");
 			}
