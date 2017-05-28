@@ -232,7 +232,7 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
      * @param event
      */
     @FXML
-    void bttnBottomCaptchaPaneLogin_OnClick(ActionEvent event) {
+    void bttnCoordFillCaptcha_OnClick(ActionEvent event) {
 
 
     	fillCaptcha();

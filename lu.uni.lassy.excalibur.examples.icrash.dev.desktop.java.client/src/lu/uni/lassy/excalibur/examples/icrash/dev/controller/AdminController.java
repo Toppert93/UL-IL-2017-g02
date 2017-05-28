@@ -77,7 +77,8 @@ public class AdminController extends AbstractUserController {
 			ht.put(aDtCoordinatorID, aDtCoordinatorID.value.getValue());
 			ht.put(aDtLogin, aDtLogin.value.getValue());
 			ht.put(aDtPassword, aDtPassword.value.getValue());
-			try {
+			ht.put(aDtMail, aDtMail.value.getValue());
+					try {
 				return actorAdmin.oeAddCoordinator(aDtCoordinatorID, aDtLogin, aDtPassword, aDtMail);
 			} catch (RemoteException e) {
 				Log4JUtils.getInstance().getLogger().error(e);
