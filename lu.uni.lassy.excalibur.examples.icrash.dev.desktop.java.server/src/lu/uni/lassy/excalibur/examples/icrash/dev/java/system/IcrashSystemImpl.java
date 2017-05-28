@@ -1249,11 +1249,10 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		try{
 			//PreP1
 			isSystemStarted();
-			CtAuthenticated ctAuthenticatedInstance = cmpSystemCtAuthenticated
-					.get(aDtLogin.value.getValue());
+			CtAuthenticated ctAuthenticatedInstance = cmpSystemCtAuthenticated.get(aDtLogin.value.getValue());
 			log.debug("current Requesting Authenticated Actor Instance is "
 					+ currentRequestingAuthenticatedActor.getLogin().value.getValue());
-			PtBoolean loginCheck = ctAuthenticatedInstance.pwd.eq(aDtLogin);
+			PtBoolean loginCheck = ctAuthenticatedInstance.login.eq(aDtLogin);
 
 			log.debug("current Associated CtAuthenticated Instance is " + ctAuthenticatedInstance.toString());
 			if (loginCheck.getValue()) {
@@ -1262,9 +1261,13 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 				//PostF1
 				PtString newp = new PtString("new password");
 				DtPassword newpassword = new DtPassword(newp);
+				newpassword = newpassword.generateNewPassword();
 				user.pwd = newpassword;
+				user.vpIsLogged = new PtBoolean(false);
+				
 				PtString aMessage = new PtString(
-						"Your password has been reset ! Check your mails !");
+						"Your password has been reset ! "
+						+ " Your new password is : " + newpassword);
 				currentRequestingAuthenticatedActor.ieMessage(aMessage);
 			}
 			return new PtBoolean(true);

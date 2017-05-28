@@ -62,6 +62,7 @@ public class DtPassword  extends DtString implements JIntIs{
 			
 			SecureRandom random = new SecureRandom();
 			String randomString = new BigInteger(130, random).toString(32);
+			randomString = (String) randomString.subSequence(0, 8);
 			DtPassword newpassword = new DtPassword(new PtString(randomString)); 
 			
 			return newpassword;
