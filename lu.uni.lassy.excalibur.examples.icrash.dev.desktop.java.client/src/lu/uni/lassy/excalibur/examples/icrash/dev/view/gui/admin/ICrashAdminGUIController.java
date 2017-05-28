@@ -674,19 +674,6 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			}	
     	}
 		
-		else if(txtfldAdminUserName.getText().length() == 0) try {
-			
-			DtLogin userlogin = userController.getAuth().getLogin();
-			String thisuser = userlogin.toString();
-			if (userController.oeResetPassword(thisuser).getValue())
-				logonShowPanes(false);
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}  	catch (ServerOfflineException | ServerNotBoundException e) {
-			showExceptionErrorMessage(e);
-		}	
-		
     	else
     		showWarningNoDataEntered();
 	}

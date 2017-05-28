@@ -500,29 +500,20 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	@Override
 	public void logon() {
 
-		try {
-			if(userController.getAuth().getNbrOfAttempts().value.getValue()<3){
-			if(txtfldCoordLogonUserName.getText().length() > 0 && psswrdfldCoordLogonPassword.getText().length() > 0){
-				try {
-					if (userController.oeLogin(txtfldCoordLogonUserName.getText(), psswrdfldCoordLogonPassword.getText()).getValue()){
-						if (userController.getUserType() == UserType.Coordinator){
-							logonShowPanes(true);
-						}
+		if(txtfldCoordLogonUserName.getText().length() > 0 && psswrdfldCoordLogonPassword.getText().length() > 0){
+			try {
+				if (userController.oeLogin(txtfldCoordLogonUserName.getText(), psswrdfldCoordLogonPassword.getText()).getValue()){
+					if (userController.getUserType() == UserType.Coordinator){
+						logonShowPanes(true);
 					}
 				}
-				catch (ServerOfflineException | ServerNotBoundException e) {
-					showExceptionErrorMessage(e);
-				}
 			}
-			else
-				showWarningNoDataEntered();
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
 			}
-			else
-			{/*do captcha*/}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		else
+			showWarningNoDataEntered();
 	}
 
 	/* (non-Javadoc)
@@ -555,19 +546,6 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 				showExceptionErrorMessage(e);
 			}	
     	}
-		
-		else if(txtfldCoordLogonUserName.getText().length() == 0) try {
-			
-			DtLogin userlogin = userController.getAuth().getLogin();
-			String thisuser = userlogin.toString();
-			if (userController.oeResetPassword(thisuser).getValue())
-				logonShowPanes(false);
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}  	catch (ServerOfflineException | ServerNotBoundException e) {
-			showExceptionErrorMessage(e);
-		}	
 		
     	else
     		showWarningNoDataEntered();

@@ -41,7 +41,7 @@
                                  </rowConstraints>
                                  <children>
                                     <TextField fx:id="txtfldAdminCaptcha" promptText="Enter captcha here..." GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                                    <Button fx:id="bttnAdminCaptcha" defaultButton="true" mnemonicParsing="false" onAction="#bttnBottomCaptchaPaneLogin_OnClick" text="Validate Captcha" GridPane.rowIndex="3">
+                                    <Button id="bttnAdminCaptcha" fx:id="bttnAdminCaptcha" defaultButton="true" mnemonicParsing="false" onAction="#bttnBottomCaptchaPaneLogin_OnClick" text="Validate Captcha" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -121,7 +121,7 @@
                            <bottom>
                               <HBox alignment="TOP_RIGHT" prefHeight="51.0" prefWidth="748.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="bttnTopLogoff" fx:id="bttnAdminLogoff" mnemonicParsing="false" onAction="#bttnTopLogoff_OnClick" prefHeight="50.0" prefWidth="106.0" text="Reset Password">
+                                    <Button id="bttnAdminResetPassword" fx:id="bttnAdminResetPassword" mnemonicParsing="false" onAction="#bttnResetPassword_OnClick" prefHeight="50.0" prefWidth="106.0" text="Reset Password">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -129,7 +129,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button id="bttnAdminResetPassword" fx:id="bttnAdminResetPassword" disable="true" mnemonicParsing="false" onAction="#bttnBottomLoginPaneLogin_OnClick" prefHeight="50.0" prefWidth="100.0" text="Logoff">
+                                    <Button id="bttnAdminLogoff" fx:id="bttnAdminLogoff" disable="true" mnemonicParsing="false" onAction="#bttnTopLogoff_OnClick" prefHeight="50.0" prefWidth="100.0" text="Logoff">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
