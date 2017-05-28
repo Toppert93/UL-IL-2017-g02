@@ -1298,7 +1298,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 				DtCaptcha newCaptcha = new DtCaptcha(newp);
 
 				PtString aMessage = new PtString(
-						"The value of the new captcha is : " + newCaptcha);
+						"Captcha correct ! You may login again !");
 				currentRequestingAuthenticatedActor.ieMessage(aMessage);
 			}
 			return new PtBoolean(true);

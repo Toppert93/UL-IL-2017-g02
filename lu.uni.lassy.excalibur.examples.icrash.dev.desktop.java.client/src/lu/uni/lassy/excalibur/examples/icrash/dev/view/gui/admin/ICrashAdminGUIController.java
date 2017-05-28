@@ -415,6 +415,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		lblCaptcha.setVisible(captchaOn);
 		pnAdminLogon.setVisible(!captchaOn);
 		bttnAdminLogin.setDefaultButton(!captchaOn);
+		bttnAdminResetPassword.setDisable(captchaOn);
 		
 		txtfldAdminCaptcha.setVisible(captchaOn);
 		bttnAdminCaptcha.setVisible(captchaOn);
@@ -723,8 +724,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     	}
 			
 		
-    	else
+    	else{
     		showWarningNoDataEntered();
+			captchaShowPanes(true);
+    	}
 	}
 	
 	
