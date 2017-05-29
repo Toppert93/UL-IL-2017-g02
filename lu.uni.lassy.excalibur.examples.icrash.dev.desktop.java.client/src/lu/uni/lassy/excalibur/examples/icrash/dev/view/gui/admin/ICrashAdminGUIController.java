@@ -478,9 +478,8 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		brdpnAdmin.setVisible(loggedOn);
 		bttnAdminLogoff.setDisable(!loggedOn);
 		bttnAdminLogin.setDefaultButton(!loggedOn);
+		
 
-		txtfldAdminCaptcha.setVisible(false);
-		bttnAdminCaptcha.setVisible(false);
 		if (!loggedOn) {
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
@@ -497,20 +496,30 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
 	 * AbstractAuthGUIController#captchaShowPanes(boolean)
 	 */
-	protected void captchaShowPanes(boolean captchaOn) {
-
+	protected void captchaShowPanes(boolean captchaOn){
+		
+		String generatedCaptcha = "";
+		DtCaptcha newCaptcha = new DtCaptcha(new PtString(generatedCaptcha));
+		newCaptcha = newCaptcha.generateNewCaptcha();
+		
+		lblCaptcha.setText(newCaptcha.value.getValue());
+		lblCaptcha.setVisible(captchaOn);
 		pnAdminLogon.setVisible(!captchaOn);
-		brdpnAdmin.setVisible(captchaOn);
-		bttnAdminLogoff.setDisable(!captchaOn);
 		bttnAdminLogin.setDefaultButton(!captchaOn);
-		if (!captchaOn) {
+		bttnAdminResetPassword.setDisable(captchaOn);
+		
+		txtfldAdminCaptcha.setVisible(captchaOn);
+		bttnAdminCaptcha.setVisible(captchaOn);
+		bttnAdminCaptcha.setDefaultButton(captchaOn);
+		if (!captchaOn){
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
+			txtfldAdminCaptcha.setText("");
 			txtfldAdminUserName.requestFocus();
-			for (int i = anchrpnCoordinatorDetails.getChildren().size() - 1; i >= 0; i--)
+			for (int i = anchrpnCoordinatorDetails.getChildren().size() -1; i >= 0; i--)
 				anchrpnCoordinatorDetails.getChildren().remove(i);
 		}
-
+		
 	}
 
 	/**
@@ -744,7 +753,26 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	 */
 	@Override
 	public void logon() {
-		if (txtfldAdminUserName.getText().length() > 0 && psswrdfldAdminPassword.getText().length() > 0) {
+	
+		if(txtfldAdminUserName.getText().length() > 0 && psswrdfldAdminPassword.getText().length() > 0){
+			try {
+				
+				if (attempts < 3){
+				if (userController.oeLogin(txtfldAdminUserName.getText(), psswrdfldAdminPassword.getText()).getValue())
+					logonShowPanes(true);
+				else attempts++;
+				}
+				else {
+					captchaShowPanes(true);
+				}
+			}
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+    	}
+    	else
+    		showWarningNoDataEntered();
+	}
 			try {
 				if (userController.oeLogin(txtfldAdminUserName.getText(), psswrdfldAdminPassword.getText()).getValue())
 					logonShowPanes(true);
@@ -779,23 +807,30 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	 * AbstractAuthGUIController#logon()
 	 */
 	@Override
-	public void resetPassword() {
-
-		if (txtfldAdminUserName.getText().length() > 0) {
+	@Override
+	public void fillCaptcha() {
+	
+		if((txtfldAdminCaptcha.getText().length() > 0) && (txtfldAdminCaptcha.getText().equals(lblCaptcha.getText()))){
 			try {
-				if (userController.oeResetPassword(txtfldAdminUserName.getText()).getValue())
-					logonShowPanes(false);
-			} catch (ServerOfflineException | ServerNotBoundException e) {
-				showExceptionErrorMessage(e);
-			}
+		
+				if (userController.oeFillCaptcha(txtfldAdminCaptcha.getText()).getValue()){
+					captchaShowPanes(false);
+					attempts = 0;
+				}
+				else{captchaShowPanes(true);}
 		}
-
-		else
-			showWarningNoDataEntered();
+	
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+    	}
+			
+		
+    	else{
+    		showWarningNoDataEntered();
+			captchaShowPanes(true);
+    	}
 	}
-
-	/*
-	 * (non-Javadoc)
 	 *
 	 */
 	@Override
