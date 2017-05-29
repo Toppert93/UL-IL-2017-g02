@@ -38,14 +38,16 @@ import icrash.environment
   		and self.rnActor = TheActor
 		/* PostF01 */
 		and j = 0
-		and flag = true
   		TheSystem.rnctPointOfInterest->select(AllctPointOfInterest)
  		= CollctPointOfInterest
- 		and while (j.lt(CollctPointOfInterest.length-1))
- 		if (CollctPointOfInterset.get(j).location.distanceTo(AdtGPSLocation)> CollctPointOfInterest.get(j+1).location.distanceTO(AdtGPSLocation) )
+ 		SortCtPointOfInterest = CollctPointOfInterest.sort()
+ 		and while (j.lt(SortctPointOfInterest.length-1)
+ 		if (SortCtPointOfInterset.get(j).location.distanceTo(AdtGPSLocation)< SortCtPointOfInterest.get(j+1).location.distanceTO(AdtGPSLocation) )
  		 then (true and j+1)
- 		 else false
+ 		 else (false and break)
  		 endif
+ 		 )
+ 		 
  		
  		
  		}

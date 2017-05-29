@@ -142,7 +142,7 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 	
 	}
 
-	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws RemoteException, NotBoundException {
+	public PtBoolean oeSelectCategory(EtCategory aEtCategory) throws RemoteException, NotBoundException {
 		if(getServerSideActor() !=null)
 			return ((ActAdministrator) getServerSideActor()).oeSelectCategory(aEtCategory);
 		else

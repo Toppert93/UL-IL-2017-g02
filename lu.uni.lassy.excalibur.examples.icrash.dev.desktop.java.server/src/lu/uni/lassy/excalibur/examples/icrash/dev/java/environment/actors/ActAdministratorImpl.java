@@ -245,7 +245,7 @@ public class ActAdministratorImpl extends ActAuthenticatedImpl implements
 	}
 	
 	@Override
-	public  ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws RemoteException, NotBoundException {
+	public PtBoolean oeSelectCategory(EtCategory aEtCategory) throws RemoteException, NotBoundException {
 		Logger log = Log4JUtils.getInstance().getLogger();
 
 		Registry registry = LocateRegistry.getRegistry(RmiUtils.getInstance().getHost(),RmiUtils.getInstance().getPort());
@@ -257,8 +257,8 @@ public class ActAdministratorImpl extends ActAuthenticatedImpl implements
 		//set up ActAuthenticated instance that performs the request
 		iCrashSys_Server.setCurrentRequestingAuthenticatedActor(this);
 
-		log.info("message ActAdministrator.oeEditPointOfInterest sent to system");
-		ArrayList<CtPointOfInterest> res = iCrashSys_Server.oeSelectCategory(  aEtCategory);
+		log.info("message ActAdministrator.oeSelectCategory sent to system");
+		PtBoolean res = iCrashSys_Server.oeSelectCategory(aEtCategory);
 		return res;
 
 		

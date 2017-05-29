@@ -6,5 +6,5 @@
 
 @@view uci-uciugAdministrateTheSystemPointOfInterest
 @instance Use-Case usecases.uciugAdministrateTheSystemPointOfInterest.uciugAdministrateTheSystemPointOfInterest 
-@description ""
-@caption ""
+@description "shows the sequence diagram representing a use case instance for the user goal use case \msrcode{ugAdministrateTheSystem}."
+@caption "uci-ugAdministrateTheSystemPointOfInterest"
