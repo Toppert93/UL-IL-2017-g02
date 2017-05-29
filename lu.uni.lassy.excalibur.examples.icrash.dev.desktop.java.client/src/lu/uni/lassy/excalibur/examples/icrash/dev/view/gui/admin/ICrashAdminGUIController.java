@@ -12,7 +12,6 @@
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -39,6 +38,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableCell;
@@ -135,8 +135,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	private TextField txtfldAdminCaptcha;
 	
 	/** The label that contains the new captcha. */
-	@FXML
-	private Label lblCaptcha;
+	
+    @FXML
+    private Label lblCaptcha;
+
 
 	/** The passwordfield that allows input of a password for logon. */
 	@FXML
