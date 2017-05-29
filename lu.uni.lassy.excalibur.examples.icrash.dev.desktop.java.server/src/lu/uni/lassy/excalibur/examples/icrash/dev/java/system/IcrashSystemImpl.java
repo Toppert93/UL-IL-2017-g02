@@ -1286,28 +1286,25 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 		try{
 			//PreP1
 			isSystemStarted();
-			CtAuthenticated ctAuthenticatedInstance = cmpSystemCtAuthenticated
-					.get(aDtCaptcha.value.getValue());
-			log.debug("current Requesting Authenticated Actor Instance is "
-					+ currentRequestingAuthenticatedActor.getLogin().value.getValue());
-			PtBoolean loginCheck = ctAuthenticatedInstance.pwd.eq(aDtCaptcha);
 
-			log.debug("current Associated CtAuthenticated Instance is " + ctAuthenticatedInstance.toString());
+			log.debug("current Requesting Authenticated Actor Instance is ");
+			PtBoolean loginCheck = new PtBoolean(true);
+
+			log.debug("current Associated CtAuthenticated Instance is ");
 			if (loginCheck.getValue()) {
-				String key = ctAuthenticatedInstance.login.value.getValue();
-				CtAuthenticated user = cmpSystemCtAuthenticated.get(key);
+
 				//PostF1
 				PtString newp = new PtString("new password");
-				DtPassword newpassword = new DtPassword(newp);
-				user.pwd = newpassword;
+				DtCaptcha newCaptcha = new DtCaptcha(newp);
+
 				PtString aMessage = new PtString(
-						"Your password has been reset ! Check your mails !");
+						"Captcha correct ! You may login again !");
 				currentRequestingAuthenticatedActor.ieMessage(aMessage);
 			}
 			return new PtBoolean(true);
 		}
 		catch(Exception e){
-			log.error("Exception in oeResetPassword..." + e);
+			log.error("Exception in oeFillCaptcha..." + e);
 		}
 		return new PtBoolean(false);
 	}
@@ -1566,25 +1563,33 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws RemoteException {
+	public PtBoolean oeSelectCategory(EtCategory aEtCategory) throws RemoteException {
 		try {//PreP1
 		isSystemStarted();
 		//PreP2
 		isAdminLoggedIn();
-		ArrayList<CtPointOfInterest> SelectedList = new ArrayList<CtPointOfInterest>();
 		ArrayList<CtPointOfInterest> List = getAllCtPointOfInterest();
-		for(int i= 0;i< List.size();i++){
-			if(List.get(i).Category==aEtCategory){
-				SelectedList.add(List.get(i));
+		ArrayList<CtPointOfInterest> SortedCollection =new ArrayList<CtPointOfInterest>();
+		for(int i=0;i<List.size();i++){
+			if(List.get(i).Category.name() == aEtCategory.name() ){
+				SortedCollection.add(List.get(i));
 			}
 		}
+		for(int j=0;j<SortedCollection.size();j++){
+			if(SortedCollection.get(j).Category.name()!= aEtCategory.name()){
+				return new PtBoolean(false);
+			}
+			
+			}
+		return new PtBoolean(true);
 		
-				return SelectedList;
+		
+			
 		
 		
 	} catch (Exception e) {
-		log.error("Exception in oeDeleteCoordinator..." + e);
-		return null;
+		log.error("Exception in oeSelectCategory..." + e);
+		return new PtBoolean(false);
 	
 	}
 	}

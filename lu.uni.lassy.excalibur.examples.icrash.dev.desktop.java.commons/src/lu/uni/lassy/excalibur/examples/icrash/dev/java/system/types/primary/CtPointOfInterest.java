@@ -20,7 +20,6 @@ public class CtPointOfInterest implements Serializable {
 	
 	/** The comment associated with the PointOfInterest. Often refered to as the report. */
 	public DtDescription Description;
-
 	
 
 	/**

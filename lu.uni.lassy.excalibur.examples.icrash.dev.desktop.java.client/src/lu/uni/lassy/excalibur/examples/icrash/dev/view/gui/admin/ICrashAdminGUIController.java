@@ -11,14 +11,19 @@
  *     Thomas Mortimer - Updated client to MVC and added new design patterns
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
+
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale.Category;
 import java.util.Observable;
 import java.util.ResourceBundle;
+
+import javax.swing.JComboBox;
 
 import javafx.beans.property.ReadOnlyDoubleWrapper;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -35,12 +40,18 @@ import javafx.event.EventHandler;
  */
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -67,6 +78,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLo
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLongitude;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtPointOfInterestID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCategory;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.PointOfInterest;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtReal;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
@@ -74,6 +86,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
 import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController;
 import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.coordinator.CreateICrashCoordGUI;
+
 /*
  * This is the end of the import section to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
  */
@@ -81,6 +94,8 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.coordinator.CreateICr
  * The Class ICrashGUIController, which deals with handling the GUI and it's functions for the Administrator.
  */
 public class ICrashAdminGUIController extends AbstractAuthGUIController {
+	
+	int attempts = 0;
 	
 	/*
 	* This section of controls and methods is to be replaced by modifications in the ICrash.fxml document from the sample skeleton controller
@@ -90,381 +105,477 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 
     /** The pane containing the logon controls. */
 
+	@FXML
+	private TreeTableView<PointOfInterest> TTVPOI = new TreeTableView<PointOfInterest>();
+	
 	
 	@FXML
-    private Pane pnAdminLogon;
-	TableColumn<String,String> tblcolID = new TableColumn<>("ID");
-	TableColumn<String,String> tblcolCategory = new TableColumn<>("Category");
-	TableColumn<String,String> tblcollat = new TableColumn<>("Latitude");
-	TableColumn<String,String> tblcollong = new TableColumn<>("Longitude");
-	TableColumn<String,String> tblcoldes = new TableColumn<>("Description");
-	
+	private Pane pnAdminLogon;
+
 	@FXML
 	private SplitPane pnAdminPointOfInterest;
-	
-	@FXML 
+
+	@FXML
+	private ComboBox<String> ComboBoxPOI;
+
+	@FXML
 	private AnchorPane pnAdminLog;
 	
 	@FXML
 	private AnchorPane PnAdminPOI;
-	
-	@FXML
-	private TableView<String> TableViewPOI;
-	
+
 	@FXML
 	private AnchorPane PnAdminTreeView;
 
-    /** The textfield that allows input of a username for logon. */
-    @FXML
-    private TextField txtfldAdminUserName;
-    
-    /** The textfield that allows input of a captcha for the captcha test. */
-    @FXML
-    private TextField txtfldAdminCaptcha;
+	/** The textfield that allows input of a username for logon. */
+	@FXML
+	private TextField txtfldAdminUserName;
 
-    /** The passwordfield that allows input of a password for logon. */
-    @FXML
-    private PasswordField psswrdfldAdminPassword;
+	/** The textfield that allows input of a captcha for the captcha test. */
+	@FXML
+	private TextField txtfldAdminCaptcha;
 
-    /** The button that initiates the login function. */
-    @FXML
-    private Button bttnAdminLogin;
-    
-    
-    /** The button that initiates the login function. */
-    @FXML
-    private Button bttnAdminCaptcha;
-    
-    
-    /** The button that initiates the reset password procedure  */
-    @FXML
-    private Button bttnAdminResetPassword;
+	/** The passwordfield that allows input of a password for logon. */
+	@FXML
+	private PasswordField psswrdfldAdminPassword;
 
-    /** The borderpane that contains the normal controls the user will use. */
-    @FXML
-    private BorderPane brdpnAdmin;
+	/** The button that initiates the login function. */
+	@FXML
+	private Button bttnAdminLogin;
 
-    /** The anchorpane that will have the add or delete coordinator controls added/removed from it */
-    @FXML
-    private AnchorPane anchrpnCoordinatorDetails;
+	/** The button that initiates the login function. */
+	@FXML
+	private Button bttnAdminCaptcha;
 
-    /** The button that shows the controls for adding a coordinator */
-    @FXML
-    private Button bttnBottomAdminCoordinatorAddACoordinator;
+	/** The button that initiates the reset password procedure */
+	@FXML
+	private Button bttnAdminResetPassword;
 
-    /** The button that shows the controls for deleting a coordinator */
-    @FXML
-    private Button bttnBottomAdminCoordinatorDeleteACoordinator;
-    
-    /** The button that shows the controls for deleting a coordinator */
-    @FXML
-    private Button bttnBottomAdminCoordinatorDemoteACoordinator;
-    
-    @FXML
-    private Button bttnAdminAddpointofinterest;
-    
-    @FXML
-    private Button bttnAdminEditpointofinterest;
-    
-    @FXML
-    private Button bttnAdminDeletepointofinterest;
+	/** The borderpane that contains the normal controls the user will use. */
+	@FXML
+	private BorderPane brdpnAdmin;
+	
 
-   
-    @FXML
-    private Button bttnAdminPointsOfInterestListPointsOfInterest;
-
-    /** The tableview of the recieved messages from the system */
-    @FXML
-    private TableView<Message> tblvwAdminMessages;
-    
-    
-    
-
-    /** The button that allows a user to logoff */
-    @FXML
-    private Button bttnAdminLogoff;
-
-    /**
-     * The button event that will show the controls for adding a coordinator
-     *
-     * @param event The event type thrown, we do not need this, but it must be specified
-     */
-    @FXML
-    void bttnBottomAdminCoordinatorAddACoordinator_OnClick(ActionEvent event) {
-    	showCoordinatorScreen(TypeOfEdit.Add);
-    }
-
-    /**
-     * The button event that will show the controls for deleting a coordinator
-     *
-     * @param event The event type thrown, we do not need this, but it must be specified
-     */
-    @FXML
-    void bttnBottomAdminCoordinatorDeleteACoordinator_OnClick(ActionEvent event) {
-    	showCoordinatorScreen(TypeOfEdit.Delete);
-    }
-    @FXML
-    void bttnBottomAdminCoordinatorDemoteACoordinator_OnClick(ActionEvent event){
-    	showCoordinatorScreen(TypeOfEdit.Demote);
-    }
-    
-    @FXML
-    void bttnAdminPointsOfInterestListPointsOfInterest_OnClick(ActionEvent event) throws IOException {
-    	pnAdminPointOfInterest.setVisible(true);
-    	pnAdminLog.setVisible(false);
-    	PnAdminPOI.setVisible(true);
-    	PnAdminTreeView.setVisible(true);
-    	ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
-		for (int i =0 ; i<Collection.size();i++){
-			TableViewPOI.getItems().add(String.valueOf(i));
-			addPointofInterestToTableView(TableViewPOI,i);
-		}
-    	
-    }
-    
-
-    @FXML
-    void bttnAdminAddpointofinterest_OnClick(ActionEvent event) throws IOException{
-    	showPointOfInterestScreen(TypeOfEditPointOfInterest.Add);
-    	
-	}
-       
-    	
-		
-    
-    public void addPointofInterestToTableView(TableView<String> TableViewPOI, int i){
-    	ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
-    	
-    	TableViewPOI.getColumns().clear();
-    	
-    	
-    	tblcolID.setCellValueFactory(cellData -> {
-            
-            return new ReadOnlyStringWrapper(Collection.get(i).id.toString());
-        });
-    	tblcolCategory.setCellValueFactory(cellData -> {
-          
-            return new ReadOnlyStringWrapper(Collection.get(i).Category.name());
-        });
-    	
-    	tblcollat.setCellValueFactory(cellData -> {
-            
-            return new ReadOnlyStringWrapper(Double.toString( Collection.get(i).location.latitude.value.getValue()));
-        });
-    	
-    	tblcollong.setCellValueFactory(cellData -> {
-            
-            return new ReadOnlyStringWrapper(Double.toString( Collection.get(i).location.longitude.value.getValue()));
-        });
-    	
-    	tblcoldes.setCellValueFactory(cellData -> {
-            
-            return new ReadOnlyStringWrapper(Collection.get(i).Description.toString());
-        });
-    	
-    	
-    	TableViewPOI.getColumns().add(tblcolID);
-    	TableViewPOI.getColumns().add(tblcolCategory);
-    	TableViewPOI.getColumns().add(tblcollat);
-    	TableViewPOI.getColumns().add(tblcollong);
-    	TableViewPOI.getColumns().add(tblcoldes);
-    	
-            
-        
-    	
-    	
-	}
-    
-    
-    @FXML
-    void bttnAdminEditpointofinterest_OnClick(ActionEvent event) throws IOException{
-    	showPointOfInterestScreen(TypeOfEditPointOfInterest.Edit);
-    }
-    
-    @FXML
-    void bttnAdminDeletepointofinterest_OnClick(ActionEvent event) throws IOException{
-    	showPointOfInterestScreen(TypeOfEditPointOfInterest.Delete);
-    }
 	/**
-     * The button event that will initiate the logging on of a user
-     *
-     * @param event The event type thrown, we do not need this, but it must be specified
-     */
-    @FXML
-    void bttnBottomLoginPaneLogin_OnClick(ActionEvent event) {
-    	logon();
-    }
-    /**
-     * The button event that will initiate a reset password of a user
-     * 
-     * @param event
-     */
-    @FXML
-    void bttnResetPassword_OnClick(ActionEvent event) {
+	 * The anchorpane that will have the add or delete coordinator controls
+	 * added/removed from it
+	 */
+	@FXML
+	private AnchorPane anchrpnCoordinatorDetails;
 
+	/** The button that shows the controls for adding a coordinator */
+	@FXML
+	private Button bttnBottomAdminCoordinatorAddACoordinator;
 
-    	resetPassword();
-    }
-    
-    /**
-     * The button event that will initiate a captcha validation of a user's captcha test
-     * 
-     * @param event
-     */
-    @FXML
-    void bttnBottomCaptchaPaneLogin_OnClick(ActionEvent event) {
+	/** The button that shows the controls for deleting a coordinator */
+	@FXML
+	private Button bttnBottomAdminCoordinatorDeleteACoordinator;
 
+	/** The button that shows the controls for deleting a coordinator */
+	@FXML
+	private Button bttnBottomAdminCoordinatorDemoteACoordinator;
 
-    	fillCaptcha();
-    }
+	@FXML
+	private Button bttnAdminAddpointofinterest;
 
-    /**
-     * The button event that will initiate the logging off of a user
-     *
-     * @param event The event type thrown, we do not need this, but it must be specified
-     */
-    @FXML
-    void bttnTopLogoff_OnClick(ActionEvent event) {
-    	logoff();
-    }
+	@FXML
+	private Button bttnAdminEditpointofinterest;
 
-    /*
-     * These are other classes accessed by this controller
-     */
-    /** The user controller, for this GUI it's the admin controller and allows access to admin functions like adding a coordinator. */
+	@FXML
+	private Button bttnAdminDeletepointofinterest;
+	
+	@FXML 
+	private Button bttnAdminCancel;
+	
+
+	@FXML
+	private Button bttnAdminPointsOfInterestListPointsOfInterest;
+
+	/** The tableview of the recieved messages from the system */
+	@FXML
+	private TableView<Message> tblvwAdminMessages;
+
+	/** The button that allows a user to logoff */
+	@FXML
+	private Button bttnAdminLogoff;
+
+	/**
+	 * The button event that will show the controls for adding a coordinator
+	 *
+	 * @param event
+	 *            The event type thrown, we do not need this, but it must be
+	 *            specified
+	 */
+	@FXML
+	void bttnBottomAdminCoordinatorAddACoordinator_OnClick(ActionEvent event) {
+		showCoordinatorScreen(TypeOfEdit.Add);
+	}
+
+	/**
+	 * The button event that will show the controls for deleting a coordinator
+	 *
+	 * @param event
+	 *            The event type thrown, we do not need this, but it must be
+	 *            specified
+	 */
+	@FXML
+	void bttnBottomAdminCoordinatorDeleteACoordinator_OnClick(ActionEvent event) {
+		showCoordinatorScreen(TypeOfEdit.Delete);
+	}
+
+	@FXML
+	void bttnBottomAdminCoordinatorDemoteACoordinator_OnClick(ActionEvent event) {
+		showCoordinatorScreen(TypeOfEdit.Demote);
+	}
+
+	@FXML
+	void bttnAdminPointsOfInterestListPointsOfInterest_OnClick(ActionEvent event) throws IOException {
+		pnAdminPointOfInterest.setVisible(true);
+		pnAdminLog.setVisible(false);
+		PnAdminPOI.setVisible(true);
+		PnAdminTreeView.setVisible(true);
+		
+
+		ComboBoxPOI.getItems().removeAll(ComboBoxPOI.getItems());
+		ComboBoxPOI.getItems().addAll("All","Hospital", "PoliceStation", "Garage", "Parking", "InsuranceOffice",
+				"FireStation");
+		ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+		setupTableView(Collection);
+
+	}
+	
+	@FXML
+	void bttnAdminReturnToMain_OnClick(ActionEvent event) throws IOException{
+		pnAdminPointOfInterest.setVisible(false);
+		pnAdminLog.setVisible(true);
+		PnAdminPOI.setVisible(false);
+		PnAdminTreeView.setVisible(false);
+	}
+
+	public List<PointOfInterest> ChangeListToString(ArrayList<CtPointOfInterest> collection) {
+		List<PointOfInterest> List = new ArrayList<PointOfInterest>();
+		for (int i = 0; i < collection.size(); i++) {
+			PointOfInterest Point =  new PointOfInterest(collection.get(i).id.toString(),collection.get(i).Category.name(),
+			Double.toString(collection.get(i).location.latitude.value.getValue()),Double.toString(collection.get(i).location.longitude.value.getValue()),collection.get(i).Description.toString());
+			
+			List.add(Point);
+		}
+
+		return List;
+
+	}
+
+	@FXML
+	void bttnAdminAddpointofinterest_OnClick(ActionEvent event) throws IOException {
+		showPointOfInterestScreen(TypeOfEditPointOfInterest.Add);
+		
+	}
+	
+	@FXML
+	void ComboBoxPOI_OnClick(ActionEvent event)throws IOException, ServerOfflineException, ServerNotBoundException{
+		ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+		if(ComboBoxPOI.getValue()!="All"){
+		
+		EtCategory category = EtCategory.valueOf(ComboBoxPOI.getValue());
+		
+		if(userController.oeSelectCategory(category) !=null){
+		
+		ArrayList<CtPointOfInterest> SortedCollection = SortedList(Collection);
+		setupTableView(SortedCollection);
+		}
+		}else setupTableView(Collection);
+		
+	}
+	
+	public ArrayList<CtPointOfInterest> SortedList(ArrayList<CtPointOfInterest> Collection){
+		
+		ArrayList<CtPointOfInterest> SortedCollection =new ArrayList<CtPointOfInterest>();
+			for(int i=0;i<Collection.size();i++){
+				if(Collection.get(i).Category.name() == ComboBoxPOI.getValue() ){
+					SortedCollection.add(Collection.get(i));
+				}
+			}
+			
+		
+		return SortedCollection;
+	}
+	
+	private void setupTableView(ArrayList<CtPointOfInterest> Collection){
+		
+	
+		
+		List<PointOfInterest> List = ChangeListToString(Collection);
+		
+		TTVPOI.getColumns().clear();
+		
+		TreeTableColumn<String, String> initial //
+		= new TreeTableColumn<String, String>("");
+		
+		TreeTableColumn<PointOfInterest, String> colID //
+				= new TreeTableColumn<PointOfInterest, String>("ID");
+
+		
+		TreeTableColumn<PointOfInterest, String> colCategory
+				= new TreeTableColumn<PointOfInterest, String>("Category");
+
+	
+		TreeTableColumn<PointOfInterest, String> colLatitude //
+				= new TreeTableColumn<PointOfInterest, String>("Latitude");
+
+		TreeTableColumn<PointOfInterest, String> colLongitude //
+				= new TreeTableColumn<PointOfInterest, String>("Longitude");
+
+		TreeTableColumn<PointOfInterest, String> colDescription//
+				= new TreeTableColumn<PointOfInterest, String>("Description");
+	
+		colID.setCellValueFactory(new TreeItemPropertyValueFactory<PointOfInterest, String>("id"));
+		colID.setMinWidth(75);
+        colCategory.setCellValueFactory(new TreeItemPropertyValueFactory<PointOfInterest, String>("category"));
+        colCategory.setMinWidth(100);
+        colLatitude.setCellValueFactory(new TreeItemPropertyValueFactory<PointOfInterest, String>("latitude"));
+        colLongitude.setCellValueFactory(new TreeItemPropertyValueFactory<PointOfInterest, String>("longitude"));
+        colDescription.setCellValueFactory(new TreeItemPropertyValueFactory<PointOfInterest, String>("description"));
+        colDescription.setMinWidth(500);
+        TTVPOI.getColumns().addAll(colID, colCategory,colLatitude, colLongitude, colDescription);
+        PointOfInterest Initialrow = new PointOfInterest("","","","","");
+        TreeItem<PointOfInterest> itemRoot = new TreeItem<PointOfInterest>(Initialrow);
+        for(int i =0;i<List.size();i++){
+        TreeItem<PointOfInterest> item = new TreeItem<PointOfInterest>(List.get(i));
+        itemRoot.getChildren().add(item);
+        }
+       
+        TTVPOI.setRoot(itemRoot);
+        TTVPOI.setShowRoot(false);
+	}
+	@FXML 
+	void bttnAdminCancel_OnClick(ActionEvent event) throws IOException{
+		if(PnAdminPOI.getChildren().size()>=5 ){
+			
+		
+		PnAdminPOI.getChildren().remove(PnAdminPOI.getChildren().size()-1);
+		}
+	}
+	
+	@FXML
+	void bttnAdminEditpointofinterest_OnClick(ActionEvent event) throws IOException {
+		showPointOfInterestScreen(TypeOfEditPointOfInterest.Edit);
+	}
+
+	@FXML
+	void bttnAdminDeletepointofinterest_OnClick(ActionEvent event) throws IOException {
+		showPointOfInterestScreen(TypeOfEditPointOfInterest.Delete);
+	}
+
+	/**
+	 * The button event that will initiate the logging on of a user
+	 *
+	 * @param event
+	 *            The event type thrown, we do not need this, but it must be
+	 *            specified
+	 */
+	@FXML
+	void bttnBottomLoginPaneLogin_OnClick(ActionEvent event) {
+		logon();
+	}
+
+	/**
+	 * The button event that will initiate a reset password of a user
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void bttnResetPassword_OnClick(ActionEvent event) {
+
+		resetPassword();
+	}
+
+	/**
+	 * The button event that will initiate a captcha validation of a user's
+	 * captcha test
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void bttnBottomCaptchaPaneLogin_OnClick(ActionEvent event) {
+
+		fillCaptcha();
+	}
+
+	/**
+	 * The button event that will initiate the logging off of a user
+	 *
+	 * @param event
+	 *            The event type thrown, we do not need this, but it must be
+	 *            specified
+	 */
+	@FXML
+	void bttnTopLogoff_OnClick(ActionEvent event) {
+		logoff();
+	}
+
+	/*
+	 * These are other classes accessed by this controller
+	 */
+	/**
+	 * The user controller, for this GUI it's the admin controller and allows
+	 * access to admin functions like adding a coordinator.
+	 */
 	private AdminController userController;
-	
-	/** Used to get the actor coordinator that was created by the admin, for creating the new window with. */
+
+	/**
+	 * Used to get the actor coordinator that was created by the admin, for
+	 * creating the new window with.
+	 */
 	private SystemStateController systemstateController;
-	
+
 	/*
 	 * Other things created for this controller
 	 */
 	/**
-	 * The enumeration dictating the type of edit an admin is doing to a coordinator.
+	 * The enumeration dictating the type of edit an admin is doing to a
+	 * coordinator.
 	 */
-	private enum TypeOfEdit{
-		
+	private enum TypeOfEdit {
+
 		/** Adding a coordinator. */
 		Add,
-		
+
 		/** Deleting a coordinator. */
-		Delete, 
-		
+		Delete,
+
 		Demote
 	}
-	
-	private enum TypeOfEditPointOfInterest{
-		
-	
+
+	private enum TypeOfEditPointOfInterest {
+
 		Add,
-		
+
 		Edit,
-	
-		Delete
+
+		Delete,
+		
+		Cancel
 	}
-	
+
 	/**
-	 * The list of open windows in the system.
-	 * We open a new window when a coordinator is created, so we also should close the window if the coordinator is deleted 
+	 * The list of open windows in the system. We open a new window when a
+	 * coordinator is created, so we also should close the window if the
+	 * coordinator is deleted
 	 */
 	private ArrayList<CreateICrashCoordGUI> listOfOpenWindows = new ArrayList<CreateICrashCoordGUI>();
 	/*
 	 * Methods used within the GUI
 	 */
 
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logonShowPanes(boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
+	 * AbstractAuthGUIController#logonShowPanes(boolean)
 	 */
 	protected void logonShowPanes(boolean loggedOn) {
 		pnAdminLogon.setVisible(!loggedOn);
 		brdpnAdmin.setVisible(loggedOn);
 		bttnAdminLogoff.setDisable(!loggedOn);
 		bttnAdminLogin.setDefaultButton(!loggedOn);
-		
+
 		txtfldAdminCaptcha.setVisible(false);
 		bttnAdminCaptcha.setVisible(false);
-		if (!loggedOn){
+		if (!loggedOn) {
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
 			txtfldAdminUserName.requestFocus();
-			for (int i = anchrpnCoordinatorDetails.getChildren().size() -1; i >= 0; i--)
+			for (int i = anchrpnCoordinatorDetails.getChildren().size() - 1; i >= 0; i--)
 				anchrpnCoordinatorDetails.getChildren().remove(i);
 		}
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#captchaShowPanes(boolean)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
+	 * AbstractAuthGUIController#captchaShowPanes(boolean)
 	 */
-	protected void captchaShowPanes(boolean captchaOn){
+	protected void captchaShowPanes(boolean captchaOn) {
 
 		pnAdminLogon.setVisible(!captchaOn);
 		brdpnAdmin.setVisible(captchaOn);
 		bttnAdminLogoff.setDisable(!captchaOn);
 		bttnAdminLogin.setDefaultButton(!captchaOn);
-		if (!captchaOn){
+		if (!captchaOn) {
 			txtfldAdminUserName.setText("");
 			psswrdfldAdminPassword.setText("");
 			txtfldAdminUserName.requestFocus();
-			for (int i = anchrpnCoordinatorDetails.getChildren().size() -1; i >= 0; i--)
+			for (int i = anchrpnCoordinatorDetails.getChildren().size() - 1; i >= 0; i--)
 				anchrpnCoordinatorDetails.getChildren().remove(i);
 		}
-		
+
 	}
+
 	/**
 	 * Server has gone down.
 	 */
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.AbstractGUIController#serverHasGoneDown()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.AbstractGUIController
+	 * #serverHasGoneDown()
 	 */
-	protected void serverHasGoneDown(){
+	protected void serverHasGoneDown() {
 		logoff();
 	}
-	
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.HasTables#setUpTables()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.HasTables
+	 * #setUpTables()
 	 */
-	public void setUpTables(){
+	public void setUpTables() {
 		setUpMessageTables(tblvwAdminMessages);
 	}
-
 	
-	private void showPointOfInterestScreen(TypeOfEditPointOfInterest type){
+	private void showPointOfInterestScreen(TypeOfEditPointOfInterest type) {
 		GridPane grdpn = new GridPane();
 		TextField txtfldPOIID = new TextField();
-		TextField txtfldCategory = new TextField();
+		ComboBox<String> cmboboxCategory = new ComboBox<String>();
 		TextField txtfldlongitude = new TextField();
 		TextField txtfldlatitude = new TextField();
 		TextField txtfldDescription = new TextField();
 		txtfldPOIID.setPromptText("Point of interest ID");
-		txtfldCategory.setPromptText("Category");
+		cmboboxCategory.getItems().removeAll(cmboboxCategory.getItems());
+		cmboboxCategory.getItems().addAll("Hospital", "PoliceStation", "Garage", "Parking", "InsuranceOffice",
+				"FireStation");
 		txtfldlongitude.setPromptText("Longitude");
 		txtfldlatitude.setPromptText("latitude");
 		txtfldDescription.setPromptText("Description");
 		Button bttntypeConfirm = new Button("Confirm");
-		switch(type){
+		switch (type) {
 		case Add:
-			
-			grdpn.add(txtfldCategory, 1, 1);
-			grdpn.add(txtfldlongitude, 1, 2);
-			grdpn.add(txtfldlatitude, 1, 3);
-		    grdpn.add(txtfldDescription, 1, 4);
-		    grdpn.add(bttntypeConfirm,1,5);
-			
+
+			grdpn.add(cmboboxCategory, 1, 1);
+			grdpn.add(txtfldlongitude, 1, 3);
+			grdpn.add(txtfldlatitude, 1, 2);
+			grdpn.add(txtfldDescription, 1, 4);
+			grdpn.add(bttntypeConfirm, 1, 5);
+
 			break;
 		case Edit:
 			grdpn.add(txtfldPOIID, 1, 0);
-			grdpn.add(txtfldCategory, 1, 1);
-			grdpn.add(txtfldlongitude, 1, 2);
-			grdpn.add(txtfldlatitude, 1, 3);
-		    grdpn.add(txtfldDescription, 1, 4);
-		    grdpn.add(bttntypeConfirm,1,5);
+			grdpn.add(cmboboxCategory, 1, 1);
+			grdpn.add(txtfldlongitude, 1, 3);
+			grdpn.add(txtfldlatitude, 1, 2);
+			grdpn.add(txtfldDescription, 1, 4);
+			grdpn.add(bttntypeConfirm, 1, 5);
 			break;
 		case Delete:
 			grdpn.add(txtfldPOIID, 1, 0);
 			grdpn.add(bttntypeConfirm, 1, 1);
 			break;
+		
 		}
 		PnAdminPOI.getChildren().add(grdpn);
 		AnchorPane.setTopAnchor(grdpn, 50.0);
@@ -477,83 +588,80 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 				PnAdminPOI.getChildren().remove(grdpn);
 				if (!checkIfAllDialogHasBeenFilledIn(grdpn))
 					showWarningNoDataEntered();
-				else{
-					try{
-						switch(type){
+				else {
+					try {
+						switch (type) {
 						case Add:
-							
-								DtDescription Description =  new DtDescription(new PtString(txtfldDescription.getText()));
-								
-								DtLatitude latitude = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
-								DtLongitude longitude = new DtLongitude(new PtReal(Double.valueOf(txtfldlongitude.getText())));
-								DtGPSLocation location = new DtGPSLocation(latitude,longitude);
-								
-								EtCategory category = EtCategory.valueOf(txtfldCategory.getText());
-								
-							
-								if (userController.oeAddPointOfInterest(category,location,Description) != null){
-									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
-									TableViewPOI.getItems().clear();
-									for (int i =0 ; i<Collection.size();i++){
-										TableViewPOI.getItems().add(String.valueOf(i));
-									addPointofInterestToTableView(TableViewPOI,i);
-									
-									}
-								
-								}else showErrorMessage("Unable to add point of interest", "An error occured when addingg a point of interest");
-								
+
+							DtDescription Description = new DtDescription(new PtString(txtfldDescription.getText()));
+
+							DtLatitude latitude = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
+							DtLongitude longitude = new DtLongitude(
+									new PtReal(Double.valueOf(txtfldlongitude.getText())));
+							DtGPSLocation location = new DtGPSLocation(latitude, longitude);
+
+							EtCategory category = EtCategory.valueOf(cmboboxCategory.getValue());
+						
+							if (userController.oeAddPointOfInterest(category, location, Description) != null) {
+								ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+								setupTableView(Collection);
+
+							} else
+								showErrorMessage("Unable to add point of interest",
+										"An error occured when addingg a point of interest");
+
 							break;
-						
-						case Delete :
-								DtPointOfInterestID ID = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
-								if (userController.oeDeletePointOfInterest(ID) != null){
-									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
-									for (int i =0 ; i<Collection.size();i++){
-										addPointofInterestToTableView(TableViewPOI,i);
-									}
-								}else showErrorMessage("Unable to delete point of interest", "An error occured when deleting a point of interest");
+
+						case Delete:
+							DtPointOfInterestID ID = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
 							
-								break;
+							if (userController.oeDeletePointOfInterest(ID) != null) {
+								ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+								setupTableView(Collection);
+							} else
+								showErrorMessage("Unable to delete point of interest",
+										"An error occured when deleting a point of interest");
+
+							break;
 						case Edit:
-								DtDescription Description1 =  new DtDescription(new PtString(txtfldDescription.getText()));
-								DtPointOfInterestID ID1 = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
-								DtLatitude latitude1 = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
-								DtLongitude longitude1 = new DtLongitude(new PtReal(Double.valueOf(txtfldlongitude.getText())));
-								DtGPSLocation location1 = new DtGPSLocation(latitude1,longitude1);
+							DtDescription Description1 = new DtDescription(new PtString(txtfldDescription.getText()));
+							DtPointOfInterestID ID1 = new DtPointOfInterestID(new PtString(txtfldPOIID.getText()));
+							DtLatitude latitude1 = new DtLatitude(new PtReal(Double.valueOf(txtfldlatitude.getText())));
+							DtLongitude longitude1 = new DtLongitude(
+									new PtReal(Double.valueOf(txtfldlongitude.getText())));
+							DtGPSLocation location1 = new DtGPSLocation(latitude1, longitude1);
+
+							EtCategory category1 = EtCategory.valueOf(cmboboxCategory.getValue());
 							
-								EtCategory category1 = EtCategory.valueOf(txtfldCategory.getText());
-								if (userController.oeEditPointOfInterest(ID1,category1,location1,Description1) != null){
-									ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
-									for (int i =0 ; i<Collection.size();i++){
-										addPointofInterestToTableView(TableViewPOI,i);
-									}
-								}else showErrorMessage("Unable to edit point of interest", "An error occured when editing a point of interest");
-							
-								break;
-						}	
-							}catch (RemoteException | ServerNotBoundException | ServerOfflineException
-									| IncorrectFormatException | StringToNumberException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-								
-							
-						
-						
-							
+							if (userController.oeEditPointOfInterest(ID1, category1, location1, Description1) != null) {
+								ArrayList<CtPointOfInterest> Collection = DbPointOfInterest.getAllCtPointOfInterest();
+								setupTableView(Collection);
+							} else
+								showErrorMessage("Unable to edit point of interest",
+										"An error occured when editing a point of interest");
+
+							break;
+						}
+					} catch (RemoteException | ServerNotBoundException | ServerOfflineException
+							| IncorrectFormatException | StringToNumberException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
 			}
-				});
-		
-		
+		});
+
 	}
+
 	/**
 	 * Shows the modify coordinator screen.
 	 *
-	 * @param type The type of edit to be done, this could be add or delete
+	 * @param type
+	 *            The type of edit to be done, this could be add or delete
 	 */
-	private void showCoordinatorScreen(TypeOfEdit type){
-		for(int i = anchrpnCoordinatorDetails.getChildren().size() -1; i >= 0; i--)
+	private void showCoordinatorScreen(TypeOfEdit type) {
+		for (int i = anchrpnCoordinatorDetails.getChildren().size() - 1; i >= 0; i--)
 			anchrpnCoordinatorDetails.getChildren().remove(i);
 		TextField txtfldUserID = new TextField();
 		TextField txtfldUserName = new TextField();
@@ -564,7 +672,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		Button bttntypOK = null;
 		GridPane grdpn = new GridPane();
 		grdpn.add(txtfldUserID, 1, 1);
-		switch(type){
+		switch (type) {
 		case Add:
 			bttntypOK = new Button("Create");
 			txtfldUserName.setPromptText("User name");
@@ -580,7 +688,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			grdpn.add(bttntypOK, 1, 2);
 			break;
 		case Demote:
-			//TODO
+			// TODO
 		}
 		bttntypOK.setDefaultButton(true);
 		bttntypOK.setOnAction(new EventHandler<ActionEvent>() {
@@ -588,33 +696,35 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			public void handle(ActionEvent event) {
 				if (!checkIfAllDialogHasBeenFilledIn(grdpn))
 					showWarningNoDataEntered();
-				else{
+				else {
 					try {
 						DtCoordinatorID coordID = new DtCoordinatorID(new PtString(txtfldUserID.getText()));
-						switch(type){
+						switch (type) {
 						case Add:
-							if (userController.oeAddCoordinator(txtfldUserID.getText(), txtfldUserName.getText(), psswrdfldPassword.getText(), txtfldMail.getText()) != null){
-								listOfOpenWindows.add(new CreateICrashCoordGUI(coordID, systemstateController.getActCoordinator(txtfldUserName.getText())));
+							if (userController.oeAddCoordinator(txtfldUserID.getText(), txtfldUserName.getText(),
+									psswrdfldPassword.getText(), txtfldMail.getText()) != null) {
+								listOfOpenWindows.add(new CreateICrashCoordGUI(coordID,
+										systemstateController.getActCoordinator(txtfldUserName.getText())));
 								anchrpnCoordinatorDetails.getChildren().remove(grdpn);
-							}
-							else
-								showErrorMessage("Unable to add coordinator", "An error occured when adding the coordinator");
+							} else
+								showErrorMessage("Unable to add coordinator",
+										"An error occured when adding the coordinator");
 							break;
 						case Delete:
-							if (userController.oeDeleteCoordinator(txtfldUserID.getText()).getValue()){
-								for(CreateICrashCoordGUI window : listOfOpenWindows){
+							if (userController.oeDeleteCoordinator(txtfldUserID.getText()).getValue()) {
+								for (CreateICrashCoordGUI window : listOfOpenWindows) {
 									if (window.getDtCoordinatorID().value.getValue().equals(coordID.value.getValue()))
 										window.closeWindow();
 								}
 								anchrpnCoordinatorDetails.getChildren().remove(grdpn);
-							}
-							else
-								showErrorMessage("Unable to delete coordinator", "An error occured when deleting the coordinator");
+							} else
+								showErrorMessage("Unable to delete coordinator",
+										"An error occured when deleting the coordinator");
 							break;
 						}
 					} catch (ServerOfflineException | ServerNotBoundException | IncorrectFormatException e) {
 						showExceptionErrorMessage(e);
-					}					
+					}
 				}
 			}
 		});
@@ -626,82 +736,89 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		txtfldUserID.requestFocus();
 	}
 
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logon()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
+	 * AbstractAuthGUIController#logon()
 	 */
 	@Override
 	public void logon() {
-		if(txtfldAdminUserName.getText().length() > 0 && psswrdfldAdminPassword.getText().length() > 0){
+		if (txtfldAdminUserName.getText().length() > 0 && psswrdfldAdminPassword.getText().length() > 0) {
 			try {
 				if (userController.oeLogin(txtfldAdminUserName.getText(), psswrdfldAdminPassword.getText()).getValue())
 					logonShowPanes(true);
-			}
-			catch (ServerOfflineException | ServerNotBoundException e) {
+			} catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
-			}	
-    	}
-    	else
-    		showWarningNoDataEntered();
+			}
+		} else
+			showWarningNoDataEntered();
 	}
 
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logoff()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
+	 * AbstractAuthGUIController#logoff()
 	 */
 	@Override
 	public void logoff() {
 		try {
-			if (userController.oeLogout().getValue()){
+			if (userController.oeLogout().getValue()) {
 				logonShowPanes(false);
 			}
 		} catch (ServerOfflineException | ServerNotBoundException e) {
 			showExceptionErrorMessage(e);
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logon()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
+	 * AbstractAuthGUIController#logon()
 	 */
 	@Override
 	public void resetPassword() {
 
-		if(txtfldAdminUserName.getText().length() > 0){
+		if (txtfldAdminUserName.getText().length() > 0) {
 			try {
 				if (userController.oeResetPassword(txtfldAdminUserName.getText()).getValue())
 					logonShowPanes(false);
-			}
-			catch (ServerOfflineException | ServerNotBoundException e) {
+			} catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
-			}	
-    	}
-		
-    	else
-    		showWarningNoDataEntered();
+			}
+		}
+
+		else
+			showWarningNoDataEntered();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
 	 *
 	 */
 	@Override
 	public void fillCaptcha() {
 
-		if(txtfldAdminCaptcha.getText().length() > 0){
+		if (txtfldAdminCaptcha.getText().length() > 0) {
 			try {
 				if (userController.oeFillCaptcha(txtfldAdminCaptcha.getText()).getValue())
 					logonShowPanes(true);
-			}
-			catch (ServerOfflineException | ServerNotBoundException e) {
+			} catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
-			}	
-    	}
-			
-		
-    	else
-    		showWarningNoDataEntered();
+			}
+		}
+
+		else
+			showWarningNoDataEntered();
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractGUIController#closeForm()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
+	 * AbstractGUIController#closeForm()
 	 */
 	@Override
 	public void closeForm() {
@@ -718,26 +835,26 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		systemstateController = new SystemStateController();
 		logonShowPanes(false);
 		setUpTables();
-		
+
 	}
 
 	@Override
 	public PtBoolean setActor(JIntIsActor actor) {
 		try {
 			if (actor instanceof ActAdministrator)
-				try{
-					userController = new AdminController((ActAdministrator)actor);
-					try{
+				try {
+					userController = new AdminController((ActAdministrator) actor);
+					try {
 						userController.getAuthImpl().listOfMessages.addListener(new ListChangeListener<Message>() {
 							@Override
 							public void onChanged(ListChangeListener.Change<? extends Message> c) {
 								addMessageToTableView(tblvwAdminMessages, c.getList());
 							}
 						});
-					} catch (Exception e){
+					} catch (Exception e) {
 						showExceptionErrorMessage(e);
 					}
-				}catch (RemoteException e){
+				} catch (RemoteException e) {
 					Log4JUtils.getInstance().getLogger().error(e);
 					throw new ServerOfflineException();
 				} catch (NotBoundException e) {
@@ -751,5 +868,5 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			return new PtBoolean(false);
 		}
 		return new PtBoolean(false);
-	}	
+	}
 }

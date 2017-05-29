@@ -204,7 +204,7 @@ public class AdminController extends AbstractUserController {
 		
 	}	
 	
-	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws ServerOfflineException, ServerNotBoundException{
+	public PtBoolean oeSelectCategory(EtCategory aEtCategory) throws ServerOfflineException, ServerNotBoundException{
 		if (getUserType() == UserType.Admin){
 			ActProxyAdministratorImpl actorAdmin = (ActProxyAdministratorImpl)getAuth();
 			Hashtable<JIntIs, String> ht = new Hashtable<JIntIs, String>();
