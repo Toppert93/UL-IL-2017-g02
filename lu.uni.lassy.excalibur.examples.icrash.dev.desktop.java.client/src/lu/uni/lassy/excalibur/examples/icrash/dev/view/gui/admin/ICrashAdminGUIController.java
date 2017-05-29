@@ -12,6 +12,7 @@
  ******************************************************************************/
 package lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.admin;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -22,9 +23,6 @@ import java.util.List;
 import java.util.Locale.Category;
 import java.util.Observable;
 import java.util.ResourceBundle;
-
-import javax.swing.JComboBox;
-
 import javafx.beans.property.ReadOnlyDoubleWrapper;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -70,6 +68,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.db.DbPointOfIntere
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtPointOfInterest;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCoordinatorID;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtDescription;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtGPSLocation;
@@ -134,6 +133,10 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	/** The textfield that allows input of a captcha for the captcha test. */
 	@FXML
 	private TextField txtfldAdminCaptcha;
+	
+	/** The label that contains the new captcha. */
+	@FXML
+	private Label lblCaptcha;
 
 	/** The passwordfield that allows input of a password for logon. */
 	@FXML
@@ -772,16 +775,14 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     	}
     	else
     		showWarningNoDataEntered();
-	}
+	
 			try {
 				if (userController.oeLogin(txtfldAdminUserName.getText(), psswrdfldAdminPassword.getText()).getValue())
 					logonShowPanes(true);
 			} catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
 			}
-		} else
-			showWarningNoDataEntered();
-	}
+		}
 
 	/*
 	 * (non-Javadoc)
@@ -806,7 +807,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.
 	 * AbstractAuthGUIController#logon()
 	 */
-	@Override
+	
 	@Override
 	public void fillCaptcha() {
 	
@@ -831,24 +832,6 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			captchaShowPanes(true);
     	}
 	}
-	 *
-	 */
-	@Override
-	public void fillCaptcha() {
-
-		if (txtfldAdminCaptcha.getText().length() > 0) {
-			try {
-				if (userController.oeFillCaptcha(txtfldAdminCaptcha.getText()).getValue())
-					logonShowPanes(true);
-			} catch (ServerOfflineException | ServerNotBoundException e) {
-				showExceptionErrorMessage(e);
-			}
-		}
-
-		else
-			showWarningNoDataEntered();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -904,4 +887,25 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		}
 		return new PtBoolean(false);
 	}
+
+	/* (non-Javadoc)
+	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#logon()
+	 */
+	@Override
+	public void resetPassword() {
+
+		if(txtfldAdminUserName.getText().length() > 0){
+			try {
+				if (userController.oeResetPassword(txtfldAdminUserName.getText()).getValue())
+					logonShowPanes(false);
+			}
+			catch (ServerOfflineException | ServerNotBoundException e) {
+				showExceptionErrorMessage(e);
+			}	
+    	}
+		
+    	else
+    		showWarningNoDataEntered();
+	}
+
 }
