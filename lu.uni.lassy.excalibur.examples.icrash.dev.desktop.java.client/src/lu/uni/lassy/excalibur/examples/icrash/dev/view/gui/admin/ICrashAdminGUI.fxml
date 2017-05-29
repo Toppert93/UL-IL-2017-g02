@@ -8,6 +8,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -40,8 +41,13 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <TextField fx:id="txtfldAdminCaptcha" promptText="Enter captcha here..." GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                                    <Button id="bttnAdminCaptcha" fx:id="bttnAdminCaptcha" defaultButton="true" mnemonicParsing="false" onAction="#bttnBottomCaptchaPaneLogin_OnClick" text="Validate Captcha" GridPane.rowIndex="3">
+                                    <Label id="lblCaptcha" fx:id="lblCaptcha" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtfldAdminCaptcha" promptText="Enter captcha here..." visible="false" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <Button id="bttnAdminCaptcha" fx:id="bttnAdminCaptcha" defaultButton="true" mnemonicParsing="false" onAction="#bttnBottomCaptchaPaneLogin_OnClick" text="Validate Captcha" visible="false" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -146,18 +152,20 @@
       </AnchorPane>
       <SplitPane id="pnAdminPointOfInterest" fx:id="pnAdminPointOfInterest" dividerPositions="0.5" focusTraversable="false" orientation="VERTICAL" prefHeight="700.0" prefWidth="800.0" visible="false">
         <items>
-          <AnchorPane id="PnAdminPOI" fx:id="PnAdminPOI" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" visible="false">
+          <AnchorPane id="PnAdminPOI" fx:id="PnAdminPOI" minHeight="0.0" minWidth="0.0" prefHeight="292.0" prefWidth="798.0" visible="false">
                <children>
                   <Button id="bttnAdminAddpointofinterest" fx:id="bttnAdminAddpointofinterest" layoutX="50.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminAddpointofinterest_OnClick" text="Add point of interest" />
                   <Button id="bttnAdminEditpointofinterest" fx:id="bttnAdminEditpointofinterest" layoutX="250.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminEditpointofinterest_OnClick" text="Edit point of interest" />
                   <Button id="bttnAdminDeletepointofinterest" fx:id="bttnAdminDeletepointofinterest" layoutX="450.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminDeletepointofinterest_OnClick" text="delete point of interest" />
+                  <Button id="bttnAdminCancel" fx:id="bttnAdminCancel" layoutX="665.0" layoutY="15.0" mnemonicParsing="false" onAction="#bttnAdminCancel_OnClick" prefHeight="25.0" prefWidth="80.0" text="Cancel" />
                </children>
             </AnchorPane>
-          <AnchorPane id="PnAdminTreeView" fx:id="PnAdminTreeView" minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="798.0" visible="false">
+          <AnchorPane id="PnAdminTreeView" fx:id="PnAdminTreeView" minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="798.0" visible="false">
                <children>
-                  <ComboBox layoutX="119.0" layoutY="14.0" prefWidth="150.0" />
-                  <Label layoutX="58.0" layoutY="18.0" text="Category :" />
-                  <TableView id="TableViewPOI" fx:id="TableViewPOI" editable="true" layoutY="39.0" prefHeight="306.0" prefWidth="798.0" />
+                  <ComboBox id="ComboBoxPOI" fx:id="ComboBoxPOI" layoutX="112.0" layoutY="6.0" onAction="#ComboBoxPOI_OnClick" prefWidth="150.0" />
+                  <Label layoutX="52.0" layoutY="10.0" text="Category :" />
+                  <TreeTableView id="TTVPOI" fx:id="TTVPOI" layoutY="39.0" prefHeight="271.0" prefWidth="798.0" />
+                  <Button id="bttnAdminReturnToMain" fx:id="bttnAdminReturnToMain" layoutX="660.0" layoutY="313.0" mnemonicParsing="false" onAction="#bttnAdminReturnToMain_OnClick" text="Return to Main" />
                </children>
             </AnchorPane>
         </items>

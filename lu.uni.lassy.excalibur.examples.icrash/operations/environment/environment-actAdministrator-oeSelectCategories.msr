@@ -28,15 +28,23 @@ import icrash.concepts.primarytypes.classes
 		postF{
   		let TheSystem: ctState in
   		let TheActor:actAdministrator in
-  		let CollctPointOfInterest:ctPointOfInterest in
+  		let CollctPointOfInterest : ctPointOfInterest in
+  		let SortedCollctPointOfInterest:ctPointOfInterest in
+  		
   		self.rnActor.rnSystem = TheSystem
   		and self.rnActor = TheActor
 		/* PostF01 */
 		// need iterator
-  		and if (CollctPointofInterest.get(i).category.equals(AetCatgory)) 
-  			then true
-  		else (false) 		
- 		endif
+		and SortedCollctPointOfInterest = CollctPointOfInterest.sort(AetCategory)
+  		and (while i.lt(SortCollctPointOfInterest)
+  		if (CollctPointofInterest.get(i).category.equals(AetCatgory)) 
+  			then  (result =true and i++)
+  			else (result = false and break)
+  		endif
+  		)
+  		
+		return result
+ 		
  		}
  		postP{true}
 		}
