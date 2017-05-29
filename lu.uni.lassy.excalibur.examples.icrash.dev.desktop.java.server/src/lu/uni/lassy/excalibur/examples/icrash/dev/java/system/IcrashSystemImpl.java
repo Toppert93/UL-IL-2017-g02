@@ -1120,17 +1120,19 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 							break;
 					}
 				}
+				CtCoordinator ctC = (CtCoordinator)theActCoordinator;
 				
 				//PostF4
+				EtExperienceRank aRank = null;
 				if(theActCoordinator.getExpPoints().value.getValue()==19){
-					theActCoordinator.setExpRank(EtExperienceRank.Intermediate);
+					aRank = EtExperienceRank.Intermediate;
 				} else if(theActCoordinator.getExpPoints().value.getValue()==59){
-					theActCoordinator.setExpRank(EtExperienceRank.Expert);
-				} else if(theActCoordinator.getExpPoints().value.getValue()==120){
-					theActCoordinator.setExpPoints(new DtExpPoints(new PtInteger(theActCoordinator.getExpPoints().value.getValue()-1)));
+					aRank = EtExperienceRank.Expert;
+				} else if(theActCoordinator.getExpPoints().value.getValue()!=120){
+					DtExpPoints aPoints = new DtExpPoints(new PtInteger((ctC.expPoints.value.getValue())+1));
+					oeUpdateCoordinator(ctC.id, ctC.login, ctC.pwd, ctC.mail, aRank, aPoints);
 				}
-				theActCoordinator.setExpPoints(new DtExpPoints(new PtInteger(theActCoordinator.getExpPoints().value.getValue()+1)));
-	
+				
 				//PostF5	
 				PtString aMessage = new PtString("The crisis "
 						//+ "with ID '"
@@ -1563,25 +1565,33 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 	}
 
 	@Override
-	public ArrayList<CtPointOfInterest> oeSelectCategory(EtCategory aEtCategory) throws RemoteException {
+	public PtBoolean oeSelectCategory(EtCategory aEtCategory) throws RemoteException {
 		try {//PreP1
 		isSystemStarted();
 		//PreP2
 		isAdminLoggedIn();
-		ArrayList<CtPointOfInterest> SelectedList = new ArrayList<CtPointOfInterest>();
 		ArrayList<CtPointOfInterest> List = getAllCtPointOfInterest();
-		for(int i= 0;i< List.size();i++){
-			if(List.get(i).Category==aEtCategory){
-				SelectedList.add(List.get(i));
+		ArrayList<CtPointOfInterest> SortedCollection =new ArrayList<CtPointOfInterest>();
+		for(int i=0;i<List.size();i++){
+			if(List.get(i).Category.name() == aEtCategory.name() ){
+				SortedCollection.add(List.get(i));
 			}
 		}
+		for(int j=0;j<SortedCollection.size();j++){
+			if(SortedCollection.get(j).Category.name()!= aEtCategory.name()){
+				return new PtBoolean(false);
+			}
+			
+			}
+		return new PtBoolean(true);
 		
-				return SelectedList;
+		
+			
 		
 		
 	} catch (Exception e) {
-		log.error("Exception in oeDeleteCoordinator..." + e);
-		return null;
+		log.error("Exception in oeSelectCategory..." + e);
+		return new PtBoolean(false);
 	
 	}
 	}
