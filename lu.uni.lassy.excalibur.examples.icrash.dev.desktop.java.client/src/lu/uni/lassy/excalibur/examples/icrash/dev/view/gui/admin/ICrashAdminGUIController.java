@@ -313,8 +313,6 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		
 		TTVPOI.getColumns().clear();
 		
-		TreeTableColumn<String, String> initial //
-		= new TreeTableColumn<String, String>("");
 		
 		TreeTableColumn<PointOfInterest, String> colID //
 				= new TreeTableColumn<PointOfInterest, String>("ID");
@@ -459,7 +457,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 
 		Delete,
 		
-		Cancel
+		
 	}
 
 	/**
@@ -486,7 +484,7 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 		
 
 		if (!loggedOn) {
-			txtfldAdminUserName.setText("");
+			txtfldAdminUserName.setText("");	
 			psswrdfldAdminPassword.setText("");
 			txtfldAdminUserName.requestFocus();
 			for (int i = anchrpnCoordinatorDetails.getChildren().size() - 1; i >= 0; i--)
