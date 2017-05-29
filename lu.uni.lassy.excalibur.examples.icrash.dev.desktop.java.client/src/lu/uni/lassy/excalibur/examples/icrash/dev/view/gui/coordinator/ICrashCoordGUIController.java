@@ -28,11 +28,13 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.java.environment.actors.ActPro
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.design.JIntIsActor;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtAlert;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.CtCrisis;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtCaptcha;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.DtLogin;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtAlertStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.system.types.primary.EtCrisisStatus;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.DtInteger;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtBoolean;
+import lu.uni.lassy.excalibur.examples.icrash.dev.java.types.stdlib.PtString;
 import lu.uni.lassy.excalibur.examples.icrash.dev.java.utils.Log4JUtils;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.Message;
 import lu.uni.lassy.excalibur.examples.icrash.dev.model.actors.ActProxyCoordinatorImpl;
@@ -40,6 +42,7 @@ import lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractA
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.beans.value.ChangeListener;
@@ -74,6 +77,8 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	* When replacing, remember to reassign the correct methods to the button event methods and set the correct types for the tableviews
 	*/
 
+	int attempts = 0;
+	
 	/** The logon pane that holds the controls for logging on. */
 	@FXML
     private Pane pnLogon;
@@ -87,6 +92,10 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
     @FXML
     private TextField txtfldCoordCaptcha;
 
+	/** The label that contains the new captcha. */
+	
+    @FXML
+    private Label lblCoordCaptcha;
 
     /** The passwordfield for entering in the password for logging on. */
     @FXML
@@ -502,10 +511,13 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 
 		if(txtfldCoordLogonUserName.getText().length() > 0 && psswrdfldCoordLogonPassword.getText().length() > 0){
 			try {
+				if (attempts < 3){
 				if (userController.oeLogin(txtfldCoordLogonUserName.getText(), psswrdfldCoordLogonPassword.getText()).getValue()){
-					if (userController.getUserType() == UserType.Coordinator){
+					if (userController.getUserType() == UserType.Coordinator)
 						logonShowPanes(true);
-					}
+					}	else attempts++;
+						} else {
+							captchaShowPanes(true);
 				}
 			}
 			catch (ServerOfflineException | ServerNotBoundException e) {
@@ -557,20 +569,24 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	@Override
 	public void fillCaptcha() {
 
-		if(txtfldCoordCaptcha.getText().length() > 0){
+		if((txtfldCoordCaptcha.getText().length() > 0) && (txtfldCoordCaptcha.getText().equals(lblCoordCaptcha.getText()))){
 			try {
-				if (userController.oeFillCaptcha(txtfldCoordCaptcha.getText()).getValue())
-					logonShowPanes(false);
+				if (userController.oeFillCaptcha(txtfldCoordCaptcha.getText()).getValue()){
 					captchaShowPanes(false);
-			}
-			catch (ServerOfflineException | ServerNotBoundException e) {
+					attempts = 0;
+				}
+					else{captchaShowPanes(true);}
+				
+			}catch (ServerOfflineException | ServerNotBoundException e) {
 				showExceptionErrorMessage(e);
 			}	
    	}
 			
 		
-   	else
+   	else{
    		showWarningNoDataEntered();
+		captchaShowPanes(true);
+   	}
 	}
 	
 	/* (non-Javadoc)
@@ -598,18 +614,28 @@ public class ICrashCoordGUIController extends AbstractAuthGUIController {
 	 * @see lu.uni.lassy.excalibur.examples.icrash.dev.view.gui.abstractgui.AbstractAuthGUIController#captchaShowPanes(boolean)
 	 */
 	protected void captchaShowPanes(boolean captchaOn){
+		
+		String generatedCaptcha = "";
+		DtCaptcha newCaptcha = new DtCaptcha(new PtString(generatedCaptcha));
+		newCaptcha = newCaptcha.generateNewCaptcha();
 
-		bttnCoordCaptcha.setDefaultButton(captchaOn);
+		
+		lblCoordCaptcha.setText(newCaptcha.value.getValue());
+		lblCoordCaptcha.setVisible(captchaOn);
+		pnLogon.setVisible(!captchaOn);
+		bttnCoordLogon.setDefaultButton(!captchaOn);
+		bttnCoordResetPassword.setDisable(captchaOn);
+		
 		txtfldCoordCaptcha.setVisible(captchaOn);
-		if (captchaOn){
-
-
-		}
-		else{
+		bttnCoordCaptcha.setVisible(captchaOn);
+		bttnCoordCaptcha.setDefaultButton(captchaOn);
+		
+		if (!captchaOn){
 			txtfldCoordLogonUserName.setText("");
 			psswrdfldCoordLogonPassword.setText("");
+			txtfldCoordCaptcha.setText("");
 			txtfldCoordLogonUserName.requestFocus();
-			
+
 		}
 	}
 

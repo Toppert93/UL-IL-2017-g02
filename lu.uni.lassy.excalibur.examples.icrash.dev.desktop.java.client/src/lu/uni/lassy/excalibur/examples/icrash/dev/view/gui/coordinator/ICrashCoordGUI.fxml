@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -164,12 +165,20 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button fx:id="bttnCoordCaptcha" mnemonicParsing="false" onAction="#bttnCoordFillCaptcha_OnClick" text="Validate Captcha" visible="false" GridPane.rowIndex="3">
+                                    <Label id="lblCoordCaptcha" fx:id="lblCoordCaptcha" text="Label" visible="false" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Button id="bttnCoordCaptcha" fx:id="bttnCoordCaptcha" mnemonicParsing="false" onAction="#bttnCoordFillCaptcha_OnClick" text="Validate Captcha" visible="false" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <TextField fx:id="txtfldCoordCaptcha" prefHeight="25.0" prefWidth="353.0" promptText="Enter captcha here..." visible="false" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <TextField id="txtfldCoordCaptcha" fx:id="txtfldCoordCaptcha" prefHeight="25.0" prefWidth="353.0" promptText="Enter captcha here..." visible="false" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
