@@ -60,19 +60,19 @@ public class ActCoordinatorImpl extends ActAuthenticatedImpl implements ActCoord
 		expPoints=aPoints;
 	}
 	
-	public EtExperienceRank getExpRank() {
+	public EtExperienceRank getExpRank() throws RemoteException {
 		return expRank;
 	}
 
-	public void setExpRank(EtExperienceRank expRank) {
+	public void setExpRank(EtExperienceRank expRank) throws RemoteException{
 		this.expRank = expRank;
 	}
 
-	public DtExpPoints getExpPoints() {
+	public DtExpPoints getExpPoints() throws RemoteException{
 		return expPoints;
 	}
 
-	public void setExpPoints(DtExpPoints expPoints) {
+	public void setExpPoints(DtExpPoints expPoints) throws RemoteException{
 		this.expPoints = expPoints;
 	}
 

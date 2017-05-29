@@ -1044,9 +1044,9 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 					} else {
 						cType="Expert";
 					}
-					if (crisis.status.toString().equals(aEtCrisisStatus.toString()) && cType.equals(aActCoordinator.getExpRank().name()))
+					if (crisis.status.toString().equals(aEtCrisisStatus.toString()) && cType.equals(aActCoordinator.getExpRank().name())){
 						//PostF1
-						crisis.isSentToCoordinator(aActCoordinator);
+						crisis.isSentToCoordinator(aActCoordinator);}
 				}
 				return new PtBoolean(true);
 			}

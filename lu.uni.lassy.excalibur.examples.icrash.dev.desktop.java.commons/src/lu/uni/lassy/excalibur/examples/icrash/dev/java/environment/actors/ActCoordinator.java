@@ -142,9 +142,9 @@ public interface ActCoordinator extends ActAuthenticated {
 	 * @throws RemoteException Thrown if the server is offline
 	 */
 	public PtBoolean ieSendAnAlert(CtAlert aCtAlert) throws RemoteException;
-	public EtExperienceRank getExpRank();
-	public void setExpRank(EtExperienceRank expRank);
-	public DtExpPoints getExpPoints();
-	public void setExpPoints(DtExpPoints expPoints);
+	public EtExperienceRank getExpRank() throws RemoteException;
+	public void setExpRank(EtExperienceRank expRank) throws RemoteException;
+	public DtExpPoints getExpPoints() throws RemoteException;
+	public void setExpPoints(DtExpPoints expPoints) throws RemoteException;
 
 }
