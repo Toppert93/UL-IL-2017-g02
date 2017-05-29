@@ -164,12 +164,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button fx:id="bttnCoordCaptcha" mnemonicParsing="false" onAction="#bttnCoordFillCaptcha_OnClick" text="Validate Captcha" GridPane.rowIndex="3">
+                                    <Button fx:id="bttnCoordCaptcha" mnemonicParsing="false" onAction="#bttnCoordFillCaptcha_OnClick" text="Validate Captcha" visible="false" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <TextField fx:id="txtfldCoordCaptcha" prefHeight="25.0" prefWidth="353.0" promptText="Enter captcha here..." GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtfldCoordCaptcha" prefHeight="25.0" prefWidth="353.0" promptText="Enter captcha here..." visible="false" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
