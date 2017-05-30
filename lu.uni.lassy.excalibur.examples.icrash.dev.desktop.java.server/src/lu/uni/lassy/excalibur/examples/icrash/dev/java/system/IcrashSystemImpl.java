@@ -1033,6 +1033,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			isUserLoggedIn();
 			if (currentRequestingAuthenticatedActor instanceof ActCoordinator) {
 				ActCoordinator aActCoordinator = (ActCoordinator) currentRequestingAuthenticatedActor;
+				CtCoordinator ctC = (CtCoordinator)getCtAuthenticated(aActCoordinator);
 				//go through all existing crises
 				for (String crisisKey : cmpSystemCtCrisis.keySet()) {
 					CtCrisis crisis = cmpSystemCtCrisis.get(crisisKey);
@@ -1044,7 +1045,7 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 					} else {
 						cType="Expert";
 					}
-					if (crisis.status.toString().equals(aEtCrisisStatus.toString()) && cType.equals(aActCoordinator.getExpRank().name())){
+					if (crisis.status.toString().equals(aEtCrisisStatus.toString()) && cType.equals(ctC.expRank.name())){
 						//PostF1
 						crisis.isSentToCoordinator(aActCoordinator);}
 				}
@@ -1644,7 +1645,25 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 			CtAuthenticated ctAuth = getCtCoordinator(aDtCoordinatorID);
 			if (ctAuth != null && ctAuth instanceof CtCoordinator) {
 				CtCoordinator aCtCoordinator = (CtCoordinator)ctAuth;
-				DbCoordinators.rankDownCoordinator(aCtCoordinator);
+				DtCoordinatorID aId = new DtCoordinatorID(new PtString(aCtCoordinator.id.value.getValue()));
+				DtLogin aLogin = new DtLogin(new PtString(aCtCoordinator.login.value.getValue()));
+				DtPassword aPwd = new DtPassword(new PtString(aCtCoordinator.pwd.value.getValue()));
+				DtMail aMail = new DtMail(new PtString(aCtCoordinator.mail.value.getValue()));
+				EtExperienceRank aRank = aCtCoordinator.expRank;
+				DtExpPoints aPoints = new DtExpPoints(new PtInteger(aCtCoordinator.expPoints.value.getValue()));
+				if(aRank.equals(EtExperienceRank.Expert)){
+					aRank = EtExperienceRank.Intermediate;
+					aPoints = new DtExpPoints(new PtInteger(20));
+				} else if (aRank.equals(EtExperienceRank.Intermediate)){
+					aRank = EtExperienceRank.Novice;
+					aPoints = new DtExpPoints(new PtInteger(0));
+				} else {
+					log.error("Coordinator is already at the lowest rank");
+				}
+				
+				
+				
+				oeUpdateCoordinator(aId,aLogin,aPwd,aMail, aRank, aPoints);
 				//PostF1
 				ActAdministrator admin = (ActAdministrator) currentRequestingAuthenticatedActor;
 				//PostF2
