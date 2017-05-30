@@ -185,5 +185,12 @@ public class ActProxyAdministratorImpl extends ActProxyAuthenticatedImpl impleme
 		// TODO Auto-generated method stub
 		return super.oeResetPassword(aDtLogin);
 	}
+
+	public PtBoolean oeRankDownCoordinator(DtCoordinatorID aDtCoordinatorID) throws RemoteException, NotBoundException {
+		if(getServerSideActor() !=null)
+			return ((ActAdministrator) getServerSideActor()).oeRankDownCoordinator(aDtCoordinatorID);
+		else
+			return new PtBoolean(false);
+	}
 	
 }

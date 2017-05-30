@@ -700,7 +700,9 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
 			grdpn.add(bttntypOK, 1, 2);
 			break;
 		case Demote:
-			// TODO
+			bttntypOK = new Button("Demote");
+			grdpn.add(bttntypOK, 1, 2);
+			break;
 		}
 		bttntypOK.setDefaultButton(true);
 		bttntypOK.setOnAction(new EventHandler<ActionEvent>() {
