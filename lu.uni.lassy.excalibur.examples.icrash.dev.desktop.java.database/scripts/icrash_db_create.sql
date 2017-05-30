@@ -93,6 +93,8 @@ CREATE TABLE `coordinators` (
   `pwd` varchar(80) DEFAULT NULL,
   `expRank` varchar(80) DEFAULT "Novice",
   `expPoints` int(11) DEFAULT 0,
+  `mail` varchar(80) DEFAULT NULL,
+  `nbrOfAttempts` int(11) DEFAULT 0,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -61,9 +61,7 @@ public class DbCoordinators extends DbAbstract{
 				
 	
 				log.debug("[DATABASE]-Insert coordinator");
-				int val = st.executeUpdate("INSERT INTO "+ dbName+ ".coordinators" +
-											"(id,login,pwd,mail,nbrOfAttempts)" + 
-											"VALUES("+"'"+id+"'"+",'"+login+"','"+pwd+"','"+mail+"','"+nbrOfAttempts+"')");
+				int val = st.executeUpdate("INSERT INTO "+ dbName+ ".coordinators (id,login,pwd,mail,nbrOfAttempts) VALUES('"+id+"','"+login+"','"+pwd+"','"+mail+"',"+nbrOfAttempts+")");
 				
 				log.debug(val + " row affected");
 			}
@@ -117,7 +115,7 @@ public class DbCoordinators extends DbAbstract{
 					//coordinator's mail
 					DtMail aMail = new DtMail(new PtString(res.getString("mail")));
 					//coordinator's NbrOfAttemps
-					DtInteger aNbrAttempts = new DtInteger(new PtInteger(res.getInt("nbrattempts")));
+					DtInteger aNbrAttempts = new DtInteger(new PtInteger(res.getInt("nbrOfAttempts")));
 					//coordinator's rank
 					String theRank = res.getString("expRank");
 					EtExperienceRank aRank = null;
@@ -201,18 +199,23 @@ public class DbCoordinators extends DbAbstract{
 			//edit
 			
 			try{
-				Statement st = conn.createStatement();
+				
 				String id = aCtCoordinator.id.value.getValue();
 				String login =  aCtCoordinator.login.value.getValue();
 				String pwd =  aCtCoordinator.pwd.value.getValue();
+				String mail = aCtCoordinator.mail.value.getValue();
 				String rank = aCtCoordinator.expRank.name();
 				int points = aCtCoordinator.expPoints.value.getValue();
-				String statement = "UPDATE "+ dbName+ ".coordinators" +
-						" SET pwd='"+pwd+"',  login='"+login+"', expRank='"+rank+"', expPoints='"+points+"' " +
-						"WHERE id='"+id+"'";
-				int val = st.executeUpdate(statement);
-				log.debug(val+" row updated");
-				success = new PtBoolean(val == 1);
+				String sql = "UPDATE "+ dbName+ ".coordinators SET login = ?, pwd = ?, expRank = ?, expPoints = ? WHERE id = ?";
+				PreparedStatement statement = conn.prepareStatement(sql);
+				statement.setString(1, login);
+				statement.setString(2, pwd);
+				statement.setString(3, rank);
+				statement.setInt(4, points);
+				statement.setString(5, id);
+				int rows = statement.executeUpdate();
+				log.debug(rows+" row updated");
+				success = new PtBoolean(rows == 1);
 			}
 			catch (SQLException s){
 				log.error("SQL statement is not executed! "+s);

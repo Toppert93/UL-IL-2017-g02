@@ -55,7 +55,7 @@ public abstract class CtAuthenticated implements Serializable {
 			mail = aMail;
 			PtInteger newvalue = new PtInteger(0);
 			DtInteger initialvalue = new DtInteger(newvalue);
-			aNbrAttempts = initialvalue;
+			nbrattempts = initialvalue;
 			vpIsLogged = new PtBoolean(false);
 			return new PtBoolean(true); 
 	}

@@ -1120,15 +1120,16 @@ public class IcrashSystemImpl extends UnicastRemoteObject implements
 							break;
 					}
 				}
-				CtCoordinator ctC = (CtCoordinator)theActCoordinator;
+				CtCoordinator ctC = (CtCoordinator)getCtAuthenticated(theActCoordinator);
 				
 				//PostF4
-				EtExperienceRank aRank = null;
-				if(theActCoordinator.getExpPoints().value.getValue()==19){
+				EtExperienceRank aRank = ctC.expRank;
+				if(ctC.expPoints.value.getValue()==19){
 					aRank = EtExperienceRank.Intermediate;
-				} else if(theActCoordinator.getExpPoints().value.getValue()==59){
+				} else if(ctC.expPoints.value.getValue()==59){
 					aRank = EtExperienceRank.Expert;
-				} else if(theActCoordinator.getExpPoints().value.getValue()!=120){
+				}
+				if(ctC.expPoints.value.getValue()!=120){
 					DtExpPoints aPoints = new DtExpPoints(new PtInteger((ctC.expPoints.value.getValue())+1));
 					oeUpdateCoordinator(ctC.id, ctC.login, ctC.pwd, ctC.mail, aRank, aPoints);
 				}
