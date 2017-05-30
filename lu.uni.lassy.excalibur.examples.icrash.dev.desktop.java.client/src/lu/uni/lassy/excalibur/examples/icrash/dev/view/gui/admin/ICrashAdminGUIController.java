@@ -783,12 +783,6 @@ public class ICrashAdminGUIController extends AbstractAuthGUIController {
     	else
     		showWarningNoDataEntered();
 	
-			try {
-				if (userController.oeLogin(txtfldAdminUserName.getText(), psswrdfldAdminPassword.getText()).getValue())
-					logonShowPanes(true);
-			} catch (ServerOfflineException | ServerNotBoundException e) {
-				showExceptionErrorMessage(e);
-			}
 		}
 
 	/*
