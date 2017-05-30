@@ -5,12 +5,59 @@ import lu.uni.lassy.messir.libraries.math
 import lu.uni.lassy.messir.libraries.string
 import lu.uni.lassy.messir.libraries.calendar
 import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
 import icrash.environment
+
 
 Operation Model {
 
 operation: actCoordinator.outactCoordinator.oeGetCrisisSet(AetCrisisStatus:etCrisisStatus):ptBoolean{
-prolog{"src/Operations/Environment/OUT/outactCoordinator-oeGetCrisisSet.pl"}
+
+	preP{
+	
+		let TheSystem:ctState in
+		let Jack:actCoordinator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+	
+	
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+ 	 	and Jack.rnctAuthenticated.vpIsLogged = true
+
+		}
+		
+	preF{
+		true
+	}
+	
+	
+	postF{
+			
+	let TheSystem:ctState in
+	let Jack:actCoordinator in
+	self.rnActor.rnSystem = TheSystem
+	and self.rnActor = Jack
+	
+	let requiredType:etCrisisType in
+	let j:dtInteger in
+	if(Jack.expRank=="Novice") then(requiredType="small")
+	else if(Jack.expRank=="Intermediate")then(requiredType="medium")
+	else (requiredType="huge") endif endif
+		
+	TheSystem.rnctCrisis->select(status.eq(AetCrisisStatus) and type.eq(requiredType))
+  	= CollCtCrises
+  	and j=0
+  	
+  	//PostF01
+  	 while (j.lt(CollCtCrises.length-1)
+ 		CollCtCrises.get(j).isSentToCoordinator()
+ 		and j+1
+ 		
+ 		 )
+  	
+  	}
 }
 }
 }

@@ -21,7 +21,8 @@ icrash.environment.actCoordinator.outactCoordinator.oeGetCrisisSet
 
 //postFunctional descriptions
 @postF 
-" the post state is the one obtained by satisfying the \msrcode{isSentToCoordinator} predicate for each crisis having the provided status and for the actor sending the message \msrcode{ieSendACrisis}. (cf. specification of \msrcode{isSentToCoordinator} predicate given for the \msrcode{ctCrisis} type."
+" the post state is the one obtained by satisfying the \msrcode{isSentToCoordinator} predicate for each crisis having the provided status and type for the actor sending the message \msrcode{ieSendACrisis}. (cf. specification of \msrcode{isSentToCoordinator} predicate given for the \msrcode{ctCrisis} type.
+ The crisis is only sent to the coordinator if it matches his rank (small crisis-> novice rank, medium crisis -> intermediate rank, huge crisis -> expert rank). "
 @endPostF
 
 //postProtocol descriptions
