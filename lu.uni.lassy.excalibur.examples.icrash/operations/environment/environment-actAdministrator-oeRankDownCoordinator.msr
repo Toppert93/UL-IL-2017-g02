@@ -37,11 +37,11 @@ import icrash.environment
 		
 		/* PreF01*/	
 		TheSystem.rnctCoordinator->select(id.eq(AdtCoordinatorID))
-  		= ColctCoordinators
-  		and ColctCoordinators->size().eq(1)
+  		= theCoordinator
+  		and theCoordinator->size().eq(1)
   		
   		/*PreF02*/
-  		and (ColctCoordinators.expRank.eq("Intermediate") or ColctCoordinators.expRank.eq("Expert"))
+  		and (theCoordinator.expRank.eq("Intermediate") or theCoordinator.expRank.eq("Expert"))
 			
 		}
 		
@@ -53,7 +53,7 @@ import icrash.environment
 		and self.rnActor = Jack
 		
 		TheSystem.rnctCoordinator->select(id.eq(AdtCoordinatorID))
-  		= ColctCoordinators
+  		= theCoordinator
 		
 		
 		/*PostF01*/
@@ -61,8 +61,8 @@ import icrash.environment
 		
 		/*PostF02*/
 		
-		if(ColctCoordinators.expRank.eq("Expert") and ColctCoordinators.expPoints >= 60)then(ColctCoordinators.@post.expRank.eq("Intermediate") and ColctCoordinators.@post.expPoints = 20)
-		else(ColctCoordinators.@post.expRank.eq("Novice") and ColctCoordinators.@post.expPoints = 0)endif
+		if(theCoordinator.expRank.eq("Expert") and theCoordinator.expPoints >= 60)then(theCoordinator.@post.expRank.eq("Intermediate") and theCoordinator.@post.expPoints = 20)
+		else(theCoordinator.@post.expRank.eq("Novice") and theCoordinator.@post.expPoints = 0)endif
 		}
 		
 		postP{

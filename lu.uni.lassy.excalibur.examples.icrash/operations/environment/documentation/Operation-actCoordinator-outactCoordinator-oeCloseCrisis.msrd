@@ -27,6 +27,8 @@ icrash.environment.actCoordinator.outactCoordinator.oeCloseCrisis
 @postF
 "all the alert instances associated to this crisis do not belong any more to the system's post state."
 @postF
+"The coordinator's experience points increase by 1 in the post state and he is promoted if his points reach the threshold needed (Intermediate -> 20, Expert -> 60)."
+@postF
 "the coordinator actor is informed about the satisfaction of its request."
 @endPostF
 

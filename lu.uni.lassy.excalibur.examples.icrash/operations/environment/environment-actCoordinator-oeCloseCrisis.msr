@@ -5,12 +5,67 @@ import lu.uni.lassy.messir.libraries.math
 import lu.uni.lassy.messir.libraries.string
 import lu.uni.lassy.messir.libraries.calendar
 import icrash.concepts.primarytypes.datatypes
+import icrash.concepts.primarytypes.classes
 import icrash.environment
 
 Operation Model {
 
 operation: actCoordinator.outactCoordinator.oeCloseCrisis(AdtCrisisID:dtCrisisID):ptBoolean{
-prolog{"src/Operations/Environment/OUT/outactCoordinator-oeCloseCrisis.pl"}
+
+	preP{
+	
+		let TheSystem:ctState in
+		let Jack:actCoordinator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+	
+	
+		/* PreP01 */
+  		and TheSystem.vpStarted = true
+		/* PreP02 */
+ 	 	and Jack.rnctAuthenticated.vpIsLogged = true
+
+		}
+		
+	preF{
+			
+		let TheSystem:ctState in
+		let Jack:actCoordinator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+		
+		/* PreF01*/	
+		TheSystem.rnctCrisis->select(id.eq(AdtCrisisID))
+  		= theCrisis
+  		and theCrisis->size().eq(1)
+  		
+		}
+		
+	postF{
+			
+		let TheSystem:ctState in
+		let Jack:actCoordinator in
+		self.rnActor.rnSystem = TheSystem
+		and self.rnActor = Jack
+		
+		TheSystem.rnctCrisis->select(id.eq(AdtCrisisID))
+  		= theCrisis
+		
+		
+		/*PostF01*/
+		theCrisis.@post.status="closed"
+		
+		/*PostF04*/
+		if(Jack.expPoints == 59)then(theCoordinator.@post.expRank.eq("Expert"))
+		else if(Jack.expPoints == 19) then (theCoordinator.@post.expRank.eq("Intermediate")) else () endif endif
+		if(Jack.expPoints<120)then(Jack.@post.expPoints=Jack.expPoints+1)else() endif
+		
+		
+		}
+		
+	postP{
+			true
+		}
 }
 }
 }

@@ -475,6 +475,7 @@
     <semanticResources>concepts/documentation/Operation-etExperienceRank-is.msrd</semanticResources>
     <semanticResources>operations/concepts/primarytypes-datatypes/primarytypes-datatypes-dtExpPoints-is.msr</semanticResources>
     <semanticResources>operations/concepts/primarytypes-datatypes/primarytypes-datatypes-etExperienceRank-is.msr</semanticResources>
+    <semanticResources>environment/documentation/Operation-actAdministrator-outactAdministrator-oeClosestToALocation.msrd</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_VxVZ4PWqEeSOM9Kfym77Zg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/lu.uni.lassy.excalibur.ui.viewer/description/excalibur_models.odesign#//@ownedViewpoints[name='msr-viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_6EvWQBCiEeejEoe6pxZ3ZQ" name="uci-uciugAdministrateTheSystem" representation="_6EvWQRCiEeejEoe6pxZ3ZQ">
